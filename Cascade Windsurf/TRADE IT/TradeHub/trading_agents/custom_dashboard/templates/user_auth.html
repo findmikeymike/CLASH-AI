@@ -1,0 +1,59 @@
+<!-- User Authentication UI Component -->
+<div class="user-auth-container">
+    {% if current_user.is_authenticated %}
+        <div class="user-profile">
+            <button class="user-profile-toggle" id="user-profile-toggle">
+                <img src="{{ current_user.picture }}" alt="{{ current_user.name }}" class="user-avatar">
+                <span class="user-name">{{ current_user.name }}</span>
+                <i class="fas fa-chevron-down ms-auto"></i>
+            </button>
+            <div class="user-dropdown" id="user-dropdown">
+                <div class="user-dropdown-header">
+                    <img src="{{ current_user.picture }}" alt="{{ current_user.name }}" class="user-avatar-large">
+                    <div class="user-info">
+                        <span class="user-fullname">{{ current_user.name }}</span>
+                        <span class="user-email">{{ current_user.email }}</span>
+                    </div>
+                </div>
+                <div class="user-dropdown-actions">
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        Account Settings
+                    </a>
+                    <a href="{{ url_for('auth.logout') }}" class="dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sign Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="auth-button-container">
+            <a href="{{ url_for('auth.login') }}" class="auth-button">
+                <i class="fab fa-google"></i>
+                <span>Sign In</span>
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<!-- JS for User Profile Dropdown -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userProfileToggle = document.getElementById('user-profile-toggle');
+        const userDropdown = document.getElementById('user-dropdown');
+        
+        if (userProfileToggle && userDropdown) {
+            userProfileToggle.addEventListener('click', function() {
+                userDropdown.classList.toggle('active');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!userProfileToggle.contains(event.target) && !userDropdown.contains(event.target)) {
+                    userDropdown.classList.remove('active');
+                }
+            });
+        }
+    });
+</script>
