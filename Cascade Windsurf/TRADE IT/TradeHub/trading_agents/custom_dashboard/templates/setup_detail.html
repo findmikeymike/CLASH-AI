@@ -1,0 +1,535 @@
+<!-- Setup Detail View -->
+<div id="setup-detail-container" class="setup-detail-container">
+    <!-- Loading and Error States -->
+    <div id="detail-loading" class="detail-loading">
+        <div class="spinner"></div>
+        <p>Loading setup details...</p>
+    </div>
+    <div id="detail-error" class="detail-error"></div>
+    
+    <!-- Close Button -->
+    <button id="close-detail-view" class="close-detail-btn">
+        <i class="fas fa-times"></i>
+    </button>
+    
+    <!-- Detail Content -->
+    <div class="detail-content">
+        <!-- Header -->
+        <div class="detail-header">
+            <div class="detail-title">
+                <h2 id="detail-symbol">AAPL</h2>
+                <span id="detail-type" class="detail-setup-type">Breaker Block Retest</span>
+                <span id="detail-timeframe" class="detail-timeframe">1D</span>
+            </div>
+            <div class="detail-badges">
+                <span id="detail-direction" class="setup-direction bullish">BULLISH</span>
+                <span id="detail-status" class="status-badge active">ACTIVE</span>
+                <span id="market-aligned-badge" class="market-badge aligned">
+                    <i class="fas fa-check-circle"></i> Market Aligned
+                </span>
+            </div>
+        </div>
+        
+        <!-- Main Content Area - Chart and Agent Info Side by Side -->
+        <div class="detail-main-content">
+            <!-- Left Column - Chart and Metrics -->
+            <div class="detail-chart-column">
+                <!-- Main Chart -->
+                <div id="detail-chart" class="detail-chart"></div>
+                
+                <!-- Key Metrics -->
+                <div class="detail-metrics">
+                    <div class="metric-item">
+                        <span class="metric-label">Entry</span>
+                        <span id="detail-entry" class="metric-value">150.00</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Stop Loss</span>
+                        <span id="detail-stop" class="metric-value">145.00</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Target</span>
+                        <span id="detail-target" class="metric-value">160.00</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Risk/Reward</span>
+                        <span id="detail-risk-reward" class="metric-value">3.0</span>
+                    </div>
+                    <div id="confidence-container" class="metric-item">
+                        <span class="metric-label">Confluence Score</span>
+                        <span id="detail-confidence" class="metric-value">85</span>
+                    </div>
+                </div>
+                
+                <!-- Party Buttons -->
+                <div class="party-buttons">
+                    <button class="join-party-btn">
+                        <i class="fas fa-glass-cheers"></i> Join the Party
+                    </button>
+                    <button class="thumbs-down-btn">
+                        <i class="fas fa-thumbs-down"></i>
+                    </button>
+                </div>
+                
+                <!-- Space for Future Comment Feed -->
+                <div class="detail-comment-feed-placeholder">
+                    <!-- This space will be used for the comment feed in the future -->
+                </div>
+            </div>
+            
+            <!-- Right Column - Agent Analysis -->
+            <div class="detail-agent-column">
+                <h3 class="agent-column-title">Agent Analysis</h3>
+                
+                <!-- Analysis Content - Compact agent rows -->
+                <div class="agent-analysis-container">
+                    <div class="agent-row">
+                        <div class="agent-name">
+                            <i class="fas fa-exchange-alt"></i> Order Flow
+                        </div>
+                        <div id="order-flow-content" class="agent-output"></div>
+                    </div>
+                    
+                    <div class="agent-row">
+                        <div class="agent-name">
+                            <i class="fas fa-layer-group"></i> Options
+                        </div>
+                        <div id="options-content" class="agent-output"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS for Setup Detail View -->
+<style>
+    .setup-detail-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(19, 23, 34, 0.95);
+        z-index: 1000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow-y: auto;
+    }
+    
+    .setup-detail-container.active {
+        display: flex;
+    }
+    
+    .detail-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid var(--accent-blue);
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .detail-error {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(239, 83, 80, 0.2);
+        color: var(--accent-red);
+        padding: 20px;
+        border-radius: var(--border-radius-md);
+        display: none;
+    }
+    
+    .close-detail-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    
+    .close-detail-btn:hover {
+        color: var(--accent-blue);
+    }
+    
+    .detail-content {
+        background-color: var(--bg-secondary);
+        border-radius: var(--border-radius-lg);
+        width: 100%;
+        max-width: 1200px;
+        padding: 25px;
+        box-shadow: var(--box-shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .detail-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .detail-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .detail-title h2 {
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0;
+    }
+    
+    .detail-setup-type {
+        font-size: 16px;
+        color: var(--text-secondary);
+    }
+    
+    .detail-timeframe {
+        background-color: var(--bg-tertiary);
+        padding: 4px 8px;
+        border-radius: var(--border-radius-sm);
+        font-size: 14px;
+    }
+    
+    .detail-badges {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .status-badge {
+        padding: 4px 10px;
+        border-radius: var(--border-radius-sm);
+        font-weight: 600;
+        font-size: 13px;
+    }
+    
+    .market-badge {
+        font-size: 13px;
+        padding: 4px 10px;
+        border-radius: var(--border-radius-sm);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .market-badge.aligned {
+        background-color: rgba(38, 166, 154, 0.2);
+        color: var(--accent-green);
+    }
+    
+    .market-badge.misaligned {
+        background-color: rgba(239, 83, 80, 0.2);
+        color: var(--accent-red);
+    }
+    
+    .status-badge.active {
+        background-color: rgba(38, 166, 154, 0.2);
+        color: var(--accent-green);
+    }
+    
+    .status-badge.watching {
+        background-color: rgba(41, 98, 255, 0.2);
+        color: var(--accent-blue);
+    }
+    
+    .status-badge.low_confluence {
+        background-color: rgba(255, 152, 0, 0.2);
+        color: #FF9800;
+    }
+    
+    /* Side by side layout */
+    .detail-main-content {
+        display: flex;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .detail-chart-column {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .detail-agent-column {
+        flex: 1;
+        min-width: 300px;
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .agent-column-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-primary);
+    }
+    
+    .detail-chart {
+        height: 400px;
+        width: 100%;
+        background-color: var(--bg-tertiary);
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
+    }
+    
+    .detail-metrics {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-md);
+        background-color: var(--bg-tertiary);
+    }
+    
+    .metric-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+    }
+    
+    .metric-label {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+    }
+    
+    .metric-value {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    /* Party Buttons */
+    .party-buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .join-party-btn {
+        background: linear-gradient(135deg, #6e57ff, #3b82f6);
+        color: white;
+        border: none;
+        border-radius: var(--border-radius-md);
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .join-party-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+    }
+    
+    .thumbs-down-btn {
+        background-color: var(--bg-tertiary);
+        color: var(--text-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-md);
+        padding: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+    
+    .thumbs-down-btn:hover {
+        background-color: rgba(239, 83, 80, 0.1);
+        color: var(--accent-red);
+    }
+    
+    .detail-comment-feed-placeholder {
+        height: 160px;
+        border: 1px dashed var(--border-color);
+        border-radius: var(--border-radius-md);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+    
+    .detail-comment-feed-placeholder::after {
+        content: "Comment feed coming soon";
+    }
+    
+    /* Agent rows styles */
+    .agent-analysis-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .agent-row {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
+    }
+    
+    .agent-name {
+        width: 100%;
+        padding: 10px 15px;
+        background-color: var(--bg-tertiary);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 14px;
+    }
+    
+    .agent-output {
+        padding: 12px;
+        font-size: 13px;
+    }
+    
+    .agent-data {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .agent-data-item {
+        background-color: var(--bg-tertiary);
+        padding: 8px 12px;
+        border-radius: var(--border-radius-sm);
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: calc(50% - 5px);
+    }
+    
+    .agent-data-label {
+        font-size: 11px;
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+    }
+    
+    .agent-data-value {
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    .no-data {
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .detail-content {
+            padding: 15px;
+        }
+        
+        .detail-main-content {
+            flex-direction: column;
+        }
+        
+        .detail-agent-column {
+            max-width: none;
+            width: 100%;
+        }
+        
+        .join-party-btn {
+            flex: 1;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .detail-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .detail-badges {
+            align-self: flex-start;
+        }
+        
+        .detail-metrics {
+            flex-wrap: wrap;
+        }
+        
+        .metric-item {
+            flex-basis: 33.33%;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .metric-item {
+            flex-basis: 50%;
+        }
+    }
+</style>
+
+<script>
+// Add click outside to close functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const setupDetailContainer = document.getElementById('setup-detail-container');
+    const detailContent = document.querySelector('.detail-content');
+    
+    // Close when clicking outside the detail content
+    setupDetailContainer.addEventListener('click', function(event) {
+        // Only close if clicking directly on the container background (not its children)
+        if (event.target === setupDetailContainer) {
+            closeDetailView();
+        }
+    });
+    
+    // Function to close the detail view
+    function closeDetailView() {
+        setupDetailContainer.classList.remove('active');
+    }
+});
+</script> 

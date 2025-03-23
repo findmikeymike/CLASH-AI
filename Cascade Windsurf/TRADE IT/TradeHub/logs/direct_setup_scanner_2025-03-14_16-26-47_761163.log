@@ -1,0 +1,1 @@
+2025-03-14 16:26:48.140 | ERROR    | __main__:<module>:68 - Error running setup scanner workflow: cannot import name 'task' from 'prefect' (/Users/michaelb.williams/CursorApps/Trade Hub/.venv/lib/python3.13/site-packages/prefect/__init__.py)

@@ -1,0 +1,11 @@
+2025-03-14 16:09:58.005 | INFO     | __main__:__init__:36 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003
+2025-03-14 16:09:58.005 | INFO     | __main__:scan:248 - Scanning AAPL on 1d timeframe
+2025-03-14 16:09:58.006 | INFO     | __main__:fetch_data:42 - Fetching data for AAPL on 1d timeframe
+2025-03-14 16:09:58.361 | INFO     | __main__:fetch_data:45 - Fetched 250 data points for AAPL
+2025-03-14 16:09:58.368 | ERROR    | __main__:scan:384 - Error scanning AAPL: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-03-14 16:09:58.369 | ERROR    | __main__:main:438 - Error scanning AAPL: 'current_price'
+2025-03-14 16:09:58.369 | INFO     | __main__:scan:248 - Scanning MSFT on 1d timeframe
+2025-03-14 16:09:58.369 | INFO     | __main__:fetch_data:42 - Fetching data for MSFT on 1d timeframe
+2025-03-14 16:09:58.471 | INFO     | __main__:fetch_data:45 - Fetched 250 data points for MSFT
+2025-03-14 16:09:58.478 | ERROR    | __main__:scan:384 - Error scanning MSFT: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-03-14 16:09:58.478 | ERROR    | __main__:main:438 - Error scanning MSFT: 'current_price'

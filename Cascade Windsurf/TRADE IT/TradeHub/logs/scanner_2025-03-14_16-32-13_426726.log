@@ -1,0 +1,14 @@
+2025-03-14 16:32:13.431 | INFO     | __main__:main:245 - Starting setup scanner at 2025-03-14T16:32:13.430985
+2025-03-14 16:32:13.431 | INFO     | __main__:main:246 - Scanning symbols: ['AAPL', 'MSFT']
+2025-03-14 16:32:13.431 | INFO     | __main__:main:247 - Scanning timeframes: ['1D']
+2025-03-14 16:32:13.431 | INFO     | __main__:setup_scanner_workflow:185 - Starting setup scanner workflow at 2025-03-14T16:32:13.431240
+2025-03-14 16:32:13.431 | INFO     | __main__:setup_scanner_workflow:186 - Scanning 2 symbols on 1 timeframes
+2025-03-14 16:32:13.431 | INFO     | __main__:fetch_market_data:69 - Fetching data for AAPL on 1D timeframe
+2025-03-14 16:32:13.844 | ERROR    | __main__:fetch_market_data:81 - Error fetching data for AAPL: 'tuple' object has no attribute 'lower'
+2025-03-14 16:32:13.844 | WARNING  | __main__:setup_scanner_workflow:199 - No data fetched for AAPL on 1D timeframe
+2025-03-14 16:32:13.844 | INFO     | __main__:fetch_market_data:69 - Fetching data for MSFT on 1D timeframe
+2025-03-14 16:32:14.020 | ERROR    | __main__:fetch_market_data:81 - Error fetching data for MSFT: 'tuple' object has no attribute 'lower'
+2025-03-14 16:32:14.020 | WARNING  | __main__:setup_scanner_workflow:199 - No data fetched for MSFT on 1D timeframe
+2025-03-14 16:32:14.020 | INFO     | __main__:setup_scanner_workflow:228 - Setup scanner workflow completed at 2025-03-14T16:32:14.020408
+2025-03-14 16:32:14.020 | INFO     | __main__:setup_scanner_workflow:229 - Found 0 potential setups, stored 0
+2025-03-14 16:32:14.020 | INFO     | __main__:main:255 - Setup scanner workflow completed. Found 0 setups.

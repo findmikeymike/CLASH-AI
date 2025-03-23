@@ -1,0 +1,27 @@
+2025-03-16 20:31:47.543 | INFO     | __main__:setup_scanner_workflow:1076 - Starting setup scanner workflow for 3 symbols on 1 timeframes
+2025-03-16 20:31:47.543 | INFO     | __main__:setup_scanner_workflow:1077 - Symbols: AAPL, MSFT, NVDA
+2025-03-16 20:31:47.543 | INFO     | __main__:setup_scanner_workflow:1078 - Timeframes: 1D
+2025-03-16 20:31:47.543 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 20:31:47.543 | INFO     | __main__:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 20:31:47.543 | INFO     | __main__:setup_scanner_workflow:1097 - Processing AAPL on 1D timeframe
+2025-03-16 20:31:47.543 | INFO     | __main__:fetch_market_data:726 - Fetching data for AAPL on 1D timeframe
+2025-03-16 20:31:48.173 | INFO     | __main__:fetch_market_data:753 - Data columns: MultiIndex([( 'Close', 'AAPL'),
+            (  'High', 'AAPL'),
+            (   'Low', 'AAPL'),
+            (  'Open', 'AAPL'),
+            ('Volume', 'AAPL')],
+           names=['Price', 'Ticker'])
+2025-03-16 20:31:48.174 | INFO     | __main__:fetch_market_data:754 - Data types: Price   Ticker
+Close   AAPL      float64
+High    AAPL      float64
+Low     AAPL      float64
+Open    AAPL      float64
+Volume  AAPL        int64
+dtype: object
+2025-03-16 20:31:48.175 | INFO     | __main__:fetch_market_data:785 - Fetched 124 data points for AAPL
+2025-03-16 20:31:48.175 | INFO     | __main__:find_breaker_blocks:73 - Scanning for breaker blocks in data with 124 rows
+2025-03-16 20:31:48.176 | INFO     | __main__:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 20:31:48.176 | INFO     | __main__:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 124 rows
+2025-03-16 20:31:48.180 | INFO     | __main__:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-16 20:31:48.180 | INFO     | __main__:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 124 rows
+2025-03-16 20:31:48.180 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:116 - Scanning for Sweep Engulfer patterns in AAPL (1D) with 124 rows

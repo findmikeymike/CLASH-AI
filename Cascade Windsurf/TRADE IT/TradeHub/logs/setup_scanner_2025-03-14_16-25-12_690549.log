@@ -1,0 +1,1 @@
+2025-03-14 16:25:13.057 | ERROR    | __main__:<module>:54 - Error running setup scanner workflow: cannot import name 'flow' from 'prefect' (/Users/michaelb.williams/CursorApps/Trade Hub/.venv/lib/python3.13/site-packages/prefect/__init__.py)

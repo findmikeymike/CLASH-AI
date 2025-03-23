@@ -1,0 +1,165 @@
+2025-03-16 23:00:43.344 | INFO     | __main__:start_market_scanner:137 - Starting market scanner with 2 symbols on 1 timeframes
+2025-03-16 23:00:43.344 | INFO     | __main__:start_market_scanner:138 - Symbols: AAPL, MSFT
+2025-03-16 23:00:43.344 | INFO     | __main__:start_market_scanner:139 - Timeframes: 1D
+2025-03-16 23:00:43.344 | INFO     | __main__:start_market_scanner:140 - Scan interval: 2 minutes
+2025-03-16 23:00:43.344 | INFO     | __main__:run_scanner_job:88 - Running scanner at 2025-03-16 23:00:43
+2025-03-16 23:00:43.344 | INFO     | ibkr_single_scan:run_single_scan:97 - Running single scan for 2 symbols on 1 timeframes
+2025-03-16 23:00:43.807 | INFO     | trading_agents.utils.ibkr_connector:get_ib_connection:70 - Connected to IBKR at 127.0.0.1:7496
+2025-03-16 23:00:43.807 | INFO     | ibkr_single_scan:run_single_scan:103 - Successfully connected to IBKR
+2025-03-16 23:00:43.807 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 23:00:43.807 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 23:00:43.807 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing AAPL on 1D timeframe
+2025-03-16 23:00:43.808 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 23:00:43.911 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for AAPL from IBKR
+2025-03-16 23:00:43.911 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 21 data points for AAPL from IBKR
+2025-03-16 23:00:43.911 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 21 rows
+2025-03-16 23:00:43.911 | WARNING  | non_prefect_setup_scanner:find_breaker_blocks:76 - Not enough data points to find breaker blocks (need at least 60)
+2025-03-16 23:00:43.911 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 21 rows
+2025-03-16 23:00:43.911 | WARNING  | non_prefect_setup_scanner:find_fair_value_gaps:396 - Not enough data points to find fair value gaps (need at least 60)
+2025-03-16 23:00:43.911 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:00:43.911 | WARNING  | non_prefect_setup_scanner:find_sweep_engulfers:544 - Not enough data points to find Sweep Engulfer patterns (need at least 60)
+2025-03-16 23:00:43.911 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:00:43.916 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 23:00:43.916 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 23:00:43.917 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 2 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 23:00:43.917 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing MSFT on 1D timeframe
+2025-03-16 23:00:43.917 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for MSFT on 1D timeframe using IBKR
+2025-03-16 23:00:44.029 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for MSFT from IBKR
+2025-03-16 23:00:44.030 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 21 data points for MSFT from IBKR
+2025-03-16 23:00:44.030 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 21 rows
+2025-03-16 23:00:44.030 | WARNING  | non_prefect_setup_scanner:find_breaker_blocks:76 - Not enough data points to find breaker blocks (need at least 60)
+2025-03-16 23:00:44.030 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 21 rows
+2025-03-16 23:00:44.030 | WARNING  | non_prefect_setup_scanner:find_fair_value_gaps:396 - Not enough data points to find fair value gaps (need at least 60)
+2025-03-16 23:00:44.030 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 21 rows
+2025-03-16 23:00:44.030 | WARNING  | non_prefect_setup_scanner:find_sweep_engulfers:544 - Not enough data points to find Sweep Engulfer patterns (need at least 60)
+2025-03-16 23:00:44.031 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 21 rows
+2025-03-16 23:00:44.034 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27
+2025-03-16 23:00:44.034 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03
+2025-03-16 23:00:44.035 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13
+2025-03-16 23:00:44.035 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 3 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 23:00:44.036 | INFO     | non_prefect_setup_scanner:store_setups:1047 - Stored 5 setups for AAPL on 1D to data/setups/AAPL_1D_20250316_230044.json
+2025-03-16 23:00:44.036 | INFO     | ibkr_single_scan:run_single_scan:161 - Stored 5 setups
+2025-03-16 23:00:44.036 | INFO     | trading_agents.utils.ibkr_connector:disconnect_ib:83 - Disconnected from IBKR
+2025-03-16 23:00:44.036 | INFO     | ibkr_single_scan:run_single_scan:177 - Disconnected from IBKR
+2025-03-16 23:00:44.036 | INFO     | __main__:run_scanner_job:104 - Scan completed. Found 5 setups.
+2025-03-16 23:00:44.036 | INFO     | __main__:start_market_scanner:165 - Market scanner running. Press Ctrl+C to stop.
+2025-03-16 23:02:43.511 | INFO     | __main__:run_scanner_job:88 - Running scanner at 2025-03-16 23:02:43
+2025-03-16 23:02:43.511 | INFO     | ibkr_single_scan:run_single_scan:97 - Running single scan for 2 symbols on 1 timeframes
+2025-03-16 23:02:43.877 | INFO     | trading_agents.utils.ibkr_connector:get_ib_connection:70 - Connected to IBKR at 127.0.0.1:7496
+2025-03-16 23:02:43.877 | INFO     | ibkr_single_scan:run_single_scan:103 - Successfully connected to IBKR
+2025-03-16 23:02:43.877 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 23:02:43.877 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 23:02:43.877 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing AAPL on 1D timeframe
+2025-03-16 23:02:43.877 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 23:02:43.984 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for AAPL from IBKR
+2025-03-16 23:02:43.984 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 21 data points for AAPL from IBKR
+2025-03-16 23:02:43.984 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 21 rows
+2025-03-16 23:02:43.984 | WARNING  | non_prefect_setup_scanner:find_breaker_blocks:76 - Not enough data points to find breaker blocks (need at least 60)
+2025-03-16 23:02:43.984 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 21 rows
+2025-03-16 23:02:43.984 | WARNING  | non_prefect_setup_scanner:find_fair_value_gaps:396 - Not enough data points to find fair value gaps (need at least 60)
+2025-03-16 23:02:43.984 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:02:43.985 | WARNING  | non_prefect_setup_scanner:find_sweep_engulfers:544 - Not enough data points to find Sweep Engulfer patterns (need at least 60)
+2025-03-16 23:02:43.985 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:02:43.987 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 23:02:43.988 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 23:02:43.988 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 2 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 23:02:43.988 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing MSFT on 1D timeframe
+2025-03-16 23:02:43.988 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for MSFT on 1D timeframe using IBKR
+2025-03-16 23:02:44.142 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for MSFT from IBKR
+2025-03-16 23:02:44.143 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 21 data points for MSFT from IBKR
+2025-03-16 23:02:44.144 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 21 rows
+2025-03-16 23:02:44.144 | WARNING  | non_prefect_setup_scanner:find_breaker_blocks:76 - Not enough data points to find breaker blocks (need at least 60)
+2025-03-16 23:02:44.145 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 21 rows
+2025-03-16 23:02:44.146 | WARNING  | non_prefect_setup_scanner:find_fair_value_gaps:396 - Not enough data points to find fair value gaps (need at least 60)
+2025-03-16 23:02:44.146 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 21 rows
+2025-03-16 23:02:44.147 | WARNING  | non_prefect_setup_scanner:find_sweep_engulfers:544 - Not enough data points to find Sweep Engulfer patterns (need at least 60)
+2025-03-16 23:02:44.147 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 21 rows
+2025-03-16 23:02:44.216 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27
+2025-03-16 23:02:44.216 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03
+2025-03-16 23:02:44.217 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13
+2025-03-16 23:02:44.217 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 3 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 23:02:44.217 | INFO     | non_prefect_setup_scanner:store_setups:1047 - Stored 5 setups for AAPL on 1D to data/setups/AAPL_1D_20250316_230244.json
+2025-03-16 23:02:44.217 | INFO     | ibkr_single_scan:run_single_scan:161 - Stored 5 setups
+2025-03-16 23:02:44.217 | INFO     | trading_agents.utils.ibkr_connector:disconnect_ib:83 - Disconnected from IBKR
+2025-03-16 23:02:44.217 | INFO     | ibkr_single_scan:run_single_scan:177 - Disconnected from IBKR
+2025-03-16 23:02:44.217 | INFO     | __main__:run_scanner_job:104 - Scan completed. Found 5 setups.
+2025-03-16 23:04:44.668 | INFO     | __main__:run_scanner_job:88 - Running scanner at 2025-03-16 23:04:44
+2025-03-16 23:04:44.668 | INFO     | ibkr_single_scan:run_single_scan:97 - Running single scan for 2 symbols on 1 timeframes
+2025-03-16 23:04:45.138 | INFO     | trading_agents.utils.ibkr_connector:get_ib_connection:70 - Connected to IBKR at 127.0.0.1:7496
+2025-03-16 23:04:45.138 | INFO     | ibkr_single_scan:run_single_scan:103 - Successfully connected to IBKR
+2025-03-16 23:04:45.139 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 23:04:45.139 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 23:04:45.139 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing AAPL on 1D timeframe
+2025-03-16 23:04:45.139 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 23:04:45.244 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for AAPL from IBKR
+2025-03-16 23:04:45.244 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 21 data points for AAPL from IBKR
+2025-03-16 23:04:45.244 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 21 rows
+2025-03-16 23:04:45.244 | WARNING  | non_prefect_setup_scanner:find_breaker_blocks:76 - Not enough data points to find breaker blocks (need at least 60)
+2025-03-16 23:04:45.244 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 21 rows
+2025-03-16 23:04:45.244 | WARNING  | non_prefect_setup_scanner:find_fair_value_gaps:396 - Not enough data points to find fair value gaps (need at least 60)
+2025-03-16 23:04:45.245 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:04:45.245 | WARNING  | non_prefect_setup_scanner:find_sweep_engulfers:544 - Not enough data points to find Sweep Engulfer patterns (need at least 60)
+2025-03-16 23:04:45.245 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:04:45.247 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 23:04:45.248 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 23:04:45.248 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 2 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 23:04:45.248 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing MSFT on 1D timeframe
+2025-03-16 23:04:45.249 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for MSFT on 1D timeframe using IBKR
+2025-03-16 23:04:45.352 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for MSFT from IBKR
+2025-03-16 23:04:45.352 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 21 data points for MSFT from IBKR
+2025-03-16 23:04:45.352 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 21 rows
+2025-03-16 23:04:45.352 | WARNING  | non_prefect_setup_scanner:find_breaker_blocks:76 - Not enough data points to find breaker blocks (need at least 60)
+2025-03-16 23:04:45.352 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 21 rows
+2025-03-16 23:04:45.352 | WARNING  | non_prefect_setup_scanner:find_fair_value_gaps:396 - Not enough data points to find fair value gaps (need at least 60)
+2025-03-16 23:04:45.352 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 21 rows
+2025-03-16 23:04:45.352 | WARNING  | non_prefect_setup_scanner:find_sweep_engulfers:544 - Not enough data points to find Sweep Engulfer patterns (need at least 60)
+2025-03-16 23:04:45.353 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 21 rows
+2025-03-16 23:04:45.357 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27
+2025-03-16 23:04:45.357 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03
+2025-03-16 23:04:45.358 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13
+2025-03-16 23:04:45.358 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 3 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 23:04:45.359 | INFO     | non_prefect_setup_scanner:store_setups:1047 - Stored 5 setups for AAPL on 1D to data/setups/AAPL_1D_20250316_230445.json
+2025-03-16 23:04:45.359 | INFO     | ibkr_single_scan:run_single_scan:161 - Stored 5 setups
+2025-03-16 23:04:45.359 | INFO     | trading_agents.utils.ibkr_connector:disconnect_ib:83 - Disconnected from IBKR
+2025-03-16 23:04:45.359 | INFO     | ibkr_single_scan:run_single_scan:177 - Disconnected from IBKR
+2025-03-16 23:04:45.359 | INFO     | __main__:run_scanner_job:104 - Scan completed. Found 5 setups.
+2025-03-16 23:06:45.806 | INFO     | __main__:run_scanner_job:88 - Running scanner at 2025-03-16 23:06:45
+2025-03-16 23:06:45.806 | INFO     | ibkr_single_scan:run_single_scan:97 - Running single scan for 2 symbols on 1 timeframes
+2025-03-16 23:06:46.191 | INFO     | trading_agents.utils.ibkr_connector:get_ib_connection:70 - Connected to IBKR at 127.0.0.1:7496
+2025-03-16 23:06:46.192 | INFO     | ibkr_single_scan:run_single_scan:103 - Successfully connected to IBKR
+2025-03-16 23:06:46.192 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 23:06:46.192 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 23:06:46.192 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing AAPL on 1D timeframe
+2025-03-16 23:06:46.193 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 23:06:46.329 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for AAPL from IBKR
+2025-03-16 23:06:46.330 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 21 data points for AAPL from IBKR
+2025-03-16 23:06:46.330 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 21 rows
+2025-03-16 23:06:46.330 | WARNING  | non_prefect_setup_scanner:find_breaker_blocks:76 - Not enough data points to find breaker blocks (need at least 60)
+2025-03-16 23:06:46.330 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 21 rows
+2025-03-16 23:06:46.331 | WARNING  | non_prefect_setup_scanner:find_fair_value_gaps:396 - Not enough data points to find fair value gaps (need at least 60)
+2025-03-16 23:06:46.331 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:06:46.331 | WARNING  | non_prefect_setup_scanner:find_sweep_engulfers:544 - Not enough data points to find Sweep Engulfer patterns (need at least 60)
+2025-03-16 23:06:46.331 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:06:46.362 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 23:06:46.363 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 23:06:46.366 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 2 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 23:06:46.366 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing MSFT on 1D timeframe
+2025-03-16 23:06:46.366 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for MSFT on 1D timeframe using IBKR
+2025-03-16 23:06:46.465 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for MSFT from IBKR
+2025-03-16 23:06:46.465 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 21 data points for MSFT from IBKR
+2025-03-16 23:06:46.465 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 21 rows
+2025-03-16 23:06:46.465 | WARNING  | non_prefect_setup_scanner:find_breaker_blocks:76 - Not enough data points to find breaker blocks (need at least 60)
+2025-03-16 23:06:46.465 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 21 rows
+2025-03-16 23:06:46.465 | WARNING  | non_prefect_setup_scanner:find_fair_value_gaps:396 - Not enough data points to find fair value gaps (need at least 60)
+2025-03-16 23:06:46.465 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 21 rows
+2025-03-16 23:06:46.465 | WARNING  | non_prefect_setup_scanner:find_sweep_engulfers:544 - Not enough data points to find Sweep Engulfer patterns (need at least 60)
+2025-03-16 23:06:46.465 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 21 rows
+2025-03-16 23:06:46.468 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27
+2025-03-16 23:06:46.468 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03
+2025-03-16 23:06:46.469 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13
+2025-03-16 23:06:46.469 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 3 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 23:06:46.469 | INFO     | non_prefect_setup_scanner:store_setups:1047 - Stored 5 setups for AAPL on 1D to data/setups/AAPL_1D_20250316_230646.json
+2025-03-16 23:06:46.470 | INFO     | ibkr_single_scan:run_single_scan:161 - Stored 5 setups
+2025-03-16 23:06:46.470 | INFO     | trading_agents.utils.ibkr_connector:disconnect_ib:83 - Disconnected from IBKR
+2025-03-16 23:06:46.470 | INFO     | ibkr_single_scan:run_single_scan:177 - Disconnected from IBKR
+2025-03-16 23:06:46.470 | INFO     | __main__:run_scanner_job:104 - Scan completed. Found 5 setups.

@@ -1,0 +1,5 @@
+2025-03-14 18:19:29.253 | INFO     | __main__:main:110 - Starting trading workflows at 2025-03-14T18:19:29.253059
+2025-03-14 18:19:29.253 | INFO     | __main__:main:111 - Selected workflow: both
+2025-03-14 18:19:29.253 | INFO     | __main__:run_setup_scanner:49 - Running setup scanner workflow at 2025-03-14T18:19:29.253285
+2025-03-14 18:19:29.253 | INFO     | __main__:run_setup_scanner:50 - Scanning symbols: ['AAPL', 'MSFT']
+2025-03-14 18:19:29.253 | INFO     | __main__:run_setup_scanner:51 - Scanning timeframes: ['1D']

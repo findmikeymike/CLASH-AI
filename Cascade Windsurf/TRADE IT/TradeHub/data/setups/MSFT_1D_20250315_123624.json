@@ -1,0 +1,41 @@
+[
+  {
+    "type": "breaker_block",
+    "symbol": "MSFT",
+    "timeframe": "1D",
+    "direction": "bearish",
+    "high": 405.96961799565025,
+    "low": 401.93011930912644,
+    "strength": 1.0,
+    "created_at": "2025-03-14",
+    "retested": false,
+    "notes": "Broken support at 403.95",
+    "identified_at": "2025-03-15T12:36:24.682853"
+  },
+  {
+    "type": "breaker_block",
+    "symbol": "MSFT",
+    "timeframe": "1D",
+    "direction": "bearish",
+    "high": 410.9845099595825,
+    "low": 406.895111850532,
+    "strength": 1.0,
+    "created_at": "2025-03-14",
+    "retested": false,
+    "notes": "Broken support at 408.94",
+    "identified_at": "2025-03-15T12:36:24.682855"
+  },
+  {
+    "type": "fair_value_gap",
+    "direction": "bearish",
+    "symbol": "MSFT",
+    "timeframe": "1D",
+    "high": 439.51869372032735,
+    "low": 422.0137922192137,
+    "size": 17.504901501113636,
+    "created_at": "2025-01-30",
+    "filled": false,
+    "strength": 2.287953338016347,
+    "identified_at": "2025-03-15T12:36:24.682856"
+  }
+]

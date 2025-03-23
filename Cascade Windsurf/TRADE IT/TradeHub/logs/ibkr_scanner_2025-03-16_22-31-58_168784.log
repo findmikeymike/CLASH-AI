@@ -1,0 +1,347 @@
+2025-03-16 22:31:58.190 | INFO     | __main__:start_continuous_scanner:257 - Starting continuous scanner with 2 symbols on 1 timeframes
+2025-03-16 22:31:58.190 | INFO     | __main__:start_continuous_scanner:258 - Symbols: AAPL, MSFT
+2025-03-16 22:31:58.190 | INFO     | __main__:start_continuous_scanner:259 - Timeframes: 1D
+2025-03-16 22:31:58.190 | INFO     | __main__:start_continuous_scanner:260 - Scan interval: 2 minutes
+2025-03-16 22:31:58.795 | INFO     | trading_agents.utils.ibkr_connector:get_ib_connection:70 - Connected to IBKR at 127.0.0.1:7496
+2025-03-16 22:31:58.795 | INFO     | __main__:start_continuous_scanner:266 - Successfully connected to IBKR
+2025-03-16 22:32:10.881 | INFO     | __main__:run_scanner:158 - Running scanner at 2025-03-16 22:32:10
+2025-03-16 22:32:10.882 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 22:32:10.882 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 22:32:10.882 | INFO     | __main__:run_scanner:177 - Processing AAPL on 1D timeframe
+2025-03-16 22:32:10.882 | INFO     | __main__:fetch_market_data:86 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 22:32:11.189 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for AAPL from IBKR
+2025-03-16 22:32:11.189 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for AAPL from IBKR
+2025-03-16 22:32:11.189 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:32:11.191 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:32:11.191 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:32:11.194 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-16 22:32:11.194 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:32:11.194 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in AAPL (1D) with 250 rows
+2025-03-16 22:32:11.205 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:271 - Found Bearish Sweep Engulfer in AAPL at 2025-01-31
+2025-03-16 22:32:11.206 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:551 - Found 1 Sweep Engulfer patterns in AAPL (1D)
+2025-03-16 22:32:11.206 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:553 -   Bearish Sweep Engulfer at 2025-01-31 - Price: 236.00
+2025-03-16 22:32:11.206 | INFO     | __main__:run_scanner:202 - Found 1 sweep engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:32:11.206 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:32:11.212 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-04-26
+2025-03-16 22:32:11.214 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-06-07
+2025-03-16 22:32:11.214 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-10
+2025-03-16 22:32:11.215 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-28
+2025-03-16 22:32:11.216 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-07-22
+2025-03-16 22:32:11.217 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-01
+2025-03-16 22:32:11.217 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-22
+2025-03-16 22:32:11.218 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-08-26
+2025-03-16 22:32:11.220 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-10-29
+2025-03-16 22:32:11.221 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-11-20
+2025-03-16 22:32:11.222 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-06
+2025-03-16 22:32:11.222 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-11
+2025-03-16 22:32:11.222 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-12-12
+2025-03-16 22:32:11.222 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-18
+2025-03-16 22:32:11.224 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-01-14
+2025-03-16 22:32:11.225 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-02-07
+2025-03-16 22:32:11.226 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 22:32:11.226 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 22:32:11.227 | INFO     | __main__:run_scanner:208 - Found 18 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:32:11.227 | INFO     | __main__:run_scanner:177 - Processing MSFT on 1D timeframe
+2025-03-16 22:32:11.227 | INFO     | __main__:fetch_market_data:86 - Fetching data for MSFT on 1D timeframe using IBKR
+2025-03-16 22:32:11.519 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for MSFT from IBKR
+2025-03-16 22:32:11.519 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for MSFT from IBKR
+2025-03-16 22:32:11.520 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:32:11.520 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:32:11.521 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:32:11.523 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 1 fair value gaps
+2025-03-16 22:32:11.523 | INFO     | __main__:run_scanner:196 - Found 1 fair value gaps for MSFT on 1D timeframe
+2025-03-16 22:32:11.523 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:32:11.523 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in MSFT (1D) with 250 rows
+2025-03-16 22:32:11.534 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:555 - No Sweep Engulfer patterns found in MSFT (1D)
+2025-03-16 22:32:11.534 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:32:11.537 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-04
+2025-03-16 22:32:11.537 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-15
+2025-03-16 22:32:11.539 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-05-23
+2025-03-16 22:32:11.540 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-06-07
+2025-03-16 22:32:11.542 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-07
+2025-03-16 22:32:11.543 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-16
+2025-03-16 22:32:11.543 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-22
+2025-03-16 22:32:11.543 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-28
+2025-03-16 22:32:11.546 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-11-19
+2025-03-16 22:32:11.547 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-11-21
+2025-03-16 22:32:11.547 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-12-09
+2025-03-16 22:32:11.550 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-07
+2025-03-16 22:32:11.550 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27
+2025-03-16 22:32:11.551 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03
+2025-03-16 22:32:11.551 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13
+2025-03-16 22:32:11.551 | INFO     | __main__:run_scanner:208 - Found 15 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 22:32:11.552 | ERROR    | non_prefect_setup_scanner:store_setups:1040 - Error storing setups for AAPL on 1D: Object of type date is not JSON serializable
+2025-03-16 22:32:11.552 | INFO     | __main__:run_scanner:213 - Stored 35 setups
+2025-03-16 22:32:23.649 | INFO     | __main__:start_continuous_scanner:293 - Continuous scanner running. Press Ctrl+C to stop.
+2025-03-16 22:34:00.164 | INFO     | __main__:run_scanner:158 - Running scanner at 2025-03-16 22:34:00
+2025-03-16 22:34:00.164 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 22:34:00.164 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 22:34:00.164 | INFO     | __main__:run_scanner:177 - Processing AAPL on 1D timeframe
+2025-03-16 22:34:00.164 | INFO     | __main__:fetch_market_data:86 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 22:34:00.330 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for AAPL from IBKR
+2025-03-16 22:34:00.330 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for AAPL from IBKR
+2025-03-16 22:34:00.330 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:34:00.331 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:34:00.331 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:34:00.333 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-16 22:34:00.333 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:34:00.333 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in AAPL (1D) with 250 rows
+2025-03-16 22:34:00.342 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:271 - Found Bearish Sweep Engulfer in AAPL at 2025-01-31
+2025-03-16 22:34:00.343 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:551 - Found 1 Sweep Engulfer patterns in AAPL (1D)
+2025-03-16 22:34:00.343 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:553 -   Bearish Sweep Engulfer at 2025-01-31 - Price: 236.00
+2025-03-16 22:34:00.343 | INFO     | __main__:run_scanner:202 - Found 1 sweep engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:34:00.343 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:34:00.348 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-04-26
+2025-03-16 22:34:00.350 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-06-07
+2025-03-16 22:34:00.350 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-10
+2025-03-16 22:34:00.351 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-28
+2025-03-16 22:34:00.352 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-07-22
+2025-03-16 22:34:00.352 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-01
+2025-03-16 22:34:00.353 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-22
+2025-03-16 22:34:00.353 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-08-26
+2025-03-16 22:34:00.356 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-10-29
+2025-03-16 22:34:00.357 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-11-20
+2025-03-16 22:34:00.357 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-06
+2025-03-16 22:34:00.358 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-11
+2025-03-16 22:34:00.358 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-12-12
+2025-03-16 22:34:00.358 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-18
+2025-03-16 22:34:00.359 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-01-14
+2025-03-16 22:34:00.360 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-02-07
+2025-03-16 22:34:00.361 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 22:34:00.361 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 22:34:00.362 | INFO     | __main__:run_scanner:208 - Found 18 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:34:00.362 | INFO     | __main__:run_scanner:177 - Processing MSFT on 1D timeframe
+2025-03-16 22:34:00.362 | INFO     | __main__:fetch_market_data:86 - Fetching data for MSFT on 1D timeframe using IBKR
+2025-03-16 22:34:00.534 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for MSFT from IBKR
+2025-03-16 22:34:00.534 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for MSFT from IBKR
+2025-03-16 22:34:00.534 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:34:00.535 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:34:00.535 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:34:00.538 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 1 fair value gaps
+2025-03-16 22:34:00.538 | INFO     | __main__:run_scanner:196 - Found 1 fair value gaps for MSFT on 1D timeframe
+2025-03-16 22:34:00.538 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:34:00.538 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in MSFT (1D) with 250 rows
+2025-03-16 22:34:00.548 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:555 - No Sweep Engulfer patterns found in MSFT (1D)
+2025-03-16 22:34:00.548 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:34:00.552 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-04
+2025-03-16 22:34:00.552 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-15
+2025-03-16 22:34:00.554 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-05-23
+2025-03-16 22:34:00.555 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-06-07
+2025-03-16 22:34:00.557 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-07
+2025-03-16 22:34:00.558 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-16
+2025-03-16 22:34:00.558 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-22
+2025-03-16 22:34:00.558 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-28
+2025-03-16 22:34:00.561 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-11-19
+2025-03-16 22:34:00.562 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-11-21
+2025-03-16 22:34:00.562 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-12-09
+2025-03-16 22:34:00.565 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-07
+2025-03-16 22:34:00.565 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27
+2025-03-16 22:34:00.566 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03
+2025-03-16 22:34:00.566 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13
+2025-03-16 22:34:00.566 | INFO     | __main__:run_scanner:208 - Found 15 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 22:34:00.566 | ERROR    | non_prefect_setup_scanner:store_setups:1040 - Error storing setups for AAPL on 1D: Object of type date is not JSON serializable
+2025-03-16 22:34:00.567 | INFO     | __main__:run_scanner:213 - Stored 35 setups
+2025-03-16 22:36:03.244 | INFO     | __main__:run_scanner:158 - Running scanner at 2025-03-16 22:36:03
+2025-03-16 22:36:03.244 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 22:36:03.244 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 22:36:03.244 | INFO     | __main__:run_scanner:177 - Processing AAPL on 1D timeframe
+2025-03-16 22:36:03.245 | INFO     | __main__:fetch_market_data:86 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 22:36:03.415 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for AAPL from IBKR
+2025-03-16 22:36:03.415 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for AAPL from IBKR
+2025-03-16 22:36:03.415 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:36:03.416 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:36:03.416 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:36:03.419 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-16 22:36:03.419 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:36:03.419 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in AAPL (1D) with 250 rows
+2025-03-16 22:36:03.428 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:271 - Found Bearish Sweep Engulfer in AAPL at 2025-01-31
+2025-03-16 22:36:03.429 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:551 - Found 1 Sweep Engulfer patterns in AAPL (1D)
+2025-03-16 22:36:03.429 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:553 -   Bearish Sweep Engulfer at 2025-01-31 - Price: 236.00
+2025-03-16 22:36:03.429 | INFO     | __main__:run_scanner:202 - Found 1 sweep engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:36:03.429 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:36:03.433 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-04-26
+2025-03-16 22:36:03.435 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-06-07
+2025-03-16 22:36:03.435 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-10
+2025-03-16 22:36:03.436 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-28
+2025-03-16 22:36:03.437 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-07-22
+2025-03-16 22:36:03.437 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-01
+2025-03-16 22:36:03.438 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-22
+2025-03-16 22:36:03.438 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-08-26
+2025-03-16 22:36:03.441 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-10-29
+2025-03-16 22:36:03.442 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-11-20
+2025-03-16 22:36:03.442 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-06
+2025-03-16 22:36:03.442 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-11
+2025-03-16 22:36:03.443 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-12-12
+2025-03-16 22:36:03.443 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-18
+2025-03-16 22:36:03.444 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-01-14
+2025-03-16 22:36:03.445 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-02-07
+2025-03-16 22:36:03.446 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 22:36:03.446 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 22:36:03.447 | INFO     | __main__:run_scanner:208 - Found 18 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:36:03.447 | INFO     | __main__:run_scanner:177 - Processing MSFT on 1D timeframe
+2025-03-16 22:36:03.447 | INFO     | __main__:fetch_market_data:86 - Fetching data for MSFT on 1D timeframe using IBKR
+2025-03-16 22:36:03.614 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for MSFT from IBKR
+2025-03-16 22:36:03.614 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for MSFT from IBKR
+2025-03-16 22:36:03.615 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:36:03.615 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:36:03.616 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:36:03.618 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 1 fair value gaps
+2025-03-16 22:36:03.618 | INFO     | __main__:run_scanner:196 - Found 1 fair value gaps for MSFT on 1D timeframe
+2025-03-16 22:36:03.618 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:36:03.618 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in MSFT (1D) with 250 rows
+2025-03-16 22:36:03.628 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:555 - No Sweep Engulfer patterns found in MSFT (1D)
+2025-03-16 22:36:03.628 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:36:03.631 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-04
+2025-03-16 22:36:03.632 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-15
+2025-03-16 22:36:03.634 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-05-23
+2025-03-16 22:36:03.634 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-06-07
+2025-03-16 22:36:03.637 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-07
+2025-03-16 22:36:03.637 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-16
+2025-03-16 22:36:03.637 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-22
+2025-03-16 22:36:03.638 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-28
+2025-03-16 22:36:03.641 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-11-19
+2025-03-16 22:36:03.641 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-11-21
+2025-03-16 22:36:03.641 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-12-09
+2025-03-16 22:36:03.644 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-07
+2025-03-16 22:36:03.645 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27
+2025-03-16 22:36:03.645 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03
+2025-03-16 22:36:03.645 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13
+2025-03-16 22:36:03.645 | INFO     | __main__:run_scanner:208 - Found 15 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 22:36:03.646 | ERROR    | non_prefect_setup_scanner:store_setups:1040 - Error storing setups for AAPL on 1D: Object of type date is not JSON serializable
+2025-03-16 22:36:03.646 | INFO     | __main__:run_scanner:213 - Stored 35 setups
+2025-03-16 22:38:06.241 | INFO     | __main__:run_scanner:158 - Running scanner at 2025-03-16 22:38:06
+2025-03-16 22:38:06.242 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 22:38:06.242 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 22:38:06.242 | INFO     | __main__:run_scanner:177 - Processing AAPL on 1D timeframe
+2025-03-16 22:38:06.242 | INFO     | __main__:fetch_market_data:86 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 22:38:06.422 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for AAPL from IBKR
+2025-03-16 22:38:06.422 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for AAPL from IBKR
+2025-03-16 22:38:06.422 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:38:06.423 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:38:06.423 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:38:06.426 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-16 22:38:06.426 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:38:06.426 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in AAPL (1D) with 250 rows
+2025-03-16 22:38:06.435 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:271 - Found Bearish Sweep Engulfer in AAPL at 2025-01-31
+2025-03-16 22:38:06.436 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:551 - Found 1 Sweep Engulfer patterns in AAPL (1D)
+2025-03-16 22:38:06.437 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:553 -   Bearish Sweep Engulfer at 2025-01-31 - Price: 236.00
+2025-03-16 22:38:06.437 | INFO     | __main__:run_scanner:202 - Found 1 sweep engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:38:06.437 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:38:06.441 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-04-26
+2025-03-16 22:38:06.443 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-06-07
+2025-03-16 22:38:06.443 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-10
+2025-03-16 22:38:06.444 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-28
+2025-03-16 22:38:06.445 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-07-22
+2025-03-16 22:38:06.445 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-01
+2025-03-16 22:38:06.446 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-22
+2025-03-16 22:38:06.446 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-08-26
+2025-03-16 22:38:06.449 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-10-29
+2025-03-16 22:38:06.450 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-11-20
+2025-03-16 22:38:06.451 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-06
+2025-03-16 22:38:06.451 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-11
+2025-03-16 22:38:06.451 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-12-12
+2025-03-16 22:38:06.451 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-18
+2025-03-16 22:38:06.453 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-01-14
+2025-03-16 22:38:06.455 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-02-07
+2025-03-16 22:38:06.455 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 22:38:06.455 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 22:38:06.456 | INFO     | __main__:run_scanner:208 - Found 18 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:38:06.456 | INFO     | __main__:run_scanner:177 - Processing MSFT on 1D timeframe
+2025-03-16 22:38:06.456 | INFO     | __main__:fetch_market_data:86 - Fetching data for MSFT on 1D timeframe using IBKR
+2025-03-16 22:38:06.629 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for MSFT from IBKR
+2025-03-16 22:38:06.629 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for MSFT from IBKR
+2025-03-16 22:38:06.629 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:38:06.630 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:38:06.631 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:38:06.633 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 1 fair value gaps
+2025-03-16 22:38:06.633 | INFO     | __main__:run_scanner:196 - Found 1 fair value gaps for MSFT on 1D timeframe
+2025-03-16 22:38:06.633 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:38:06.633 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in MSFT (1D) with 250 rows
+2025-03-16 22:38:06.643 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:555 - No Sweep Engulfer patterns found in MSFT (1D)
+2025-03-16 22:38:06.643 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:38:06.647 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-04
+2025-03-16 22:38:06.647 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-15
+2025-03-16 22:38:06.649 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-05-23
+2025-03-16 22:38:06.649 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-06-07
+2025-03-16 22:38:06.652 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-07
+2025-03-16 22:38:06.653 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-16
+2025-03-16 22:38:06.654 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-22
+2025-03-16 22:38:06.654 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-28
+2025-03-16 22:38:06.657 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-11-19
+2025-03-16 22:38:06.657 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-11-21
+2025-03-16 22:38:06.658 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-12-09
+2025-03-16 22:38:06.660 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-07
+2025-03-16 22:38:06.661 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27
+2025-03-16 22:38:06.661 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03
+2025-03-16 22:38:06.662 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13
+2025-03-16 22:38:06.662 | INFO     | __main__:run_scanner:208 - Found 15 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 22:38:06.662 | ERROR    | non_prefect_setup_scanner:store_setups:1040 - Error storing setups for AAPL on 1D: Object of type date is not JSON serializable
+2025-03-16 22:38:06.662 | INFO     | __main__:run_scanner:213 - Stored 35 setups
+2025-03-16 22:40:09.260 | INFO     | __main__:run_scanner:158 - Running scanner at 2025-03-16 22:40:09
+2025-03-16 22:40:09.261 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 22:40:09.261 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 22:40:09.261 | INFO     | __main__:run_scanner:177 - Processing AAPL on 1D timeframe
+2025-03-16 22:40:09.261 | INFO     | __main__:fetch_market_data:86 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 22:40:09.423 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for AAPL from IBKR
+2025-03-16 22:40:09.423 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for AAPL from IBKR
+2025-03-16 22:40:09.423 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:40:09.424 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:40:09.424 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:40:09.426 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-16 22:40:09.426 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:40:09.427 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in AAPL (1D) with 250 rows
+2025-03-16 22:40:09.437 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:271 - Found Bearish Sweep Engulfer in AAPL at 2025-01-31
+2025-03-16 22:40:09.438 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:551 - Found 1 Sweep Engulfer patterns in AAPL (1D)
+2025-03-16 22:40:09.439 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:553 -   Bearish Sweep Engulfer at 2025-01-31 - Price: 236.00
+2025-03-16 22:40:09.439 | INFO     | __main__:run_scanner:202 - Found 1 sweep engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:40:09.439 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 22:40:09.444 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-04-26
+2025-03-16 22:40:09.446 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-06-07
+2025-03-16 22:40:09.446 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-10
+2025-03-16 22:40:09.446 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-06-28
+2025-03-16 22:40:09.447 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-07-22
+2025-03-16 22:40:09.448 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-01
+2025-03-16 22:40:09.449 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-08-22
+2025-03-16 22:40:09.449 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-08-26
+2025-03-16 22:40:09.451 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-10-29
+2025-03-16 22:40:09.452 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-11-20
+2025-03-16 22:40:09.453 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-06
+2025-03-16 22:40:09.453 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-11
+2025-03-16 22:40:09.453 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2024-12-12
+2025-03-16 22:40:09.454 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-18
+2025-03-16 22:40:09.455 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-01-14
+2025-03-16 22:40:09.457 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-02-07
+2025-03-16 22:40:09.457 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 22:40:09.457 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 22:40:09.458 | INFO     | __main__:run_scanner:208 - Found 18 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 22:40:09.458 | INFO     | __main__:run_scanner:177 - Processing MSFT on 1D timeframe
+2025-03-16 22:40:09.458 | INFO     | __main__:fetch_market_data:86 - Fetching data for MSFT on 1D timeframe using IBKR
+2025-03-16 22:40:09.613 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 250 1D data points for MSFT from IBKR
+2025-03-16 22:40:09.613 | INFO     | __main__:fetch_market_data:110 - Fetched 250 data points for MSFT from IBKR
+2025-03-16 22:40:09.613 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 22:40:09.614 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 22:40:09.615 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 22:40:09.618 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 1 fair value gaps
+2025-03-16 22:40:09.618 | INFO     | __main__:run_scanner:196 - Found 1 fair value gaps for MSFT on 1D timeframe
+2025-03-16 22:40:09.618 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:40:09.618 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in MSFT (1D) with 250 rows
+2025-03-16 22:40:09.629 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:555 - No Sweep Engulfer patterns found in MSFT (1D)
+2025-03-16 22:40:09.629 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 250 rows
+2025-03-16 22:40:09.633 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-04
+2025-03-16 22:40:09.633 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-04-15
+2025-03-16 22:40:09.635 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-05-23
+2025-03-16 22:40:09.636 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-06-07
+2025-03-16 22:40:09.638 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-07
+2025-03-16 22:40:09.639 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-16
+2025-03-16 22:40:09.639 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-22
+2025-03-16 22:40:09.639 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-08-28
+2025-03-16 22:40:09.643 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-11-19
+2025-03-16 22:40:09.643 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2024-11-21
+2025-03-16 22:40:09.644 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in MSFT at 2024-12-09
+2025-03-16 22:40:09.646 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-07
+2025-03-16 22:40:09.647 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27
+2025-03-16 22:40:09.647 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03
+2025-03-16 22:40:09.648 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13
+2025-03-16 22:40:09.648 | INFO     | __main__:run_scanner:208 - Found 15 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 22:40:09.648 | ERROR    | non_prefect_setup_scanner:store_setups:1040 - Error storing setups for AAPL on 1D: Object of type date is not JSON serializable
+2025-03-16 22:40:09.648 | INFO     | __main__:run_scanner:213 - Stored 35 setups

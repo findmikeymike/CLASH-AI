@@ -1,0 +1,1 @@
+2025-03-17 00:54:41.254 | INFO     | __main__:start_scanner:78 - Starting scanner with command: python run_market_scanner.py --symbols AAPL MSFT GOOGL --timeframes 1D 4H 1H --interval 3 --duration 1 M --scan-outside-market-hours --max-scans 1

@@ -1,0 +1,116 @@
+{
+  "ticker": "MSFT",
+  "options_analysis": {
+    "sentiment": "bullish",
+    "confidence": "medium",
+    "call_put_ratio": 1.3105613278785289,
+    "iv_percentile": 0.39921235946358047,
+    "skew": -0.05603901953322206,
+    "signals": [
+      {
+        "type": "oi_increase",
+        "direction": "neutral",
+        "strength": 0.6037128052882084,
+        "description": "Signal description 1"
+      },
+      {
+        "type": "oi_decrease",
+        "direction": "bullish",
+        "strength": 0.6875907859523935,
+        "description": "Signal description 2"
+      },
+      {
+        "type": "oi_increase",
+        "direction": "neutral",
+        "strength": 0.8778907269534435,
+        "description": "Signal description 3"
+      }
+    ]
+  },
+  "unusual_activity": {
+    "call_put_ratio": 1.3105613278785289,
+    "iv_percentile": 0.39921235946358047,
+    "skew": -0.05603901953322206,
+    "sentiment": "bullish"
+  },
+  "sweep_activity": {
+    "call_sweep_volume": 792,
+    "put_sweep_volume": 1357,
+    "sweep_sentiment": "bearish"
+  },
+  "gex_analysis": {
+    "current_gex": 11844.204859751559,
+    "gex_skew": 0.9071347597057378,
+    "gex_levels": [
+      {
+        "price": 109.0,
+        "gex": 2850.904524679749,
+        "distance_pct": 0.09
+      },
+      {
+        "price": 97.0,
+        "gex": 2977.2050330677475,
+        "distance_pct": -0.03
+      },
+      {
+        "price": 92.0,
+        "gex": 3219.2936802029794,
+        "distance_pct": -0.08
+      }
+    ],
+    "largest_gex_level": 92.0,
+    "next_gex_level": 97.0,
+    "gex_walls": {
+      "direction": "above",
+      "price": 104.36502800682162,
+      "strength": 0.527018035028417,
+      "distance_pct": 0.043650280068216085
+    },
+    "gex_wall_proximity": {
+      "is_near": false,
+      "direction": null,
+      "distance_pct": null,
+      "wall_price": null
+    },
+    "gex_weakness": false,
+    "gex_weakness_direction": null,
+    "gex_inflection_point": false,
+    "gex_inflection_level": null,
+    "gex_support_resistance": null
+  },
+  "risk_warnings": [],
+  "stop_hunt_warnings": {
+    "upward_stop_hunt": {
+      "detected": false
+    },
+    "downward_stop_hunt": {
+      "detected": false
+    },
+    "has_stop_hunt": false,
+    "risk_level": "medium"
+  },
+  "recommended_contracts": [
+    {
+      "type": "CALL",
+      "strike": 100,
+      "expiration": "2023-06-16",
+      "iv": 0.3,
+      "delta": 0.5
+    },
+    {
+      "type": "CALL",
+      "strike": 105,
+      "expiration": "2023-06-16",
+      "iv": 0.32,
+      "delta": 0.4
+    },
+    {
+      "type": "PUT",
+      "strike": 95,
+      "expiration": "2023-06-16",
+      "iv": 0.35,
+      "delta": -0.4
+    }
+  ],
+  "recommended_strategy": "risk_reversal"
+}

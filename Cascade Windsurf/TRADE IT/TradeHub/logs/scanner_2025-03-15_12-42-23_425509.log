@@ -1,0 +1,14 @@
+2025-03-15 12:42:23.429 | INFO     | __main__:main:993 - Starting setup scanner with symbols: ['AAPL', 'MSFT'], timeframes: ['1D']
+2025-03-15 12:42:23.429 | INFO     | __main__:setup_scanner_workflow:871 - Starting setup scanner workflow for symbols: ['AAPL', 'MSFT'], timeframes: ['1D']
+2025-03-15 12:42:23.429 | INFO     | __main__:__init__:49 - Initialized SimpleScanner with lookback=100, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-15 12:42:23.429 | INFO     | __main__:setup_scanner_workflow:882 - Processing AAPL on 1D timeframe
+2025-03-15 12:42:23.429 | INFO     | __main__:fetch_market_data:536 - Fetching data for AAPL on 1D timeframe
+2025-03-15 12:42:23.880 | WARNING  | __main__:fetch_market_data:593 - Missing columns in data: ['open', 'high', 'low', 'close', 'volume']
+2025-03-15 12:42:23.880 | ERROR    | __main__:fetch_market_data:601 - Essential price columns missing for AAPL
+2025-03-15 12:42:23.880 | WARNING  | __main__:setup_scanner_workflow:888 - No data fetched for AAPL on 1D timeframe
+2025-03-15 12:42:23.880 | INFO     | __main__:setup_scanner_workflow:882 - Processing MSFT on 1D timeframe
+2025-03-15 12:42:23.880 | INFO     | __main__:fetch_market_data:536 - Fetching data for MSFT on 1D timeframe
+2025-03-15 12:42:23.989 | WARNING  | __main__:fetch_market_data:593 - Missing columns in data: ['open', 'high', 'low', 'close', 'volume']
+2025-03-15 12:42:23.989 | ERROR    | __main__:fetch_market_data:601 - Essential price columns missing for MSFT
+2025-03-15 12:42:23.989 | WARNING  | __main__:setup_scanner_workflow:888 - No data fetched for MSFT on 1D timeframe
+2025-03-15 12:42:23.990 | INFO     | __main__:setup_scanner_workflow:970 - Setup scanner workflow completed. Found 0 potential setups, including 0 active breaker block retests.

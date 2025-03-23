@@ -1,0 +1,16 @@
+2025-03-15T12:53:32.946888-0500 | INFO | Loading setup files from data/setups
+2025-03-15T12:53:32.947190-0500 | INFO | Found 11 setup files
+2025-03-15T12:53:32.947729-0500 | INFO | Loaded 25 setups
+2025-03-15T12:54:01.718773-0500 | INFO | Loading setup files from data/setups
+2025-03-15T12:54:01.719176-0500 | INFO | Found 11 setup files
+2025-03-15T12:54:01.719821-0500 | INFO | Loaded 25 setups
+2025-03-15T12:54:01.721303-0500 | INFO | Summary saved to data/setup_summary_20250315_125401.txt
+2025-03-15T12:54:54.811833-0500 | INFO | Loading setup files from data/setups
+2025-03-15T12:54:54.812038-0500 | INFO | Found 11 setup files
+2025-03-15T12:54:54.812624-0500 | INFO | Loaded 17 unique setups
+2025-03-15T12:54:54.813854-0500 | INFO | Summary saved to data/setup_summary_20250315_125454.txt
+2025-03-16T20:46:11.213667-0500 | INFO | Loading setup files from data/setups
+2025-03-16T20:46:11.213945-0500 | INFO | Found 13 setup files
+2025-03-16T20:46:11.214362-0500 | ERROR | Error loading data/setups/AAPL_1D_20250316_204204.json: Expecting value: line 5 column 18 (char 68)
+2025-03-16T20:46:11.214562-0500 | INFO | Loaded 43 unique setups
+2025-03-16T20:46:11.216770-0500 | INFO | Summary saved to data/setup_summary_20250316_204611.txt

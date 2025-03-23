@@ -1,0 +1,2 @@
+2025-03-16 21:04:11.105 | ERROR    | trading_agents.utils.ibkr_connector:get_ib_connection:72 - Failed to connect to IBKR: [Errno 61] Connect call failed ('127.0.0.1', 7497)
+2025-03-16 21:04:11.106 | ERROR    | trading_agents.utils.ibkr_connector:test_ibkr_connection:524 - Failed to connect to IBKR

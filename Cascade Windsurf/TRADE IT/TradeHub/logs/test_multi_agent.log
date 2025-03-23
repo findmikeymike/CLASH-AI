@@ -1,0 +1,605 @@
+2025-03-05 20:20:36.529 | INFO     | __main__:plot_sample_data:310 - Sample data plot saved to sample_data.png
+2025-03-05 20:20:36.529 | INFO     | __main__:test_multi_agent_system:94 - Starting multi-agent system test
+2025-03-05 20:20:36.530 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:20:36.530 | INFO     | trading_agents.agents.scanner_agent:__init__:50 - Initialized BreakerBlockScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003
+2025-03-05 20:20:36.530 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: market_analyzer
+2025-03-05 20:23:24.287 | INFO     | __main__:test_multi_agent_system:143 - Starting multi-agent system test
+2025-03-05 20:23:24.287 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:23:24.287 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: breaker_block_agent
+2025-03-05 20:24:38.650 | INFO     | __main__:test_multi_agent_system:143 - Starting multi-agent system test
+2025-03-05 20:24:38.650 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:24:38.650 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: breaker_block_agent
+2025-03-05 20:24:38.650 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: fvg_agent
+2025-03-05 20:24:38.650 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: order_flow_agent
+2025-03-05 20:25:27.409 | INFO     | __main__:test_multi_agent_system:143 - Starting multi-agent system test
+2025-03-05 20:25:27.409 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:25:27.409 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: breaker_block_agent
+2025-03-05 20:25:27.409 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: fvg_agent
+2025-03-05 20:25:27.409 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: order_flow_agent
+2025-03-05 20:25:27.409 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: options_agent
+2025-03-05 20:25:27.409 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: decision_agent
+2025-03-05 20:25:27.409 | INFO     | trading_agents.agents.coordinator_agent:_initialize_agents:97 - Initialized 5 specialized agents
+2025-03-05 20:25:53.767 | INFO     | __main__:test_multi_agent_system:154 - Starting multi-agent system test
+2025-03-05 20:25:53.767 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:25:53.767 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: breaker_block_agent
+2025-03-05 20:25:53.767 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: fvg_agent
+2025-03-05 20:25:53.767 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: order_flow_agent
+2025-03-05 20:25:53.767 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: options_agent
+2025-03-05 20:25:53.767 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: decision_agent
+2025-03-05 20:25:53.768 | INFO     | trading_agents.agents.coordinator_agent:_initialize_agents:97 - Initialized 5 specialized agents
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:193 - Generated sample data for AAPL on 1h, 4h timeframes
+2025-03-05 20:25:53.771 | INFO     | trading_agents.agents.coordinator_agent:process:123 - Starting multi-agent pipeline for AAPL across 2 timeframes
+2025-03-05 20:25:53.771 | INFO     | trading_agents.agents.coordinator_agent:process:192 - Multi-agent pipeline completed for AAPL: found 5 setups and 2 confluences
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:205 - Processing complete for AAPL
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:206 - Found 5 setups
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:210 - 
+Setup 1:
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:211 - Type: Breaker Block Retest
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:212 - Timeframe: 1h
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:213 - Direction: Bullish
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:214 - Entry Price: 104.00
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:215 - Stop Loss: 101.97
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:216 - Take Profit: 110.09
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:217 - Confidence: 1.00
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:221 - Analysis Details:
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:223 -   breaker_direction: bullish
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:223 -   breaker_strength: 0.8
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:223 -   confluence_count: 2
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:223 -   notes: Strong bullish breaker block retest
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:210 - 
+Setup 2:
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:211 - Type: Fair Value Gap
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:212 - Timeframe: 1h
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:213 - Direction: Bullish
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:214 - Entry Price: 101.00
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:215 - Stop Loss: 99.00
+2025-03-05 20:25:53.771 | INFO     | __main__:test_multi_agent_system:216 - Take Profit: 106.00
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:217 - Confidence: 0.90
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:221 - Analysis Details:
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   fvg_direction: bullish
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   fvg_strength: 0.75
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   confluence_count: 1
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   age_in_bars: 3
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   notes: Recent bullish fair value gap
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:210 - 
+Setup 3:
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:211 - Type: Breaker Block Retest
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:212 - Timeframe: 4h
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:213 - Direction: Bullish
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:214 - Entry Price: 104.00
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:215 - Stop Loss: 101.97
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:216 - Take Profit: 110.09
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:217 - Confidence: 1.00
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:221 - Analysis Details:
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   breaker_direction: bullish
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   breaker_strength: 0.8
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   confluence_count: 2
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   notes: Strong bullish breaker block retest
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:210 - 
+Setup 4:
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:211 - Type: Fair Value Gap
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:212 - Timeframe: 4h
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:213 - Direction: Bullish
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:214 - Entry Price: 101.00
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:215 - Stop Loss: 99.00
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:216 - Take Profit: 106.00
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:217 - Confidence: 0.90
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:221 - Analysis Details:
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   fvg_direction: bullish
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   fvg_strength: 0.75
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   confluence_count: 1
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   age_in_bars: 3
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   notes: Recent bullish fair value gap
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:210 - 
+Setup 5:
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:211 - Type: Options Flow Signal
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:212 - Timeframe: daily
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:213 - Direction: Bullish
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:214 - Entry Price: 105.00
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:215 - Stop Loss: 101.85
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:216 - Take Profit: 111.30
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:217 - Confidence: 0.94
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:221 - Analysis Details:
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   options_direction: bullish
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   options_strength: 0.85
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   call_put_ratio: 2.5
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   iv_percentile: 65
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   signal_count: 1
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:223 -   notes: Strong call buying activity
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:226 - 
+Found 2 confluences
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:228 - 
+Confluence 1:
+2025-03-05 20:25:53.772 | INFO     | __main__:test_multi_agent_system:229 - Ticker: AAPL
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:230 - Direction: bullish
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:231 - Price Level: 101.00
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:232 - Strength: 1.00
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:233 - Timeframes: 1h, 4h
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:234 - Setup Types: Fair Value Gap
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:228 - 
+Confluence 2:
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:229 - Ticker: AAPL
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:230 - Direction: bullish
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:231 - Price Level: 104.33
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:232 - Strength: 1.00
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:233 - Timeframes: daily, 1h, 4h
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:234 - Setup Types: Breaker Block Retest, Options Flow Signal
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:237 - 
+Found 2 trade recommendations
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:239 - 
+Recommendation 1:
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:240 - Ticker: AAPL
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:241 - Direction: bullish
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:242 - Entry Price: 101.00
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:243 - Stop Loss: 99.00
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:244 - Take Profit: 106.00
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:245 - Confidence: 1.00
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:246 - Risk-Reward Ratio: 2.50
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:247 - Source: confluence
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:248 - Notes: Strong confluence of 2 setups across 2 timeframes
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:239 - 
+Recommendation 2:
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:240 - Ticker: AAPL
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:241 - Direction: bullish
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:242 - Entry Price: 104.33
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:243 - Stop Loss: 101.97
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:244 - Take Profit: 110.09
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:245 - Confidence: 1.00
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:246 - Risk-Reward Ratio: 3.00
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:247 - Source: confluence
+2025-03-05 20:25:53.773 | INFO     | __main__:test_multi_agent_system:248 - Notes: Strong confluence of 3 setups across 3 timeframes
+2025-03-05 20:25:54.025 | INFO     | __main__:plot_sample_data_with_setups:293 - Chart saved as AAPL_analysis.png
+2025-03-05 20:36:34.465 | INFO     | __main__:test_multi_agent_system:154 - Starting multi-agent system test
+2025-03-05 20:36:34.465 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:36:34.465 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: market_analyzer
+2025-03-05 20:38:36.225 | INFO     | __main__:test_multi_agent_system:155 - Starting multi-agent system test
+2025-03-05 20:38:36.225 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:38:36.226 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: market_analyzer
+2025-03-05 20:38:36.226 | INFO     | trading_agents.agents.market_analyzer_agent:__init__:37 - Initialized market_analyzer with 4 market tickers and 10 sector tickers
+2025-03-05 20:38:36.226 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: breaker_block_agent
+2025-03-05 20:38:36.226 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: fvg_agent
+2025-03-05 20:38:36.226 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: order_flow_agent
+2025-03-05 20:38:36.226 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: options_agent
+2025-03-05 20:38:36.226 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: decision_agent
+2025-03-05 20:38:36.226 | INFO     | trading_agents.agents.coordinator_agent:_initialize_agents:104 - Initialized 6 specialized agents
+2025-03-05 20:38:36.231 | INFO     | __main__:test_multi_agent_system:221 - Generated sample data for AAPL on 1h, 4h timeframes
+2025-03-05 20:38:36.231 | INFO     | trading_agents.agents.coordinator_agent:process:129 - Processing 1 tickers across 2 timeframes
+2025-03-05 20:38:36.231 | INFO     | trading_agents.agents.coordinator_agent:process:150 - Market analysis completed with stance: bullish
+2025-03-05 20:38:36.231 | INFO     | trading_agents.agents.coordinator_agent:process:218 - Multi-agent pipeline completed: found 5 setups and 2 confluences
+2025-03-05 20:38:36.231 | INFO     | __main__:test_multi_agent_system:233 - Multi-agent pipeline completed
+2025-03-05 20:38:36.231 | INFO     | __main__:test_multi_agent_system:234 - Found 5 setups and 2 confluences
+2025-03-05 20:38:36.231 | INFO     | __main__:test_multi_agent_system:238 - 
+Market Analysis:
+2025-03-05 20:38:36.231 | INFO     | __main__:test_multi_agent_system:239 - Market Stance: bullish
+2025-03-05 20:38:36.231 | INFO     | __main__:test_multi_agent_system:240 - Market Score: 5.2
+2025-03-05 20:38:36.231 | INFO     | __main__:test_multi_agent_system:244 - 
+Sector Analysis:
+2025-03-05 20:38:36.232 | INFO     | __main__:test_multi_agent_system:245 - Leading Sectors: XLK, XLF, XLY
+2025-03-05 20:38:36.232 | INFO     | __main__:test_multi_agent_system:246 - Lagging Sectors: XLU, XLP, XLRE
+2025-03-05 20:38:36.232 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 1:
+2025-03-05 20:39:11.909 | INFO     | __main__:test_multi_agent_system:155 - Starting multi-agent system test
+2025-03-05 20:39:11.909 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:39:11.909 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: market_analyzer
+2025-03-05 20:39:11.909 | INFO     | trading_agents.agents.market_analyzer_agent:__init__:37 - Initialized market_analyzer with 4 market tickers and 10 sector tickers
+2025-03-05 20:39:11.909 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: breaker_block_agent
+2025-03-05 20:39:11.909 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: fvg_agent
+2025-03-05 20:39:11.909 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: order_flow_agent
+2025-03-05 20:39:11.909 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: options_agent
+2025-03-05 20:39:11.909 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: decision_agent
+2025-03-05 20:39:11.909 | INFO     | trading_agents.agents.coordinator_agent:_initialize_agents:104 - Initialized 6 specialized agents
+2025-03-05 20:39:11.912 | INFO     | __main__:test_multi_agent_system:221 - Generated sample data for AAPL on 1h, 4h timeframes
+2025-03-05 20:39:11.913 | INFO     | trading_agents.agents.coordinator_agent:process:129 - Processing 1 tickers across 2 timeframes
+2025-03-05 20:39:11.913 | INFO     | trading_agents.agents.coordinator_agent:process:150 - Market analysis completed with stance: bullish
+2025-03-05 20:39:11.913 | INFO     | trading_agents.agents.coordinator_agent:process:218 - Multi-agent pipeline completed: found 5 setups and 2 confluences
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:233 - Multi-agent pipeline completed
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:234 - Found 5 setups and 2 confluences
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:238 - 
+Market Analysis:
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:239 - Market Stance: bullish
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:240 - Market Score: 5.2
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:244 - 
+Sector Analysis:
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:245 - Leading Sectors: XLK, XLF, XLY
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:246 - Lagging Sectors: XLU, XLP, XLRE
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 1:
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:251 - Type: Breaker Block Retest
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: 1h
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 104.00
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 101.97
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 110.09
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 1.00
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:270 -   breaker_direction: bullish
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:270 -   breaker_strength: 0.8
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:270 -   confluence_count: 2
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:270 -   notes: Strong bullish breaker block retest
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 2:
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:251 - Type: Fair Value Gap
+2025-03-05 20:39:11.913 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: 1h
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 101.00
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 99.00
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 106.00
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 0.90
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   fvg_direction: bullish
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   fvg_strength: 0.75
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   confluence_count: 1
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   age_in_bars: 3
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   notes: Recent bullish fair value gap
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 3:
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:251 - Type: Breaker Block Retest
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: 4h
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 104.00
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 101.97
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 110.09
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 1.00
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   breaker_direction: bullish
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   breaker_strength: 0.8
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   confluence_count: 2
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   notes: Strong bullish breaker block retest
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 4:
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:251 - Type: Fair Value Gap
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: 4h
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 101.00
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 99.00
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 106.00
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 0.90
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   fvg_direction: bullish
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   fvg_strength: 0.75
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   confluence_count: 1
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   age_in_bars: 3
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   notes: Recent bullish fair value gap
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 5:
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:251 - Type: Options Flow Signal
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: daily
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 105.00
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 101.85
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 111.30
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 0.94
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:11.914 | INFO     | __main__:test_multi_agent_system:270 -   options_direction: bullish
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:270 -   options_strength: 0.85
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:270 -   call_put_ratio: 2.5
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:270 -   iv_percentile: 65
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:270 -   signal_count: 1
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:270 -   notes: Strong call buying activity
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:274 - 
+Confluence 1:
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:275 - Ticker: AAPL
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:276 - Direction: bullish
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:277 - Price Level: 101.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:278 - Strength: 1.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:279 - Timeframes: 1h, 4h
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:280 - Setup Types: Fair Value Gap
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:274 - 
+Confluence 2:
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:275 - Ticker: AAPL
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:276 - Direction: bullish
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:277 - Price Level: 104.33
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:278 - Strength: 1.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:279 - Timeframes: daily, 1h, 4h
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:280 - Setup Types: Options Flow Signal, Breaker Block Retest
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:284 - 
+Trade Recommendation 1:
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:285 - Ticker: AAPL
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:286 - Direction: bullish
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:287 - Entry Price: 101.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:288 - Stop Loss: 99.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:289 - Take Profit: 106.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:290 - Confidence: 1.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:291 - Risk-Reward: 0.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:292 - Source: confluence
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:284 - 
+Trade Recommendation 2:
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:285 - Ticker: AAPL
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:286 - Direction: bullish
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:287 - Entry Price: 104.33
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:288 - Stop Loss: 101.97
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:289 - Take Profit: 110.09
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:290 - Confidence: 1.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:291 - Risk-Reward: 0.00
+2025-03-05 20:39:11.915 | INFO     | __main__:test_multi_agent_system:292 - Source: confluence
+2025-03-05 20:39:43.662 | INFO     | __main__:test_multi_agent_system:155 - Starting multi-agent system test
+2025-03-05 20:39:43.663 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:39:43.663 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: market_analyzer
+2025-03-05 20:39:43.663 | INFO     | trading_agents.agents.market_analyzer_agent:__init__:37 - Initialized market_analyzer with 4 market tickers and 10 sector tickers
+2025-03-05 20:39:43.663 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: breaker_block_agent
+2025-03-05 20:39:43.663 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: fvg_agent
+2025-03-05 20:39:43.663 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: order_flow_agent
+2025-03-05 20:39:43.663 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: options_agent
+2025-03-05 20:39:43.663 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: decision_agent
+2025-03-05 20:39:43.663 | INFO     | trading_agents.agents.coordinator_agent:_initialize_agents:104 - Initialized 6 specialized agents
+2025-03-05 20:39:43.666 | INFO     | __main__:test_multi_agent_system:221 - Generated sample data for AAPL on 1h, 4h timeframes
+2025-03-05 20:39:43.666 | INFO     | trading_agents.agents.coordinator_agent:process:129 - Processing 1 tickers across 2 timeframes
+2025-03-05 20:39:43.666 | INFO     | trading_agents.agents.coordinator_agent:process:150 - Market analysis completed with stance: bullish
+2025-03-05 20:39:43.667 | INFO     | trading_agents.agents.coordinator_agent:process:218 - Multi-agent pipeline completed: found 5 setups and 2 confluences
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:233 - Multi-agent pipeline completed
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:234 - Found 5 setups and 2 confluences
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:238 - 
+Market Analysis:
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:239 - Market Stance: bullish
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:240 - Market Score: 5.2
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:244 - 
+Sector Analysis:
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:245 - Leading Sectors: XLK, XLF, XLY
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:246 - Lagging Sectors: XLU, XLP, XLRE
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 1:
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:251 - Type: Breaker Block Retest
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: 1h
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 104.00
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 101.97
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 110.09
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 1.00
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:270 -   breaker_direction: bullish
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:270 -   breaker_strength: 0.8
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:270 -   confluence_count: 2
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:270 -   notes: Strong bullish breaker block retest
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 2:
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:251 - Type: Fair Value Gap
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: 1h
+2025-03-05 20:39:43.667 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 101.00
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 99.00
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 106.00
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 0.90
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   fvg_direction: bullish
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   fvg_strength: 0.75
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   confluence_count: 1
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   age_in_bars: 3
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   notes: Recent bullish fair value gap
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 3:
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:251 - Type: Breaker Block Retest
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: 4h
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 104.00
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 101.97
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 110.09
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 1.00
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   breaker_direction: bullish
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   breaker_strength: 0.8
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   confluence_count: 2
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   notes: Strong bullish breaker block retest
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 4:
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:251 - Type: Fair Value Gap
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: 4h
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 101.00
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 99.00
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 106.00
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 0.90
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   fvg_direction: bullish
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   fvg_strength: 0.75
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   confluence_count: 1
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   age_in_bars: 3
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   notes: Recent bullish fair value gap
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:250 - 
+Setup 5:
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:251 - Type: Options Flow Signal
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:252 - Ticker: AAPL
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:253 - Timeframe: daily
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:254 - Direction: Bullish
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:255 - Entry Price: 105.00
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:256 - Stop Loss: 101.85
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:257 - Take Profit: 111.30
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:258 - Confidence: 0.94
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:268 - Analysis Details:
+2025-03-05 20:39:43.668 | INFO     | __main__:test_multi_agent_system:270 -   options_direction: bullish
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:270 -   options_strength: 0.85
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:270 -   call_put_ratio: 2.5
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:270 -   iv_percentile: 65
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:270 -   signal_count: 1
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:270 -   notes: Strong call buying activity
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:274 - 
+Confluence 1:
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:275 - Ticker: AAPL
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:276 - Direction: bullish
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:277 - Price Level: 101.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:278 - Strength: 1.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:279 - Timeframes: 1h, 4h
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:280 - Setup Types: Fair Value Gap
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:274 - 
+Confluence 2:
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:275 - Ticker: AAPL
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:276 - Direction: bullish
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:277 - Price Level: 104.33
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:278 - Strength: 1.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:279 - Timeframes: 1h, 4h, daily
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:280 - Setup Types: Breaker Block Retest, Options Flow Signal
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:284 - 
+Trade Recommendation 1:
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:285 - Ticker: AAPL
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:286 - Direction: bullish
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:287 - Entry Price: 101.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:288 - Stop Loss: 99.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:289 - Take Profit: 106.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:290 - Confidence: 1.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:291 - Risk-Reward: 0.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:292 - Source: confluence
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:284 - 
+Trade Recommendation 2:
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:285 - Ticker: AAPL
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:286 - Direction: bullish
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:287 - Entry Price: 104.33
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:288 - Stop Loss: 101.97
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:289 - Take Profit: 110.09
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:290 - Confidence: 1.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:291 - Risk-Reward: 0.00
+2025-03-05 20:39:43.669 | INFO     | __main__:test_multi_agent_system:292 - Source: confluence
+2025-03-05 20:39:43.914 | INFO     | __main__:test_multi_agent_system:323 - Saved chart as AAPL_analysis.png
+2025-03-05 20:55:18.358 | INFO     | __main__:test_multi_agent_system:155 - Starting multi-agent system test
+2025-03-05 20:55:18.358 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: coordinator_agent
+2025-03-05 20:55:18.358 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: market_analyzer
+2025-03-05 20:55:18.358 | INFO     | trading_agents.agents.market_analyzer_agent:__init__:37 - Initialized market_analyzer with 4 market tickers and 10 sector tickers
+2025-03-05 20:55:18.358 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: breaker_block_agent
+2025-03-05 20:55:18.358 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: fvg_agent
+2025-03-05 20:55:18.358 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: order_flow_agent
+2025-03-05 20:55:18.358 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: options_agent
+2025-03-05 20:55:18.358 | INFO     | trading_agents.agents.base_agent:__init__:45 - Initializing agent: decision_agent
+2025-03-05 20:55:18.358 | INFO     | trading_agents.agents.coordinator_agent:_initialize_agents:104 - Initialized 6 specialized agents
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:257 - Generated sample data for AAPL on 1h, 4h timeframes
+2025-03-05 20:55:18.363 | INFO     | trading_agents.agents.coordinator_agent:process:129 - Processing 1 tickers across 2 timeframes
+2025-03-05 20:55:18.363 | INFO     | trading_agents.agents.coordinator_agent:process:150 - Market analysis completed with stance: unknown
+2025-03-05 20:55:18.363 | INFO     | trading_agents.agents.coordinator_agent:process:218 - Multi-agent pipeline completed: found 5 setups and 2 confluences
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:269 - Multi-agent pipeline completed
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:270 - Found 5 setups and 2 confluences
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:274 - 
+Market Analysis:
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:275 - Market Stance: bullish
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:276 - Market Score: 5.2
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:279 - Market Regime: trending_bullish
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:290 - 
+Sector Analysis:
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:291 - Leading Sectors: XLK, XLF, XLY
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:292 - Lagging Sectors: XLU, XLP, XLRE
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:296 - 
+Setup 1:
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:297 - Type: Breaker Block Retest
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:298 - Ticker: AAPL
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:299 - Timeframe: 1h
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:300 - Direction: Bullish
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:301 - Entry Price: 104.00
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:302 - Stop Loss: 101.97
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:303 - Take Profit: 110.09
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:304 - Confidence: 1.00
+2025-03-05 20:55:18.363 | INFO     | __main__:test_multi_agent_system:320 - 
+Analysis Details:
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   breaker_direction: bullish
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   breaker_strength: 0.8
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   confluence_count: 2
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   notes: Strong bullish breaker block retest
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:296 - 
+Setup 2:
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:297 - Type: Fair Value Gap
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:298 - Ticker: AAPL
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:299 - Timeframe: 1h
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:300 - Direction: Bullish
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:301 - Entry Price: 101.00
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:302 - Stop Loss: 99.00
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:303 - Take Profit: 106.00
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:304 - Confidence: 0.90
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:320 - 
+Analysis Details:
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   fvg_direction: bullish
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   fvg_strength: 0.75
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   confluence_count: 1
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   age_in_bars: 3
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   notes: Recent bullish fair value gap
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:296 - 
+Setup 3:
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:297 - Type: Breaker Block Retest
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:298 - Ticker: AAPL
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:299 - Timeframe: 4h
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:300 - Direction: Bullish
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:301 - Entry Price: 104.00
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:302 - Stop Loss: 101.97
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:303 - Take Profit: 110.09
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:304 - Confidence: 1.00
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:320 - 
+Analysis Details:
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   breaker_direction: bullish
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   breaker_strength: 0.8
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   confluence_count: 2
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   notes: Strong bullish breaker block retest
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:296 - 
+Setup 4:
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:297 - Type: Fair Value Gap
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:298 - Ticker: AAPL
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:299 - Timeframe: 4h
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:300 - Direction: Bullish
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:301 - Entry Price: 101.00
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:302 - Stop Loss: 99.00
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:303 - Take Profit: 106.00
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:304 - Confidence: 0.90
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:320 - 
+Analysis Details:
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   fvg_direction: bullish
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   fvg_strength: 0.75
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   confluence_count: 1
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   age_in_bars: 3
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:322 -   notes: Recent bullish fair value gap
+2025-03-05 20:55:18.364 | INFO     | __main__:test_multi_agent_system:296 - 
+Setup 5:
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:297 - Type: Options Flow Signal
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:298 - Ticker: AAPL
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:299 - Timeframe: daily
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:300 - Direction: Bullish
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:301 - Entry Price: 105.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:302 - Stop Loss: 101.85
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:303 - Take Profit: 111.30
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:304 - Confidence: 0.94
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:320 - 
+Analysis Details:
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:322 -   options_direction: bullish
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:322 -   options_strength: 0.85
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:322 -   call_put_ratio: 2.5
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:322 -   iv_percentile: 65
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:322 -   signal_count: 1
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:322 -   notes: Strong call buying activity
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:326 - 
+Confluence 1:
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:327 - Ticker: AAPL
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:328 - Direction: bullish
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:329 - Price Level: 101.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:330 - Strength: 1.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:331 - Timeframes: 1h, 4h
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:332 - Setup Types: Fair Value Gap
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:326 - 
+Confluence 2:
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:327 - Ticker: AAPL
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:328 - Direction: bullish
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:329 - Price Level: 104.33
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:330 - Strength: 1.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:331 - Timeframes: daily, 1h, 4h
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:332 - Setup Types: Options Flow Signal, Breaker Block Retest
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:336 - 
+Trade Recommendation 1:
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:337 - Ticker: AAPL
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:338 - Direction: bullish
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:339 - Entry Price: 101.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:340 - Stop Loss: 99.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:341 - Take Profit: 106.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:342 - Confidence: 1.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:343 - Risk-Reward: 0.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:344 - Source: confluence
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:336 - 
+Trade Recommendation 2:
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:337 - Ticker: AAPL
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:338 - Direction: bullish
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:339 - Entry Price: 104.33
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:340 - Stop Loss: 101.97
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:341 - Take Profit: 110.09
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:342 - Confidence: 1.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:343 - Risk-Reward: 0.00
+2025-03-05 20:55:18.365 | INFO     | __main__:test_multi_agent_system:344 - Source: confluence
+2025-03-05 20:55:18.632 | INFO     | __main__:test_multi_agent_system:375 - Saved chart as AAPL_analysis.png

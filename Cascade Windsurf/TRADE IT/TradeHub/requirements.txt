@@ -1,0 +1,13 @@
+prefect>=2.14.0
+pandas>=2.0.0
+numpy>=1.24.0
+yfinance>=0.2.36
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+loguru>=0.7.0
+ccxt>=4.1.0
+ta>=0.10.0
+plotly>=5.13.0
+flask>=2.2.0
+flask-cors>=4.0.0
+lightweight-charts>=2.1.0 

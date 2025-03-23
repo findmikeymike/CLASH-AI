@@ -1,0 +1,46 @@
+[
+  {
+    "symbol": "AMZN",
+    "timeframe": "1D",
+    "type": "fair_value_gap",
+    "direction": "bullish",
+    "price_level": 193.81000518798828,
+    "strength": 1.2870884811728196,
+    "notes": "Gap size: 6.42",
+    "details": {
+      "type": "fair_value_gap",
+      "direction": "bullish",
+      "symbol": "AMZN",
+      "timeframe": "1D",
+      "high": 197.02000427246094,
+      "low": 190.60000610351562,
+      "size": 6.4199981689453125,
+      "created_at": "2024-11-01",
+      "filled": false,
+      "strength": 1.2870884811728196
+    },
+    "identified_at": "2025-03-15T12:51:54.942268"
+  },
+  {
+    "symbol": "AMZN",
+    "timeframe": "1D",
+    "type": "fair_value_gap",
+    "direction": "bearish",
+    "price_level": 235.40999603271484,
+    "strength": 0.24057674299598578,
+    "notes": "Gap size: 1.20",
+    "details": {
+      "type": "fair_value_gap",
+      "direction": "bearish",
+      "symbol": "AMZN",
+      "timeframe": "1D",
+      "high": 236.00999450683594,
+      "low": 234.80999755859375,
+      "size": 1.1999969482421875,
+      "created_at": "2025-02-07",
+      "filled": false,
+      "strength": 0.24057674299598578
+    },
+    "identified_at": "2025-03-15T12:51:54.942270"
+  }
+]

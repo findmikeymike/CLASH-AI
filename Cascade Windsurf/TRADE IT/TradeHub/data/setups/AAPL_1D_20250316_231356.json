@@ -1,0 +1,32 @@
+[
+  {
+    "symbol": "AAPL",
+    "timeframe": "1D",
+    "timestamp": "2025-02-24",
+    "type": "sweeping_engulfer",
+    "direction": "bullish",
+    "price_level": 247.1,
+    "swept_level": 245.22,
+    "retracement_level": 246.2156,
+    "strength": 0.1538513449482948,
+    "volume_ratio": 0.967651697179563,
+    "atr": 0.0,
+    "notes": "Bullish Sweeping Engulfer: Swept low at 245.22, engulfed previous candle, and retraced to 246.22",
+    "identified_at": "2025-03-16T23:13:56.991377"
+  },
+  {
+    "symbol": "AAPL",
+    "timeframe": "1D",
+    "timestamp": "2025-02-28",
+    "type": "sweeping_engulfer",
+    "direction": "bullish",
+    "price_level": 241.84,
+    "swept_level": 237.06,
+    "retracement_level": 239.167,
+    "strength": 0.2839346484950716,
+    "volume_ratio": 1.2296824036058143,
+    "atr": 0.0,
+    "notes": "Bullish Sweeping Engulfer: Swept low at 237.06, engulfed previous candle, and retraced to 239.17",
+    "identified_at": "2025-03-16T23:13:56.991383"
+  }
+]

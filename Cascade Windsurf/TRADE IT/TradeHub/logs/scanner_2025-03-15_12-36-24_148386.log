@@ -1,0 +1,24 @@
+2025-03-15 12:36:24.152 | INFO     | __main__:main:871 - Starting setup scanner with symbols: ['AAPL', 'MSFT'], timeframes: ['1D']
+2025-03-15 12:36:24.152 | INFO     | __main__:setup_scanner_workflow:800 - Starting setup scanner workflow for symbols: ['AAPL', 'MSFT'], timeframes: ['1D']
+2025-03-15 12:36:24.152 | INFO     | __main__:__init__:49 - Initialized SimpleScanner with lookback=100, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-15 12:36:24.152 | INFO     | __main__:setup_scanner_workflow:811 - Processing AAPL on 1D timeframe
+2025-03-15 12:36:24.152 | INFO     | __main__:fetch_market_data:515 - Fetching data for AAPL on 1D timeframe
+2025-03-15 12:36:24.555 | INFO     | __main__:fetch_market_data:534 - Fetched 250 data points for AAPL
+2025-03-15 12:36:24.556 | INFO     | __main__:find_breaker_blocks:64 - Scanning for breaker blocks in data with 250 rows
+2025-03-15 12:36:24.557 | INFO     | __main__:find_breaker_blocks:217 - Found 1 new breaker blocks and 0 active retests
+2025-03-15 12:36:24.557 | INFO     | __main__:find_fair_value_gaps:364 - Scanning for fair value gaps in data with 250 rows
+2025-03-15 12:36:24.561 | INFO     | __main__:find_fair_value_gaps:502 - Found 0 fair value gaps
+2025-03-15 12:36:24.561 | INFO     | __main__:identify_breakout_setups:556 - Identifying breakout setups for AAPL on 1D
+2025-03-15 12:36:24.565 | INFO     | __main__:identify_breakout_setups:729 - Found 0 breakout setups for AAPL on 1D
+2025-03-15 12:36:24.566 | INFO     | __main__:store_setups:781 - Stored 1 setups for AAPL on 1D to data/setups/AAPL_1D_20250315_123624.json
+2025-03-15 12:36:24.566 | INFO     | __main__:setup_scanner_workflow:811 - Processing MSFT on 1D timeframe
+2025-03-15 12:36:24.566 | INFO     | __main__:fetch_market_data:515 - Fetching data for MSFT on 1D timeframe
+2025-03-15 12:36:24.676 | INFO     | __main__:fetch_market_data:534 - Fetched 250 data points for MSFT
+2025-03-15 12:36:24.676 | INFO     | __main__:find_breaker_blocks:64 - Scanning for breaker blocks in data with 250 rows
+2025-03-15 12:36:24.677 | INFO     | __main__:find_breaker_blocks:217 - Found 2 new breaker blocks and 0 active retests
+2025-03-15 12:36:24.677 | INFO     | __main__:find_fair_value_gaps:364 - Scanning for fair value gaps in data with 250 rows
+2025-03-15 12:36:24.680 | INFO     | __main__:find_fair_value_gaps:502 - Found 1 fair value gaps
+2025-03-15 12:36:24.680 | INFO     | __main__:identify_breakout_setups:556 - Identifying breakout setups for MSFT on 1D
+2025-03-15 12:36:24.682 | INFO     | __main__:identify_breakout_setups:729 - Found 0 breakout setups for MSFT on 1D
+2025-03-15 12:36:24.683 | INFO     | __main__:store_setups:781 - Stored 3 setups for MSFT on 1D to data/setups/MSFT_1D_20250315_123624.json
+2025-03-15 12:36:24.683 | INFO     | __main__:setup_scanner_workflow:848 - Setup scanner workflow completed. Found 4 potential setups.

@@ -1,0 +1,113 @@
+2025-03-16 20:46:03.198 | INFO     | __main__:setup_scanner_workflow:1085 - Starting setup scanner workflow for 3 symbols on 1 timeframes
+2025-03-16 20:46:03.198 | INFO     | __main__:setup_scanner_workflow:1086 - Symbols: AAPL, MSFT, NVDA
+2025-03-16 20:46:03.198 | INFO     | __main__:setup_scanner_workflow:1087 - Timeframes: 1D
+2025-03-16 20:46:03.198 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 20:46:03.198 | INFO     | __main__:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 20:46:03.198 | INFO     | __main__:setup_scanner_workflow:1106 - Processing AAPL on 1D timeframe
+2025-03-16 20:46:03.198 | INFO     | __main__:fetch_market_data:731 - Fetching data for AAPL on 1D timeframe
+2025-03-16 20:46:03.609 | INFO     | __main__:fetch_market_data:758 - Data columns: MultiIndex([( 'Close', 'AAPL'),
+            (  'High', 'AAPL'),
+            (   'Low', 'AAPL'),
+            (  'Open', 'AAPL'),
+            ('Volume', 'AAPL')],
+           names=['Price', 'Ticker'])
+2025-03-16 20:46:03.609 | INFO     | __main__:fetch_market_data:759 - Data types: Price   Ticker
+Close   AAPL      float64
+High    AAPL      float64
+Low     AAPL      float64
+Open    AAPL      float64
+Volume  AAPL        int64
+dtype: object
+2025-03-16 20:46:03.610 | INFO     | __main__:fetch_market_data:790 - Fetched 124 data points for AAPL
+2025-03-16 20:46:03.610 | INFO     | __main__:find_breaker_blocks:73 - Scanning for breaker blocks in data with 124 rows
+2025-03-16 20:46:03.611 | INFO     | __main__:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 20:46:03.611 | INFO     | __main__:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 124 rows
+2025-03-16 20:46:03.614 | INFO     | __main__:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-16 20:46:03.614 | INFO     | __main__:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 124 rows
+2025-03-16 20:46:03.614 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in AAPL (1D) with 124 rows
+2025-03-16 20:46:03.628 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:271 - Found Bearish Sweep Engulfer in AAPL at 2025-01-31 00:00:00
+2025-03-16 20:46:03.630 | INFO     | __main__:find_sweep_engulfers:551 - Found 1 Sweep Engulfer patterns in AAPL (1D)
+2025-03-16 20:46:03.630 | INFO     | __main__:find_sweep_engulfers:553 -   Bearish Sweep Engulfer at 2025-01-31 00:00:00 - Price: 235.74
+2025-03-16 20:46:03.630 | INFO     | __main__:setup_scanner_workflow:1131 - Found 1 sweep engulfer patterns for AAPL on 1D timeframe
+2025-03-16 20:46:03.630 | INFO     | __main__:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 124 rows
+2025-03-16 20:46:03.636 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bullish Sweeping Engulfer in AAPL at 2024-10-29 00:00:00
+2025-03-16 20:46:03.637 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bullish Sweeping Engulfer in AAPL at 2024-11-20 00:00:00
+2025-03-16 20:46:03.638 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-06 00:00:00
+2025-03-16 20:46:03.638 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-11 00:00:00
+2025-03-16 20:46:03.638 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bullish Sweeping Engulfer in AAPL at 2024-12-12 00:00:00
+2025-03-16 20:46:03.639 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in AAPL at 2024-12-18 00:00:00
+2025-03-16 20:46:03.640 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in AAPL at 2025-01-14 00:00:00
+2025-03-16 20:46:03.641 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in AAPL at 2025-02-07 00:00:00
+2025-03-16 20:46:03.642 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24 00:00:00
+2025-03-16 20:46:03.642 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28 00:00:00
+2025-03-16 20:46:03.643 | INFO     | __main__:setup_scanner_workflow:1137 - Found 10 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 20:46:03.643 | INFO     | __main__:setup_scanner_workflow:1106 - Processing MSFT on 1D timeframe
+2025-03-16 20:46:03.643 | INFO     | __main__:fetch_market_data:731 - Fetching data for MSFT on 1D timeframe
+2025-03-16 20:46:03.769 | INFO     | __main__:fetch_market_data:758 - Data columns: MultiIndex([( 'Close', 'MSFT'),
+            (  'High', 'MSFT'),
+            (   'Low', 'MSFT'),
+            (  'Open', 'MSFT'),
+            ('Volume', 'MSFT')],
+           names=['Price', 'Ticker'])
+2025-03-16 20:46:03.770 | INFO     | __main__:fetch_market_data:759 - Data types: Price   Ticker
+Close   MSFT      float64
+High    MSFT      float64
+Low     MSFT      float64
+Open    MSFT      float64
+Volume  MSFT        int64
+dtype: object
+2025-03-16 20:46:03.770 | INFO     | __main__:fetch_market_data:790 - Fetched 124 data points for MSFT
+2025-03-16 20:46:03.770 | INFO     | __main__:find_breaker_blocks:73 - Scanning for breaker blocks in data with 124 rows
+2025-03-16 20:46:03.772 | INFO     | __main__:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 20:46:03.772 | INFO     | __main__:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 124 rows
+2025-03-16 20:46:03.774 | INFO     | __main__:find_fair_value_gaps:531 - Found 1 fair value gaps
+2025-03-16 20:46:03.774 | INFO     | __main__:setup_scanner_workflow:1125 - Found 1 fair value gaps for MSFT on 1D timeframe
+2025-03-16 20:46:03.774 | INFO     | __main__:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in MSFT (1D) data with 124 rows
+2025-03-16 20:46:03.774 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in MSFT (1D) with 124 rows
+2025-03-16 20:46:03.789 | INFO     | __main__:find_sweep_engulfers:555 - No Sweep Engulfer patterns found in MSFT (1D)
+2025-03-16 20:46:03.789 | INFO     | __main__:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in MSFT (1D) data with 124 rows
+2025-03-16 20:46:03.795 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bullish Sweeping Engulfer in MSFT at 2024-11-19 00:00:00
+2025-03-16 20:46:03.795 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in MSFT at 2024-11-21 00:00:00
+2025-03-16 20:46:03.796 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bullish Sweeping Engulfer in MSFT at 2024-12-09 00:00:00
+2025-03-16 20:46:03.799 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-07 00:00:00
+2025-03-16 20:46:03.800 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in MSFT at 2025-02-27 00:00:00
+2025-03-16 20:46:03.800 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-03 00:00:00
+2025-03-16 20:46:03.801 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in MSFT at 2025-03-13 00:00:00
+2025-03-16 20:46:03.801 | INFO     | __main__:setup_scanner_workflow:1137 - Found 7 sweeping engulfer patterns for MSFT on 1D timeframe
+2025-03-16 20:46:03.801 | INFO     | __main__:setup_scanner_workflow:1106 - Processing NVDA on 1D timeframe
+2025-03-16 20:46:03.801 | INFO     | __main__:fetch_market_data:731 - Fetching data for NVDA on 1D timeframe
+2025-03-16 20:46:03.900 | INFO     | __main__:fetch_market_data:758 - Data columns: MultiIndex([( 'Close', 'NVDA'),
+            (  'High', 'NVDA'),
+            (   'Low', 'NVDA'),
+            (  'Open', 'NVDA'),
+            ('Volume', 'NVDA')],
+           names=['Price', 'Ticker'])
+2025-03-16 20:46:03.901 | INFO     | __main__:fetch_market_data:759 - Data types: Price   Ticker
+Close   NVDA      float64
+High    NVDA      float64
+Low     NVDA      float64
+Open    NVDA      float64
+Volume  NVDA        int64
+dtype: object
+2025-03-16 20:46:03.901 | INFO     | __main__:fetch_market_data:790 - Fetched 124 data points for NVDA
+2025-03-16 20:46:03.901 | INFO     | __main__:find_breaker_blocks:73 - Scanning for breaker blocks in data with 124 rows
+2025-03-16 20:46:03.902 | INFO     | __main__:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 20:46:03.902 | INFO     | __main__:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 124 rows
+2025-03-16 20:46:03.904 | INFO     | __main__:find_fair_value_gaps:531 - Found 2 fair value gaps
+2025-03-16 20:46:03.904 | INFO     | __main__:setup_scanner_workflow:1125 - Found 2 fair value gaps for NVDA on 1D timeframe
+2025-03-16 20:46:03.905 | INFO     | __main__:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in NVDA (1D) data with 124 rows
+2025-03-16 20:46:03.905 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in NVDA (1D) with 124 rows
+2025-03-16 20:46:03.917 | INFO     | __main__:find_sweep_engulfers:555 - No Sweep Engulfer patterns found in NVDA (1D)
+2025-03-16 20:46:03.917 | INFO     | __main__:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in NVDA (1D) data with 124 rows
+2025-03-16 20:46:03.921 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in NVDA at 2024-10-01 00:00:00
+2025-03-16 20:46:03.923 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in NVDA at 2024-12-10 00:00:00
+2025-03-16 20:46:03.924 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in NVDA at 2024-12-18 00:00:00
+2025-03-16 20:46:03.925 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in NVDA at 2025-01-16 00:00:00
+2025-03-16 20:46:03.925 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bullish Sweeping Engulfer in NVDA at 2025-01-28 00:00:00
+2025-03-16 20:46:03.926 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bullish Sweeping Engulfer in NVDA at 2025-02-20 00:00:00
+2025-03-16 20:46:03.926 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in NVDA at 2025-02-21 00:00:00
+2025-03-16 20:46:03.927 | INFO     | __main__:find_sweeping_engulfers:714 - Found Bearish Sweeping Engulfer in NVDA at 2025-02-27 00:00:00
+2025-03-16 20:46:03.927 | INFO     | __main__:setup_scanner_workflow:1137 - Found 8 sweeping engulfer patterns for NVDA on 1D timeframe
+2025-03-16 20:46:03.928 | INFO     | __main__:store_setups:1042 - Stored 29 setups for AAPL on 1D to data/setups/AAPL_1D_20250316_204603.json
+2025-03-16 20:46:03.928 | INFO     | __main__:setup_scanner_workflow:1142 - Stored 29 setups
+2025-03-16 20:46:03.928 | INFO     | __main__:main:1195 - Setup scanner workflow completed. Found 29 setups.

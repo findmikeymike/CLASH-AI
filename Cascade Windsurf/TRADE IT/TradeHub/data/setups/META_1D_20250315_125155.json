@@ -1,0 +1,30 @@
+[
+  {
+    "symbol": "META",
+    "timeframe": "1D",
+    "type": "breaker_block",
+    "direction": "bullish",
+    "price_level": 600.18146222204,
+    "strength": 1.0,
+    "created_at": "2025-03-14 00:00:00",
+    "retested": false,
+    "is_active_retest": false,
+    "notes": "Broken resistance at 600.18",
+    "details": {
+      "symbol": "META",
+      "timeframe": "1D",
+      "high": 603.1823695331501,
+      "low": 597.1805549109298,
+      "direction": "bullish",
+      "strength": 1.0,
+      "created_at": "2025-03-14 00:00:00",
+      "broken_at": null,
+      "retested": false,
+      "retest_time": null,
+      "retest_price": null,
+      "confluence_count": 0,
+      "notes": "Broken resistance at 600.18"
+    },
+    "identified_at": "2025-03-15T12:51:55.036141"
+  }
+]

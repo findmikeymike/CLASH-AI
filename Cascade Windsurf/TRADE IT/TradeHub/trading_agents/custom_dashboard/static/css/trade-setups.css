@@ -1,0 +1,367 @@
+/**
+ * Styles for the Trade Setups page
+ */
+
+/* Filters container */
+.filters-container {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.reset-btn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.reset-btn:hover {
+    background-color: var(--border-color);
+}
+
+/* Loading indicator */
+.loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text-color);
+    gap: 1rem;
+    grid-column: 1 / -1;
+}
+
+.loading-indicator i {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.loading-indicator.hidden {
+    display: none;
+}
+
+/* Setups list container */
+.setups-container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.setups-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.no-setups-message {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+
+.error-message {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--bearish-color);
+    background-color: rgba(255, 59, 59, 0.1);
+    border-radius: 8px;
+    border: 1px solid var(--bearish-color);
+}
+
+/* Setup card */
+.setup-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+
+.setup-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.setup-card.bullish {
+    border-left: 4px solid var(--bullish-color);
+}
+
+.setup-card.bearish {
+    border-left: 4px solid var(--bearish-color);
+}
+
+/* Card header */
+.setup-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.symbol-timeframe {
+    display: flex;
+    flex-direction: column;
+}
+
+.symbol {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.timeframe {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.direction-indicator {
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.direction-indicator.bullish {
+    background-color: rgba(0, 200, 83, 0.15);
+    color: var(--bullish-color);
+}
+
+.direction-indicator.bearish {
+    background-color: rgba(255, 59, 59, 0.15);
+    color: var(--bearish-color);
+}
+
+/* Card content */
+.setup-card-content {
+    padding: 1.2rem;
+}
+
+.setup-type {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.price-levels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.2rem 0;
+}
+
+.price-level {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem;
+    border-radius: 6px;
+    background-color: rgba(40, 44, 52, 0.4);
+}
+
+.price-level .label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+}
+
+.price-level .value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.price-level.entry {
+    border-top: 2px solid var(--primary-color);
+}
+
+.price-level.stop {
+    border-top: 2px solid var(--bearish-color);
+}
+
+.price-level.target {
+    border-top: 2px solid var(--bullish-color);
+}
+
+.setup-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.risk-reward, .confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.setup-details .label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.setup-details .value {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Card footer */
+.setup-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--card-footer-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.timestamp {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.setup-actions {
+    display: flex;
+    gap: 0.7rem;
+}
+
+.view-btn, .status-btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.view-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.status-btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.status-btn:hover {
+    background-color: var(--border-color);
+}
+
+.status-btn.triggered {
+    background-color: var(--bullish-color);
+    color: white;
+    border: none;
+}
+
+.status-btn.completed {
+    background-color: gray;
+    color: white;
+    border: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .filter-group {
+        min-width: 100%;
+    }
+    
+    .price-levels {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .setup-card-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .setup-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

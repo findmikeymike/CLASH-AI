@@ -1,0 +1,30 @@
+2025-03-14 16:57:35.361 | INFO     | __main__:main:401 - Starting market analysis at 2025-03-14T16:57:35.361087
+2025-03-14 16:57:35.361 | INFO     | __main__:main:402 - Analyzing symbols: ['AAPL', 'MSFT']
+2025-03-14 16:57:35.361 | INFO     | __main__:main:403 - Analyzing timeframes: ['1D']
+2025-03-14 16:57:35.361 | INFO     | __main__:market_analysis_workflow:297 - Starting market analysis workflow at 2025-03-14T16:57:35.361316
+2025-03-14 16:57:35.361 | INFO     | __main__:market_analysis_workflow:298 - Analyzing 2 symbols on 1 timeframes
+2025-03-14 16:57:35.361 | INFO     | __main__:fetch_market_data:123 - Fetching data for AAPL on 1D timeframe
+2025-03-14 16:57:35.741 | DEBUG    | __main__:fetch_market_data:135 - Original columns: [('Close', 'AAPL'), ('High', 'AAPL'), ('Low', 'AAPL'), ('Open', 'AAPL'), ('Volume', 'AAPL')]
+2025-03-14 16:57:35.741 | INFO     | __main__:fetch_market_data:140 - Fetched 250 data points for AAPL
+2025-03-14 16:57:35.741 | INFO     | __main__:analyze_market_conditions:163 - Analyzing market conditions for AAPL on 1D timeframe
+2025-03-14 16:57:35.741 | INFO     | __main__:__init__:33 - Initialized SimpleMarketAnalyzer with config: {'default_timeframe': '1D', 'indicators': ['SMA', 'RSI', 'ATR']}
+2025-03-14 16:57:35.741 | INFO     | __main__:analyze:37 - Analyzing market data with 250 rows
+2025-03-14 16:57:35.741 | DEBUG    | __main__:analyze:40 - Available columns: [('Close', 'AAPL'), ('High', 'AAPL'), ('Low', 'AAPL'), ('Open', 'AAPL'), ('Volume', 'AAPL')]
+2025-03-14 16:57:35.745 | INFO     | __main__:analyze_market_conditions:179 - Market analysis complete: bearish trend with strength 20.920585943595583
+2025-03-14 16:57:35.745 | INFO     | __main__:fetch_market_data:123 - Fetching data for MSFT on 1D timeframe
+2025-03-14 16:57:35.859 | DEBUG    | __main__:fetch_market_data:135 - Original columns: [('Close', 'MSFT'), ('High', 'MSFT'), ('Low', 'MSFT'), ('Open', 'MSFT'), ('Volume', 'MSFT')]
+2025-03-14 16:57:35.859 | INFO     | __main__:fetch_market_data:140 - Fetched 250 data points for MSFT
+2025-03-14 16:57:35.859 | INFO     | __main__:analyze_market_conditions:163 - Analyzing market conditions for MSFT on 1D timeframe
+2025-03-14 16:57:35.859 | INFO     | __main__:__init__:33 - Initialized SimpleMarketAnalyzer with config: {'default_timeframe': '1D', 'indicators': ['SMA', 'RSI', 'ATR']}
+2025-03-14 16:57:35.859 | INFO     | __main__:analyze:37 - Analyzing market data with 250 rows
+2025-03-14 16:57:35.859 | DEBUG    | __main__:analyze:40 - Available columns: [('Close', 'MSFT'), ('High', 'MSFT'), ('Low', 'MSFT'), ('Open', 'MSFT'), ('Volume', 'MSFT')]
+2025-03-14 16:57:35.863 | INFO     | __main__:analyze_market_conditions:179 - Market analysis complete: bearish trend with strength 40.21298080271129
+2025-03-14 16:57:35.864 | INFO     | __main__:market_analysis_workflow:325 - Analyzing existing setups for confluence
+2025-03-14 16:57:35.864 | INFO     | __main__:get_existing_setups:201 - Getting existing setups (simplified version returns empty list)
+2025-03-14 16:57:35.864 | INFO     | __main__:market_analysis_workflow:330 - Found 0 existing setups to analyze
+2025-03-14 16:57:35.864 | INFO     | __main__:market_analysis_workflow:382 - Market analysis workflow completed at 2025-03-14T16:57:35.864152
+2025-03-14 16:57:35.864 | INFO     | __main__:market_analysis_workflow:383 - Analyzed 2 symbols, activated 0 setups
+2025-03-14 16:57:35.864 | INFO     | __main__:main:412 - Market analysis workflow completed.
+2025-03-14 16:57:35.864 | INFO     | __main__:main:413 - Analyzed 2 symbols
+2025-03-14 16:57:35.864 | INFO     | __main__:main:414 - Updated 0 setups
+2025-03-14 16:57:35.864 | INFO     | __main__:main:415 - Activated 0 setups

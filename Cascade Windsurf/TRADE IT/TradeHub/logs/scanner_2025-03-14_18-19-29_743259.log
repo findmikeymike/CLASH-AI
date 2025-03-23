@@ -1,0 +1,23 @@
+2025-03-14 18:19:29.746 | INFO     | __main__:import_workflow:29 - Successfully imported non_prefect_setup_scanner
+2025-03-14 18:19:29.746 | INFO     | non_prefect_setup_scanner:setup_scanner_workflow:195 - Starting setup scanner workflow at 2025-03-14T18:19:29.746770
+2025-03-14 18:19:29.746 | INFO     | non_prefect_setup_scanner:setup_scanner_workflow:196 - Scanning 2 symbols on 1 timeframes
+2025-03-14 18:19:29.746 | INFO     | non_prefect_setup_scanner:fetch_market_data:69 - Fetching data for AAPL on 1D timeframe
+2025-03-14 18:19:30.124 | INFO     | non_prefect_setup_scanner:fetch_market_data:88 - Fetched 250 data points for AAPL
+2025-03-14 18:19:30.124 | INFO     | non_prefect_setup_scanner:identify_breakout_setups:111 - Scanning for breakout setups in AAPL on 1D timeframe
+2025-03-14 18:19:30.124 | INFO     | non_prefect_setup_scanner:__init__:41 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003
+2025-03-14 18:19:30.124 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:47 - Scanning for breaker blocks in data with 250 rows
+2025-03-14 18:19:30.124 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:54 - Scanning for fair value gaps in data with 250 rows
+2025-03-14 18:19:30.124 | INFO     | non_prefect_setup_scanner:identify_breakout_setups:125 - Found 0 breaker blocks and 0 fair value gaps
+2025-03-14 18:19:30.124 | INFO     | non_prefect_setup_scanner:fetch_market_data:69 - Fetching data for MSFT on 1D timeframe
+2025-03-14 18:19:30.223 | INFO     | non_prefect_setup_scanner:fetch_market_data:88 - Fetched 250 data points for MSFT
+2025-03-14 18:19:30.223 | INFO     | non_prefect_setup_scanner:identify_breakout_setups:111 - Scanning for breakout setups in MSFT on 1D timeframe
+2025-03-14 18:19:30.223 | INFO     | non_prefect_setup_scanner:__init__:41 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003
+2025-03-14 18:19:30.223 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:47 - Scanning for breaker blocks in data with 250 rows
+2025-03-14 18:19:30.223 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:54 - Scanning for fair value gaps in data with 250 rows
+2025-03-14 18:19:30.223 | INFO     | non_prefect_setup_scanner:identify_breakout_setups:125 - Found 0 breaker blocks and 0 fair value gaps
+2025-03-14 18:19:30.223 | INFO     | non_prefect_setup_scanner:setup_scanner_workflow:238 - Setup scanner workflow completed at 2025-03-14T18:19:30.223281
+2025-03-14 18:19:30.223 | INFO     | non_prefect_setup_scanner:setup_scanner_workflow:239 - Found 0 potential setups, stored 0
+2025-03-14 18:19:30.223 | INFO     | __main__:run_setup_scanner:63 - Setup scanner workflow completed. Found 0 setups.
+2025-03-14 18:19:30.223 | INFO     | __main__:run_market_analysis:71 - Running market analysis workflow at 2025-03-14T18:19:30.223356
+2025-03-14 18:19:30.223 | INFO     | __main__:run_market_analysis:72 - Analyzing symbols: ['AAPL', 'MSFT']
+2025-03-14 18:19:30.223 | INFO     | __main__:run_market_analysis:73 - Analyzing timeframes: ['1D']

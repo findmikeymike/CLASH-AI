@@ -1,0 +1,182 @@
+2025-03-15 12:51:54.157 | INFO     | __main__:main:984 - Starting setup scanner with symbols: ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'NVDA', 'TSLA'], timeframes: ['1D']
+2025-03-15 12:51:54.158 | INFO     | __main__:setup_scanner_workflow:862 - Starting setup scanner workflow for symbols: ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'NVDA', 'TSLA'], timeframes: ['1D']
+2025-03-15 12:51:54.158 | INFO     | __main__:__init__:49 - Initialized SimpleScanner with lookback=100, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-15 12:51:54.158 | INFO     | __main__:setup_scanner_workflow:873 - Processing AAPL on 1D timeframe
+2025-03-15 12:51:54.158 | INFO     | __main__:fetch_market_data:536 - Fetching data for AAPL on 1D timeframe
+2025-03-15 12:51:54.566 | INFO     | __main__:fetch_market_data:563 - Data columns: MultiIndex([( 'Close', 'AAPL'),
+            (  'High', 'AAPL'),
+            (   'Low', 'AAPL'),
+            (  'Open', 'AAPL'),
+            ('Volume', 'AAPL')],
+           names=['Price', 'Ticker'])
+2025-03-15 12:51:54.566 | INFO     | __main__:fetch_market_data:564 - Data types: Price   Ticker
+Close   AAPL      float64
+High    AAPL      float64
+Low     AAPL      float64
+Open    AAPL      float64
+Volume  AAPL        int64
+dtype: object
+2025-03-15 12:51:54.566 | INFO     | __main__:fetch_market_data:595 - Fetched 250 data points for AAPL
+2025-03-15 12:51:54.566 | INFO     | __main__:find_breaker_blocks:62 - Scanning for breaker blocks in data with 250 rows
+2025-03-15 12:51:54.568 | INFO     | __main__:find_breaker_blocks:160 - Found 1 new breaker blocks and 0 active retests
+2025-03-15 12:51:54.568 | INFO     | __main__:find_fair_value_gaps:382 - Scanning for fair value gaps in data with 250 rows
+2025-03-15 12:51:54.572 | INFO     | __main__:find_fair_value_gaps:520 - Found 0 fair value gaps
+2025-03-15 12:51:54.572 | INFO     | __main__:identify_breakout_setups:618 - Identifying breakout setups for AAPL on 1D
+2025-03-15 12:51:54.575 | INFO     | __main__:identify_breakout_setups:791 - Found 0 breakout setups for AAPL on 1D
+2025-03-15 12:51:54.575 | INFO     | __main__:setup_scanner_workflow:925 - Found breaker block for AAPL on 1D: bearish at 219.23
+2025-03-15 12:51:54.576 | INFO     | __main__:store_setups:843 - Stored 1 setups for AAPL on 1D to data/setups/AAPL_1D_20250315_125154.json
+2025-03-15 12:51:54.576 | INFO     | __main__:setup_scanner_workflow:873 - Processing MSFT on 1D timeframe
+2025-03-15 12:51:54.576 | INFO     | __main__:fetch_market_data:536 - Fetching data for MSFT on 1D timeframe
+2025-03-15 12:51:54.686 | INFO     | __main__:fetch_market_data:563 - Data columns: MultiIndex([( 'Close', 'MSFT'),
+            (  'High', 'MSFT'),
+            (   'Low', 'MSFT'),
+            (  'Open', 'MSFT'),
+            ('Volume', 'MSFT')],
+           names=['Price', 'Ticker'])
+2025-03-15 12:51:54.687 | INFO     | __main__:fetch_market_data:564 - Data types: Price   Ticker
+Close   MSFT      float64
+High    MSFT      float64
+Low     MSFT      float64
+Open    MSFT      float64
+Volume  MSFT        int64
+dtype: object
+2025-03-15 12:51:54.687 | INFO     | __main__:fetch_market_data:595 - Fetched 250 data points for MSFT
+2025-03-15 12:51:54.687 | INFO     | __main__:find_breaker_blocks:62 - Scanning for breaker blocks in data with 250 rows
+2025-03-15 12:51:54.689 | INFO     | __main__:find_breaker_blocks:160 - Found 2 new breaker blocks and 0 active retests
+2025-03-15 12:51:54.689 | INFO     | __main__:find_fair_value_gaps:382 - Scanning for fair value gaps in data with 250 rows
+2025-03-15 12:51:54.693 | INFO     | __main__:find_fair_value_gaps:520 - Found 1 fair value gaps
+2025-03-15 12:51:54.693 | INFO     | __main__:identify_breakout_setups:618 - Identifying breakout setups for MSFT on 1D
+2025-03-15 12:51:54.695 | INFO     | __main__:identify_breakout_setups:791 - Found 0 breakout setups for MSFT on 1D
+2025-03-15 12:51:54.695 | INFO     | __main__:setup_scanner_workflow:925 - Found breaker block for MSFT on 1D: bearish at 403.95
+2025-03-15 12:51:54.696 | INFO     | __main__:setup_scanner_workflow:925 - Found breaker block for MSFT on 1D: bearish at 408.94
+2025-03-15 12:51:54.696 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for MSFT on 1D: bearish at 430.77
+2025-03-15 12:51:54.696 | INFO     | __main__:store_setups:843 - Stored 3 setups for MSFT on 1D to data/setups/MSFT_1D_20250315_125154.json
+2025-03-15 12:51:54.696 | INFO     | __main__:setup_scanner_workflow:873 - Processing GOOGL on 1D timeframe
+2025-03-15 12:51:54.696 | INFO     | __main__:fetch_market_data:536 - Fetching data for GOOGL on 1D timeframe
+2025-03-15 12:51:54.771 | INFO     | __main__:fetch_market_data:563 - Data columns: MultiIndex([( 'Close', 'GOOGL'),
+            (  'High', 'GOOGL'),
+            (   'Low', 'GOOGL'),
+            (  'Open', 'GOOGL'),
+            ('Volume', 'GOOGL')],
+           names=['Price', 'Ticker'])
+2025-03-15 12:51:54.771 | INFO     | __main__:fetch_market_data:564 - Data types: Price   Ticker
+Close   GOOGL     float64
+High    GOOGL     float64
+Low     GOOGL     float64
+Open    GOOGL     float64
+Volume  GOOGL       int64
+dtype: object
+2025-03-15 12:51:54.772 | INFO     | __main__:fetch_market_data:595 - Fetched 250 data points for GOOGL
+2025-03-15 12:51:54.772 | INFO     | __main__:find_breaker_blocks:62 - Scanning for breaker blocks in data with 250 rows
+2025-03-15 12:51:54.773 | INFO     | __main__:find_breaker_blocks:160 - Found 1 new breaker blocks and 0 active retests
+2025-03-15 12:51:54.774 | INFO     | __main__:find_fair_value_gaps:382 - Scanning for fair value gaps in data with 250 rows
+2025-03-15 12:51:54.778 | INFO     | __main__:find_fair_value_gaps:520 - Found 3 fair value gaps
+2025-03-15 12:51:54.779 | INFO     | __main__:identify_breakout_setups:618 - Identifying breakout setups for GOOGL on 1D
+2025-03-15 12:51:54.782 | INFO     | __main__:identify_breakout_setups:791 - Found 0 breakout setups for GOOGL on 1D
+2025-03-15 12:51:54.782 | INFO     | __main__:setup_scanner_workflow:925 - Found breaker block for GOOGL on 1D: bearish at 187.28
+2025-03-15 12:51:54.782 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for GOOGL on 1D: bearish at 197.55
+2025-03-15 12:51:54.782 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for GOOGL on 1D: bearish at 178.61
+2025-03-15 12:51:54.782 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for GOOGL on 1D: bearish at 169.27
+2025-03-15 12:51:54.782 | INFO     | __main__:store_setups:843 - Stored 4 setups for GOOGL on 1D to data/setups/GOOGL_1D_20250315_125154.json
+2025-03-15 12:51:54.782 | INFO     | __main__:setup_scanner_workflow:873 - Processing AMZN on 1D timeframe
+2025-03-15 12:51:54.782 | INFO     | __main__:fetch_market_data:536 - Fetching data for AMZN on 1D timeframe
+2025-03-15 12:51:54.931 | INFO     | __main__:fetch_market_data:563 - Data columns: MultiIndex([( 'Close', 'AMZN'),
+            (  'High', 'AMZN'),
+            (   'Low', 'AMZN'),
+            (  'Open', 'AMZN'),
+            ('Volume', 'AMZN')],
+           names=['Price', 'Ticker'])
+2025-03-15 12:51:54.932 | INFO     | __main__:fetch_market_data:564 - Data types: Price   Ticker
+Close   AMZN      float64
+High    AMZN      float64
+Low     AMZN      float64
+Open    AMZN      float64
+Volume  AMZN        int64
+dtype: object
+2025-03-15 12:51:54.932 | INFO     | __main__:fetch_market_data:595 - Fetched 250 data points for AMZN
+2025-03-15 12:51:54.932 | INFO     | __main__:find_breaker_blocks:62 - Scanning for breaker blocks in data with 250 rows
+2025-03-15 12:51:54.933 | INFO     | __main__:find_breaker_blocks:160 - Found 0 new breaker blocks and 0 active retests
+2025-03-15 12:51:54.933 | INFO     | __main__:find_fair_value_gaps:382 - Scanning for fair value gaps in data with 250 rows
+2025-03-15 12:51:54.939 | INFO     | __main__:find_fair_value_gaps:520 - Found 2 fair value gaps
+2025-03-15 12:51:54.939 | INFO     | __main__:identify_breakout_setups:618 - Identifying breakout setups for AMZN on 1D
+2025-03-15 12:51:54.942 | INFO     | __main__:identify_breakout_setups:791 - Found 0 breakout setups for AMZN on 1D
+2025-03-15 12:51:54.942 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for AMZN on 1D: bullish at 193.81
+2025-03-15 12:51:54.942 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for AMZN on 1D: bearish at 235.41
+2025-03-15 12:51:54.942 | INFO     | __main__:store_setups:843 - Stored 2 setups for AMZN on 1D to data/setups/AMZN_1D_20250315_125154.json
+2025-03-15 12:51:54.942 | INFO     | __main__:setup_scanner_workflow:873 - Processing META on 1D timeframe
+2025-03-15 12:51:54.942 | INFO     | __main__:fetch_market_data:536 - Fetching data for META on 1D timeframe
+2025-03-15 12:51:55.028 | INFO     | __main__:fetch_market_data:563 - Data columns: MultiIndex([( 'Close', 'META'),
+            (  'High', 'META'),
+            (   'Low', 'META'),
+            (  'Open', 'META'),
+            ('Volume', 'META')],
+           names=['Price', 'Ticker'])
+2025-03-15 12:51:55.028 | INFO     | __main__:fetch_market_data:564 - Data types: Price   Ticker
+Close   META      float64
+High    META      float64
+Low     META      float64
+Open    META      float64
+Volume  META        int64
+dtype: object
+2025-03-15 12:51:55.029 | INFO     | __main__:fetch_market_data:595 - Fetched 250 data points for META
+2025-03-15 12:51:55.029 | INFO     | __main__:find_breaker_blocks:62 - Scanning for breaker blocks in data with 250 rows
+2025-03-15 12:51:55.030 | INFO     | __main__:find_breaker_blocks:160 - Found 1 new breaker blocks and 0 active retests
+2025-03-15 12:51:55.030 | INFO     | __main__:find_fair_value_gaps:382 - Scanning for fair value gaps in data with 250 rows
+2025-03-15 12:51:55.033 | INFO     | __main__:find_fair_value_gaps:520 - Found 0 fair value gaps
+2025-03-15 12:51:55.034 | INFO     | __main__:identify_breakout_setups:618 - Identifying breakout setups for META on 1D
+2025-03-15 12:51:55.036 | INFO     | __main__:identify_breakout_setups:791 - Found 0 breakout setups for META on 1D
+2025-03-15 12:51:55.036 | INFO     | __main__:setup_scanner_workflow:925 - Found breaker block for META on 1D: bullish at 600.18
+2025-03-15 12:51:55.036 | INFO     | __main__:store_setups:843 - Stored 1 setups for META on 1D to data/setups/META_1D_20250315_125155.json
+2025-03-15 12:51:55.036 | INFO     | __main__:setup_scanner_workflow:873 - Processing NVDA on 1D timeframe
+2025-03-15 12:51:55.036 | INFO     | __main__:fetch_market_data:536 - Fetching data for NVDA on 1D timeframe
+2025-03-15 12:51:55.136 | INFO     | __main__:fetch_market_data:563 - Data columns: MultiIndex([( 'Close', 'NVDA'),
+            (  'High', 'NVDA'),
+            (   'Low', 'NVDA'),
+            (  'Open', 'NVDA'),
+            ('Volume', 'NVDA')],
+           names=['Price', 'Ticker'])
+2025-03-15 12:51:55.137 | INFO     | __main__:fetch_market_data:564 - Data types: Price   Ticker
+Close   NVDA      float64
+High    NVDA      float64
+Low     NVDA      float64
+Open    NVDA      float64
+Volume  NVDA        int64
+dtype: object
+2025-03-15 12:51:55.137 | INFO     | __main__:fetch_market_data:595 - Fetched 250 data points for NVDA
+2025-03-15 12:51:55.137 | INFO     | __main__:find_breaker_blocks:62 - Scanning for breaker blocks in data with 250 rows
+2025-03-15 12:51:55.139 | INFO     | __main__:find_breaker_blocks:160 - Found 1 new breaker blocks and 0 active retests
+2025-03-15 12:51:55.139 | INFO     | __main__:find_fair_value_gaps:382 - Scanning for fair value gaps in data with 250 rows
+2025-03-15 12:51:55.142 | INFO     | __main__:find_fair_value_gaps:520 - Found 2 fair value gaps
+2025-03-15 12:51:55.142 | INFO     | __main__:identify_breakout_setups:618 - Identifying breakout setups for NVDA on 1D
+2025-03-15 12:51:55.145 | INFO     | __main__:identify_breakout_setups:791 - Found 0 breakout setups for NVDA on 1D
+2025-03-15 12:51:55.145 | INFO     | __main__:setup_scanner_workflow:925 - Found breaker block for NVDA on 1D: bearish at 132.09
+2025-03-15 12:51:55.145 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for NVDA on 1D: bullish at 112.55
+2025-03-15 12:51:55.145 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for NVDA on 1D: bullish at 117.96
+2025-03-15 12:51:55.146 | INFO     | __main__:store_setups:843 - Stored 3 setups for NVDA on 1D to data/setups/NVDA_1D_20250315_125155.json
+2025-03-15 12:51:55.146 | INFO     | __main__:setup_scanner_workflow:873 - Processing TSLA on 1D timeframe
+2025-03-15 12:51:55.146 | INFO     | __main__:fetch_market_data:536 - Fetching data for TSLA on 1D timeframe
+2025-03-15 12:51:55.290 | INFO     | __main__:fetch_market_data:563 - Data columns: MultiIndex([( 'Close', 'TSLA'),
+            (  'High', 'TSLA'),
+            (   'Low', 'TSLA'),
+            (  'Open', 'TSLA'),
+            ('Volume', 'TSLA')],
+           names=['Price', 'Ticker'])
+2025-03-15 12:51:55.290 | INFO     | __main__:fetch_market_data:564 - Data types: Price   Ticker
+Close   TSLA      float64
+High    TSLA      float64
+Low     TSLA      float64
+Open    TSLA      float64
+Volume  TSLA        int64
+dtype: object
+2025-03-15 12:51:55.291 | INFO     | __main__:fetch_market_data:595 - Fetched 250 data points for TSLA
+2025-03-15 12:51:55.291 | INFO     | __main__:find_breaker_blocks:62 - Scanning for breaker blocks in data with 250 rows
+2025-03-15 12:51:55.292 | INFO     | __main__:find_breaker_blocks:160 - Found 1 new breaker blocks and 0 active retests
+2025-03-15 12:51:55.292 | INFO     | __main__:find_fair_value_gaps:382 - Scanning for fair value gaps in data with 250 rows
+2025-03-15 12:51:55.299 | INFO     | __main__:find_fair_value_gaps:520 - Found 2 fair value gaps
+2025-03-15 12:51:55.300 | INFO     | __main__:identify_breakout_setups:618 - Identifying breakout setups for TSLA on 1D
+2025-03-15 12:51:55.302 | INFO     | __main__:identify_breakout_setups:791 - Found 0 breakout setups for TSLA on 1D
+2025-03-15 12:51:55.302 | INFO     | __main__:setup_scanner_workflow:925 - Found breaker block for TSLA on 1D: bearish at 326.59
+2025-03-15 12:51:55.302 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for TSLA on 1D: bearish at 450.51
+2025-03-15 12:51:55.302 | INFO     | __main__:setup_scanner_workflow:940 - Found fair value gap for TSLA on 1D: bearish at 395.26
+2025-03-15 12:51:55.302 | INFO     | __main__:store_setups:843 - Stored 3 setups for TSLA on 1D to data/setups/TSLA_1D_20250315_125155.json
+2025-03-15 12:51:55.302 | INFO     | __main__:setup_scanner_workflow:961 - Setup scanner workflow completed. Found 17 potential setups, including 0 active breaker block retests.

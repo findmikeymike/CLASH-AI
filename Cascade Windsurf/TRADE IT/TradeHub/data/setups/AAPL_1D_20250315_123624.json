@@ -1,0 +1,15 @@
+[
+  {
+    "type": "breaker_block",
+    "symbol": "AAPL",
+    "timeframe": "1D",
+    "direction": "bearish",
+    "high": 220.32364635715734,
+    "low": 218.13137126902643,
+    "strength": 1.0,
+    "created_at": "2025-03-14",
+    "retested": false,
+    "notes": "Broken support at 219.23",
+    "identified_at": "2025-03-15T12:36:24.565947"
+  }
+]

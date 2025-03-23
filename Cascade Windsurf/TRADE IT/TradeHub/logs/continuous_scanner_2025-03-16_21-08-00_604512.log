@@ -1,0 +1,34 @@
+2025-03-16 21:08:00.626 | INFO     | __main__:start_continuous_scanner:197 - Starting continuous scanner with 1 symbols on 1 timeframes
+2025-03-16 21:08:00.627 | INFO     | __main__:start_continuous_scanner:198 - Symbols: AAPL
+2025-03-16 21:08:00.627 | INFO     | __main__:start_continuous_scanner:199 - Timeframes: 1D
+2025-03-16 21:08:00.627 | INFO     | __main__:start_continuous_scanner:200 - Scan interval: 1 minutes
+2025-03-16 21:08:00.627 | INFO     | __main__:run_scanner:98 - Running scanner at 2025-03-16 21:08:00
+2025-03-16 21:08:00.627 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 21:08:00.627 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 21:08:00.627 | INFO     | __main__:run_scanner:117 - Processing AAPL on 1D timeframe
+2025-03-16 21:08:00.627 | INFO     | non_prefect_setup_scanner:fetch_market_data:726 - Fetching data for AAPL on 1D timeframe
+2025-03-16 21:08:01.138 | INFO     | non_prefect_setup_scanner:fetch_market_data:753 - Data columns: MultiIndex([( 'Close', 'AAPL'),
+            (  'High', 'AAPL'),
+            (   'Low', 'AAPL'),
+            (  'Open', 'AAPL'),
+            ('Volume', 'AAPL')],
+           names=['Price', 'Ticker'])
+2025-03-16 21:08:01.138 | INFO     | non_prefect_setup_scanner:fetch_market_data:754 - Data types: Price   Ticker
+Close   AAPL      float64
+High    AAPL      float64
+Low     AAPL      float64
+Open    AAPL      float64
+Volume  AAPL        int64
+dtype: object
+2025-03-16 21:08:01.139 | INFO     | non_prefect_setup_scanner:fetch_market_data:785 - Fetched 250 data points for AAPL
+2025-03-16 21:08:01.139 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 250 rows
+2025-03-16 21:08:01.140 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-16 21:08:01.140 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 250 rows
+2025-03-16 21:08:01.144 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-16 21:08:01.144 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 250 rows
+2025-03-16 21:08:01.144 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in AAPL (1D) with 250 rows
+2025-03-16 21:08:01.409 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:271 - Found Bearish Sweep Engulfer in AAPL at 2025-01-31 00:00:00
+2025-03-16 21:08:01.415 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:551 - Found 1 Sweep Engulfer patterns in AAPL (1D)
+2025-03-16 21:08:01.415 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:553 -   Bearish Sweep Engulfer at 2025-01-31 00:00:00 - Price: 235.74
+2025-03-16 21:08:01.415 | INFO     | __main__:run_scanner:142 - Found 1 sweep engulfer patterns for AAPL on 1D timeframe
+2025-03-16 21:08:01.415 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 250 rows

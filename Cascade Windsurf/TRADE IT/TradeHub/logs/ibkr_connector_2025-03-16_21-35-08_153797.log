@@ -1,0 +1,13 @@
+2025-03-16 21:35:08.764 | INFO     | trading_agents.utils.ibkr_connector:get_ib_connection:70 - Connected to IBKR at 127.0.0.1:7496
+2025-03-16 21:35:08.765 | INFO     | trading_agents.utils.ibkr_connector:test_ibkr_connection:529 - Successfully connected to IBKR
+2025-03-16 21:35:09.008 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for AAPL from IBKR
+2025-03-16 21:35:09.008 | INFO     | trading_agents.utils.ibkr_connector:test_ibkr_connection:534 - Successfully fetched 21 data points for AAPL
+2025-03-16 21:35:09.014 | INFO     | trading_agents.utils.ibkr_connector:test_ibkr_connection:535 - Sample data:
+              open    high     low   close      volume     vwap  bar_count
+date                                                                      
+2025-02-13  236.91  242.34  235.57  241.53  28122714.0  239.920     143697
+2025-02-14  241.21  245.35  240.99  244.60  23581090.0  243.951     125198
+2025-02-18  244.15  245.18  241.84  244.47  21465678.0  243.942     115535
+2025-02-19  244.66  246.01  243.16  244.87  16915146.0  244.654      90939
+2025-02-20  244.94  246.78  244.29  245.83  19064874.0  245.604     102816
+2025-03-16 21:35:09.014 | INFO     | trading_agents.utils.ibkr_connector:disconnect_ib:83 - Disconnected from IBKR

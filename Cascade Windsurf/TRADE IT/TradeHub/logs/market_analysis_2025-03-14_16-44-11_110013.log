@@ -1,0 +1,32 @@
+2025-03-14 16:44:11.114 | INFO     | __main__:main:397 - Starting market analysis at 2025-03-14T16:44:11.114485
+2025-03-14 16:44:11.114 | INFO     | __main__:main:398 - Analyzing symbols: ['AAPL', 'MSFT']
+2025-03-14 16:44:11.114 | INFO     | __main__:main:399 - Analyzing timeframes: ['1D']
+2025-03-14 16:44:11.114 | INFO     | __main__:market_analysis_workflow:293 - Starting market analysis workflow at 2025-03-14T16:44:11.114711
+2025-03-14 16:44:11.114 | INFO     | __main__:market_analysis_workflow:294 - Analyzing 2 symbols on 1 timeframes
+2025-03-14 16:44:11.114 | INFO     | __main__:fetch_market_data:119 - Fetching data for AAPL on 1D timeframe
+2025-03-14 16:44:11.516 | DEBUG    | __main__:fetch_market_data:131 - Original columns: [('Close', 'AAPL'), ('High', 'AAPL'), ('Low', 'AAPL'), ('Open', 'AAPL'), ('Volume', 'AAPL')]
+2025-03-14 16:44:11.516 | INFO     | __main__:fetch_market_data:136 - Fetched 250 data points for AAPL
+2025-03-14 16:44:11.516 | INFO     | __main__:analyze_market_conditions:159 - Analyzing market conditions for AAPL on 1D timeframe
+2025-03-14 16:44:11.516 | INFO     | __main__:__init__:33 - Initialized SimpleMarketAnalyzer with config: {'default_timeframe': '1D', 'indicators': ['SMA', 'RSI', 'ATR']}
+2025-03-14 16:44:11.516 | INFO     | __main__:analyze:37 - Analyzing market data with 250 rows
+2025-03-14 16:44:11.516 | DEBUG    | __main__:analyze:40 - Available columns: [('Close', 'AAPL'), ('High', 'AAPL'), ('Low', 'AAPL'), ('Open', 'AAPL'), ('Volume', 'AAPL')]
+2025-03-14 16:44:11.519 | ERROR    | __main__:analyze:73 - Error calculating SMA: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-03-14 16:44:11.521 | INFO     | __main__:analyze_market_conditions:175 - Market analysis complete: bearish trend with strength 20.920585943595583
+2025-03-14 16:44:11.521 | INFO     | __main__:fetch_market_data:119 - Fetching data for MSFT on 1D timeframe
+2025-03-14 16:44:11.633 | DEBUG    | __main__:fetch_market_data:131 - Original columns: [('Close', 'MSFT'), ('High', 'MSFT'), ('Low', 'MSFT'), ('Open', 'MSFT'), ('Volume', 'MSFT')]
+2025-03-14 16:44:11.633 | INFO     | __main__:fetch_market_data:136 - Fetched 250 data points for MSFT
+2025-03-14 16:44:11.633 | INFO     | __main__:analyze_market_conditions:159 - Analyzing market conditions for MSFT on 1D timeframe
+2025-03-14 16:44:11.633 | INFO     | __main__:__init__:33 - Initialized SimpleMarketAnalyzer with config: {'default_timeframe': '1D', 'indicators': ['SMA', 'RSI', 'ATR']}
+2025-03-14 16:44:11.633 | INFO     | __main__:analyze:37 - Analyzing market data with 250 rows
+2025-03-14 16:44:11.633 | DEBUG    | __main__:analyze:40 - Available columns: [('Close', 'MSFT'), ('High', 'MSFT'), ('Low', 'MSFT'), ('Open', 'MSFT'), ('Volume', 'MSFT')]
+2025-03-14 16:44:11.635 | ERROR    | __main__:analyze:73 - Error calculating SMA: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-03-14 16:44:11.637 | INFO     | __main__:analyze_market_conditions:175 - Market analysis complete: bearish trend with strength 40.21298080271129
+2025-03-14 16:44:11.638 | INFO     | __main__:market_analysis_workflow:321 - Analyzing existing setups for confluence
+2025-03-14 16:44:11.638 | INFO     | __main__:get_existing_setups:197 - Getting existing setups (simplified version returns empty list)
+2025-03-14 16:44:11.638 | INFO     | __main__:market_analysis_workflow:326 - Found 0 existing setups to analyze
+2025-03-14 16:44:11.638 | INFO     | __main__:market_analysis_workflow:378 - Market analysis workflow completed at 2025-03-14T16:44:11.638104
+2025-03-14 16:44:11.638 | INFO     | __main__:market_analysis_workflow:379 - Analyzed 2 symbols, activated 0 setups
+2025-03-14 16:44:11.638 | INFO     | __main__:main:408 - Market analysis workflow completed.
+2025-03-14 16:44:11.638 | INFO     | __main__:main:409 - Analyzed 2 symbols
+2025-03-14 16:44:11.638 | INFO     | __main__:main:410 - Updated 0 setups
+2025-03-14 16:44:11.638 | INFO     | __main__:main:411 - Activated 0 setups

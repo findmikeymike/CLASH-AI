@@ -1,0 +1,24 @@
+2025-03-16 23:07:54.118 | INFO     | __main__:run_single_scan:97 - Running single scan for 1 symbols on 1 timeframes
+2025-03-16 23:07:54.583 | INFO     | trading_agents.utils.ibkr_connector:get_ib_connection:70 - Connected to IBKR at 127.0.0.1:7496
+2025-03-16 23:07:54.583 | INFO     | __main__:run_single_scan:103 - Successfully connected to IBKR
+2025-03-16 23:07:54.583 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-16 23:07:54.583 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-16 23:07:54.583 | INFO     | __main__:run_single_scan:125 - Processing AAPL on 1D timeframe
+2025-03-16 23:07:54.583 | INFO     | __main__:fetch_market_data:49 - Fetching data for AAPL on 1D timeframe using IBKR
+2025-03-16 23:07:54.691 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:210 - Fetched 21 1D data points for AAPL from IBKR
+2025-03-16 23:07:54.691 | INFO     | __main__:fetch_market_data:56 - Fetched 21 data points for AAPL from IBKR
+2025-03-16 23:07:54.691 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 21 rows
+2025-03-16 23:07:54.691 | WARNING  | non_prefect_setup_scanner:find_breaker_blocks:76 - Not enough data points to find breaker blocks (need at least 60)
+2025-03-16 23:07:54.692 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 21 rows
+2025-03-16 23:07:54.696 | WARNING  | non_prefect_setup_scanner:find_fair_value_gaps:396 - Not enough data points to find fair value gaps (need at least 60)
+2025-03-16 23:07:54.700 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:07:54.700 | WARNING  | non_prefect_setup_scanner:find_sweep_engulfers:544 - Not enough data points to find Sweep Engulfer patterns (need at least 60)
+2025-03-16 23:07:54.700 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (1D) data with 21 rows
+2025-03-16 23:07:54.711 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-24
+2025-03-16 23:07:54.711 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-02-28
+2025-03-16 23:07:54.712 | INFO     | __main__:run_single_scan:156 - Found 2 sweeping engulfer patterns for AAPL on 1D timeframe
+2025-03-16 23:07:54.712 | INFO     | non_prefect_setup_scanner:store_setups:1047 - Stored 2 setups for AAPL on 1D to data/setups/AAPL_1D_20250316_230754.json
+2025-03-16 23:07:54.712 | INFO     | __main__:run_single_scan:161 - Stored 2 setups
+2025-03-16 23:07:54.713 | INFO     | trading_agents.utils.ibkr_connector:disconnect_ib:83 - Disconnected from IBKR
+2025-03-16 23:07:54.713 | INFO     | __main__:run_single_scan:177 - Disconnected from IBKR
+2025-03-16 23:07:54.713 | INFO     | __main__:main:219 - Single scan completed. Found 2 setups.

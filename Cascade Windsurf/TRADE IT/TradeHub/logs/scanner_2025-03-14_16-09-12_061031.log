@@ -1,0 +1,15 @@
+2025-03-14 16:09:12.064 | INFO     | __main__:__init__:36 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003
+2025-03-14 16:09:12.064 | INFO     | __main__:scan:235 - Scanning AAPL on 1d timeframe
+2025-03-14 16:09:12.064 | INFO     | __main__:fetch_data:42 - Fetching data for AAPL on 1d timeframe
+2025-03-14 16:09:12.757 | INFO     | __main__:fetch_data:45 - Fetched 60 data points for AAPL
+2025-03-14 16:09:12.767 | WARNING  | __main__:find_support_resistance:95 - Not enough data points for support/resistance analysis
+2025-03-14 16:09:12.767 | WARNING  | __main__:find_chart_patterns:140 - Not enough data points for pattern analysis
+2025-03-14 16:09:12.768 | WARNING  | __main__:analyze_trend:182 - Not enough data points for trend analysis
+2025-03-14 16:09:12.768 | ERROR    | __main__:main:406 - Error scanning AAPL: 'oversold'
+2025-03-14 16:09:12.768 | INFO     | __main__:scan:235 - Scanning MSFT on 1d timeframe
+2025-03-14 16:09:12.768 | INFO     | __main__:fetch_data:42 - Fetching data for MSFT on 1d timeframe
+2025-03-14 16:09:12.980 | INFO     | __main__:fetch_data:45 - Fetched 60 data points for MSFT
+2025-03-14 16:09:12.987 | WARNING  | __main__:find_support_resistance:95 - Not enough data points for support/resistance analysis
+2025-03-14 16:09:12.988 | WARNING  | __main__:find_chart_patterns:140 - Not enough data points for pattern analysis
+2025-03-14 16:09:12.988 | WARNING  | __main__:analyze_trend:182 - Not enough data points for trend analysis
+2025-03-14 16:09:12.989 | ERROR    | __main__:main:406 - Error scanning MSFT: 'oversold'

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Analysis - Trade Hub</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- TradingView Lightweight Charts -->
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .market-analysis-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .analysis-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .symbol-select, .timeframe-select {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            min-width: 150px;
+        }
+        
+        .run-analysis-btn {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .run-analysis-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .analysis-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .analysis-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        
+        .analysis-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .symbol-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .timeframe-badge {
+            background-color: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .trend-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .trend-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        .trend-bullish {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .trend-bearish {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .trend-sideways {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .indicator-section {
+            margin-top: 15px;
+        }
+        
+        .indicator-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .indicator-value {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            color: #721c24;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">Trade Hub</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('views.index') }}">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="{{ url_for('views.market_analysis') }}">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Market Analysis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.trade_setups') }}">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>Trade Setups</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.watchlist') }}">
+                            <i class="fas fa-eye"></i>
+                            <span>Watchlist</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.backtest') }}">
+                            <i class="fas fa-history"></i>
+                            <span>Backtest</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.settings') }}">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="symbolSearch" placeholder="Search for symbols...">
+                </div>
+                <div class="header-actions">
+                    <button class="btn refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Refresh</span>
+                    </button>
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Trader&background=random" alt="User Avatar">
+                        <span>Trader</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-container">
+                <h1 class="page-title">Market Analysis</h1>
+                <p class="page-description">Analyze market conditions using technical indicators.</p>
+                
+                <div class="market-analysis-container">
+                    <div class="analysis-controls">
+                        <select id="symbolSelect" class="symbol-select" multiple>
+                            <option value="AAPL">AAPL - Apple Inc.</option>
+                            <option value="MSFT">MSFT - Microsoft Corporation</option>
+                            <option value="AMZN">AMZN - Amazon.com Inc.</option>
+                            <option value="GOOGL">GOOGL - Alphabet Inc.</option>
+                            <option value="META">META - Meta Platforms Inc.</option>
+                            <option value="TSLA">TSLA - Tesla Inc.</option>
+                            <option value="NVDA">NVDA - NVIDIA Corporation</option>
+                        </select>
+                        
+                        <select id="timeframeSelect" class="timeframe-select">
+                            <option value="1D">Daily (1D)</option>
+                            <option value="4h">4 Hours (4H)</option>
+                            <option value="1h">1 Hour (1H)</option>
+                            <option value="15m">15 Minutes (15M)</option>
+                        </select>
+                        
+                        <button id="runAnalysisBtn" class="run-analysis-btn">
+                            <i class="fas fa-play"></i>
+                            Run Analysis
+                        </button>
+                    </div>
+                    
+                    <div id="loadingSpinner" class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Running market analysis...</p>
+                    </div>
+                    
+                    <div id="errorMessage" class="error-message"></div>
+                    
+                    <div id="analysisResults" class="analysis-results">
+                        <!-- Analysis cards will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const symbolSelect = document.getElementById('symbolSelect');
+            const timeframeSelect = document.getElementById('timeframeSelect');
+            const runAnalysisBtn = document.getElementById('runAnalysisBtn');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const errorMessage = document.getElementById('errorMessage');
+            const analysisResults = document.getElementById('analysisResults');
+            
+            // Pre-select some default symbols
+            ['AAPL', 'MSFT'].forEach(symbol => {
+                for (let option of symbolSelect.options) {
+                    if (option.value === symbol) {
+                        option.selected = true;
+                    }
+                }
+            });
+            
+            runAnalysisBtn.addEventListener('click', function() {
+                // Get selected symbols
+                const selectedSymbols = Array.from(symbolSelect.selectedOptions).map(option => option.value);
+                
+                if (selectedSymbols.length === 0) {
+                    errorMessage.textContent = 'Please select at least one symbol.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                // Get selected timeframe
+                const selectedTimeframe = timeframeSelect.value;
+                
+                // Show loading spinner
+                loadingSpinner.style.display = 'block';
+                errorMessage.style.display = 'none';
+                analysisResults.innerHTML = '';
+                
+                // Run the analysis
+                fetch('/api/run-market-analysis', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        symbols: selectedSymbols,
+                        timeframes: [selectedTimeframe]
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Hide loading spinner
+                    loadingSpinner.style.display = 'none';
+                    
+                    // Display the results
+                    displayAnalysisResults(data);
+                })
+                .catch(error => {
+                    // Hide loading spinner
+                    loadingSpinner.style.display = 'none';
+                    
+                    // Show error message
+                    errorMessage.textContent = `Error: ${error.message}`;
+                    errorMessage.style.display = 'block';
+                });
+            });
+            
+            function displayAnalysisResults(data) {
+                // Clear previous results
+                analysisResults.innerHTML = '';
+                
+                // Check if there are any results
+                if (!data.market_analyses || Object.keys(data.market_analyses).length === 0) {
+                    errorMessage.textContent = 'No analysis results found.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                // Create a card for each symbol and timeframe
+                for (const [symbol, timeframeData] of Object.entries(data.market_analyses)) {
+                    for (const [timeframe, analysis] of Object.entries(timeframeData)) {
+                        const card = document.createElement('div');
+                        card.className = 'analysis-card';
+                        
+                        // Determine trend class
+                        let trendClass = 'trend-sideways';
+                        if (analysis.trend === 'bullish') {
+                            trendClass = 'trend-bullish';
+                        } else if (analysis.trend === 'bearish') {
+                            trendClass = 'trend-bearish';
+                        }
+                        
+                        card.innerHTML = `
+                            <div class="card-header">
+                                <span class="symbol-name">${symbol}</span>
+                                <span class="timeframe-badge">${timeframe}</span>
+                            </div>
+                            <div class="trend-indicator">
+                                <span>Market Trend:</span>
+                                <span class="trend-badge ${trendClass}">${analysis.trend.toUpperCase()}</span>
+                            </div>
+                            <div class="indicator-section">
+                                <div class="indicator-title">Key Indicators</div>
+                                <div class="indicator-value">
+                                    <span>Market Strength (RSI):</span>
+                                    <span>${analysis.strength.toFixed(2)}</span>
+                                </div>
+                                <div class="indicator-value">
+                                    <span>Volatility (ATR):</span>
+                                    <span>${analysis.volatility.toFixed(2)}</span>
+                                </div>
+                                <div class="indicator-value">
+                                    <span>SMA (20):</span>
+                                    <span>${analysis.indicators.SMA.value.toFixed(2)}</span>
+                                </div>
+                                <div class="indicator-value">
+                                    <span>SMA Trend:</span>
+                                    <span>${analysis.indicators.SMA.trend}</span>
+                                </div>
+                            </div>
+                        `;
+                        
+                        analysisResults.appendChild(card);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

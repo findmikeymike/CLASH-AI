@@ -1,0 +1,96 @@
+[
+  {
+    "symbol": "GOOGL",
+    "timeframe": "1D",
+    "type": "breaker_block",
+    "direction": "bearish",
+    "price_level": 187.2843094002135,
+    "strength": 1.0,
+    "created_at": "2025-03-14 00:00:00",
+    "retested": false,
+    "is_active_retest": false,
+    "notes": "Broken support at 187.28",
+    "details": {
+      "symbol": "GOOGL",
+      "timeframe": "1D",
+      "high": 188.22073094721455,
+      "low": 186.34788785321243,
+      "direction": "bearish",
+      "strength": 1.0,
+      "created_at": "2025-03-14 00:00:00",
+      "broken_at": null,
+      "retested": false,
+      "retest_time": null,
+      "retest_price": null,
+      "confluence_count": 0,
+      "notes": "Broken support at 187.28"
+    },
+    "identified_at": "2025-03-15T12:51:54.782350"
+  },
+  {
+    "symbol": "GOOGL",
+    "timeframe": "1D",
+    "type": "fair_value_gap",
+    "direction": "bearish",
+    "price_level": 197.55248330784133,
+    "strength": 2.450017240558215,
+    "notes": "Gap size: 10.05",
+    "details": {
+      "type": "fair_value_gap",
+      "direction": "bearish",
+      "symbol": "GOOGL",
+      "timeframe": "1D",
+      "high": 202.57669285659674,
+      "low": 192.52827375908595,
+      "size": 10.048419097510788,
+      "created_at": "2025-02-05",
+      "filled": false,
+      "strength": 2.450017240558215
+    },
+    "identified_at": "2025-03-15T12:51:54.782352"
+  },
+  {
+    "symbol": "GOOGL",
+    "timeframe": "1D",
+    "type": "fair_value_gap",
+    "direction": "bearish",
+    "price_level": 178.60929751699578,
+    "strength": 0.036528671431731975,
+    "notes": "Gap size: 0.15",
+    "details": {
+      "type": "fair_value_gap",
+      "direction": "bearish",
+      "symbol": "GOOGL",
+      "timeframe": "1D",
+      "high": 178.68420625509464,
+      "low": 178.53438877889693,
+      "size": 0.14981747619771113,
+      "created_at": "2025-02-25",
+      "filled": false,
+      "strength": 0.036528671431731975
+    },
+    "identified_at": "2025-03-15T12:51:54.782354"
+  },
+  {
+    "symbol": "GOOGL",
+    "timeframe": "1D",
+    "type": "fair_value_gap",
+    "direction": "bearish",
+    "price_level": 169.26707186521017,
+    "strength": 0.39355912922339353,
+    "notes": "Gap size: 1.61",
+    "details": {
+      "type": "fair_value_gap",
+      "direction": "bearish",
+      "symbol": "GOOGL",
+      "timeframe": "1D",
+      "high": 170.07413701655315,
+      "low": 168.4600067138672,
+      "size": 1.6141303026859646,
+      "created_at": "2025-03-10",
+      "filled": false,
+      "strength": 0.39355912922339353
+    },
+    "identified_at": "2025-03-15T12:51:54.782354"
+  }
+]

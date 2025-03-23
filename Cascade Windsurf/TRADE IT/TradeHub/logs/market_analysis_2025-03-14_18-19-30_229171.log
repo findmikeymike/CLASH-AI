@@ -1,0 +1,29 @@
+2025-03-14 18:19:30.233 | INFO     | __main__:import_workflow:29 - Successfully imported non_prefect_market_analysis
+2025-03-14 18:19:30.233 | INFO     | non_prefect_market_analysis:market_analysis_workflow:298 - Starting market analysis workflow at 2025-03-14T18:19:30.233287
+2025-03-14 18:19:30.233 | INFO     | non_prefect_market_analysis:market_analysis_workflow:299 - Analyzing 2 symbols on 1 timeframes
+2025-03-14 18:19:30.233 | INFO     | non_prefect_market_analysis:fetch_market_data:124 - Fetching data for AAPL on 1D timeframe
+2025-03-14 18:19:30.270 | DEBUG    | non_prefect_market_analysis:fetch_market_data:136 - Original columns: [('Close', 'AAPL'), ('High', 'AAPL'), ('Low', 'AAPL'), ('Open', 'AAPL'), ('Volume', 'AAPL')]
+2025-03-14 18:19:30.270 | INFO     | non_prefect_market_analysis:fetch_market_data:141 - Fetched 250 data points for AAPL
+2025-03-14 18:19:30.270 | INFO     | non_prefect_market_analysis:analyze_market_conditions:164 - Analyzing market conditions for AAPL on 1D timeframe
+2025-03-14 18:19:30.270 | INFO     | non_prefect_market_analysis:__init__:33 - Initialized SimpleMarketAnalyzer with config: {'default_timeframe': '1D', 'indicators': ['SMA', 'RSI', 'ATR']}
+2025-03-14 18:19:30.270 | INFO     | non_prefect_market_analysis:analyze:37 - Analyzing market data with 250 rows
+2025-03-14 18:19:30.270 | DEBUG    | non_prefect_market_analysis:analyze:40 - Available columns: [('Close', 'AAPL'), ('High', 'AAPL'), ('Low', 'AAPL'), ('Open', 'AAPL'), ('Volume', 'AAPL')]
+2025-03-14 18:19:30.274 | INFO     | non_prefect_market_analysis:analyze_market_conditions:180 - Market analysis complete: bearish trend with strength 20.920585943595583
+2025-03-14 18:19:30.274 | INFO     | non_prefect_market_analysis:fetch_market_data:124 - Fetching data for MSFT on 1D timeframe
+2025-03-14 18:19:30.312 | DEBUG    | non_prefect_market_analysis:fetch_market_data:136 - Original columns: [('Close', 'MSFT'), ('High', 'MSFT'), ('Low', 'MSFT'), ('Open', 'MSFT'), ('Volume', 'MSFT')]
+2025-03-14 18:19:30.312 | INFO     | non_prefect_market_analysis:fetch_market_data:141 - Fetched 250 data points for MSFT
+2025-03-14 18:19:30.312 | INFO     | non_prefect_market_analysis:analyze_market_conditions:164 - Analyzing market conditions for MSFT on 1D timeframe
+2025-03-14 18:19:30.313 | INFO     | non_prefect_market_analysis:__init__:33 - Initialized SimpleMarketAnalyzer with config: {'default_timeframe': '1D', 'indicators': ['SMA', 'RSI', 'ATR']}
+2025-03-14 18:19:30.313 | INFO     | non_prefect_market_analysis:analyze:37 - Analyzing market data with 250 rows
+2025-03-14 18:19:30.313 | DEBUG    | non_prefect_market_analysis:analyze:40 - Available columns: [('Close', 'MSFT'), ('High', 'MSFT'), ('Low', 'MSFT'), ('Open', 'MSFT'), ('Volume', 'MSFT')]
+2025-03-14 18:19:30.315 | INFO     | non_prefect_market_analysis:analyze_market_conditions:180 - Market analysis complete: bearish trend with strength 40.21298080271129
+2025-03-14 18:19:30.316 | INFO     | non_prefect_market_analysis:market_analysis_workflow:326 - Analyzing existing setups for confluence
+2025-03-14 18:19:30.316 | INFO     | non_prefect_market_analysis:get_existing_setups:202 - Getting existing setups (simplified version returns empty list)
+2025-03-14 18:19:30.316 | INFO     | non_prefect_market_analysis:market_analysis_workflow:331 - Found 0 existing setups to analyze
+2025-03-14 18:19:30.316 | INFO     | non_prefect_market_analysis:market_analysis_workflow:383 - Market analysis workflow completed at 2025-03-14T18:19:30.316122
+2025-03-14 18:19:30.316 | INFO     | non_prefect_market_analysis:market_analysis_workflow:384 - Analyzed 2 symbols, activated 0 setups
+2025-03-14 18:19:30.316 | INFO     | __main__:run_market_analysis:86 - Market analysis workflow completed.
+2025-03-14 18:19:30.316 | INFO     | __main__:run_market_analysis:87 - Analyzed 2 symbols
+2025-03-14 18:19:30.316 | INFO     | __main__:run_market_analysis:88 - Updated 0 setups
+2025-03-14 18:19:30.316 | INFO     | __main__:run_market_analysis:89 - Activated 0 setups
+2025-03-14 18:19:30.316 | INFO     | __main__:main:124 - Trading workflows completed at 2025-03-14T18:19:30.316266

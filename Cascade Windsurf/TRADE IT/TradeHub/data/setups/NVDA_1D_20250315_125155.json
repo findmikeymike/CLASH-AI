@@ -1,0 +1,74 @@
+[
+  {
+    "symbol": "NVDA",
+    "timeframe": "1D",
+    "type": "breaker_block",
+    "direction": "bearish",
+    "price_level": 132.08875807974474,
+    "strength": 1.0,
+    "created_at": "2025-03-14 00:00:00",
+    "retested": false,
+    "is_active_retest": false,
+    "notes": "Broken support at 132.09",
+    "details": {
+      "symbol": "NVDA",
+      "timeframe": "1D",
+      "high": 132.74920187014345,
+      "low": 131.42831428934602,
+      "direction": "bearish",
+      "strength": 1.0,
+      "created_at": "2025-03-14 00:00:00",
+      "broken_at": null,
+      "retested": false,
+      "retest_time": null,
+      "retest_price": null,
+      "confluence_count": 0,
+      "notes": "Broken support at 132.09"
+    },
+    "identified_at": "2025-03-15T12:51:55.145761"
+  },
+  {
+    "symbol": "NVDA",
+    "timeframe": "1D",
+    "type": "fair_value_gap",
+    "direction": "bullish",
+    "price_level": 112.55483647121287,
+    "strength": 0.12375927290059913,
+    "notes": "Gap size: 0.65",
+    "details": {
+      "type": "fair_value_gap",
+      "direction": "bullish",
+      "symbol": "NVDA",
+      "timeframe": "1D",
+      "high": 112.87999725341797,
+      "low": 112.22967568900775,
+      "size": 0.6503215644102198,
+      "created_at": "2025-03-12",
+      "filled": false,
+      "strength": 0.12375927290059913
+    },
+    "identified_at": "2025-03-15T12:51:55.145763"
+  },
+  {
+    "symbol": "NVDA",
+    "timeframe": "1D",
+    "type": "fair_value_gap",
+    "direction": "bullish",
+    "price_level": 117.95500183105469,
+    "strength": 0.07421873044966731,
+    "notes": "Gap size: 0.39",
+    "details": {
+      "type": "fair_value_gap",
+      "direction": "bullish",
+      "symbol": "NVDA",
+      "timeframe": "1D",
+      "high": 118.1500015258789,
+      "low": 117.76000213623047,
+      "size": 0.3899993896484375,
+      "created_at": "2025-03-14",
+      "filled": false,
+      "strength": 0.07421873044966731
+    },
+    "identified_at": "2025-03-15T12:51:55.145764"
+  }
+]

@@ -1,0 +1,22 @@
+2025-03-14 16:33:41.328 | INFO     | __main__:main:255 - Starting setup scanner at 2025-03-14T16:33:41.328053
+2025-03-14 16:33:41.328 | INFO     | __main__:main:256 - Scanning symbols: ['AAPL', 'MSFT']
+2025-03-14 16:33:41.328 | INFO     | __main__:main:257 - Scanning timeframes: ['1D']
+2025-03-14 16:33:41.328 | INFO     | __main__:setup_scanner_workflow:195 - Starting setup scanner workflow at 2025-03-14T16:33:41.328329
+2025-03-14 16:33:41.328 | INFO     | __main__:setup_scanner_workflow:196 - Scanning 2 symbols on 1 timeframes
+2025-03-14 16:33:41.328 | INFO     | __main__:fetch_market_data:69 - Fetching data for AAPL on 1D timeframe
+2025-03-14 16:33:41.734 | INFO     | __main__:fetch_market_data:88 - Fetched 250 data points for AAPL
+2025-03-14 16:33:41.734 | INFO     | __main__:identify_breakout_setups:111 - Scanning for breakout setups in AAPL on 1D timeframe
+2025-03-14 16:33:41.734 | INFO     | __main__:__init__:41 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003
+2025-03-14 16:33:41.734 | INFO     | __main__:find_breaker_blocks:47 - Scanning for breaker blocks in data with 250 rows
+2025-03-14 16:33:41.734 | INFO     | __main__:find_fair_value_gaps:54 - Scanning for fair value gaps in data with 250 rows
+2025-03-14 16:33:41.734 | INFO     | __main__:identify_breakout_setups:125 - Found 0 breaker blocks and 0 fair value gaps
+2025-03-14 16:33:41.734 | INFO     | __main__:fetch_market_data:69 - Fetching data for MSFT on 1D timeframe
+2025-03-14 16:33:41.838 | INFO     | __main__:fetch_market_data:88 - Fetched 250 data points for MSFT
+2025-03-14 16:33:41.838 | INFO     | __main__:identify_breakout_setups:111 - Scanning for breakout setups in MSFT on 1D timeframe
+2025-03-14 16:33:41.838 | INFO     | __main__:__init__:41 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003
+2025-03-14 16:33:41.838 | INFO     | __main__:find_breaker_blocks:47 - Scanning for breaker blocks in data with 250 rows
+2025-03-14 16:33:41.838 | INFO     | __main__:find_fair_value_gaps:54 - Scanning for fair value gaps in data with 250 rows
+2025-03-14 16:33:41.838 | INFO     | __main__:identify_breakout_setups:125 - Found 0 breaker blocks and 0 fair value gaps
+2025-03-14 16:33:41.838 | INFO     | __main__:setup_scanner_workflow:238 - Setup scanner workflow completed at 2025-03-14T16:33:41.838580
+2025-03-14 16:33:41.838 | INFO     | __main__:setup_scanner_workflow:239 - Found 0 potential setups, stored 0
+2025-03-14 16:33:41.838 | INFO     | __main__:main:265 - Setup scanner workflow completed. Found 0 setups.

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Hub - Trade Setup Feed</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- TradingView Lightweight Charts -->
+    <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+    <!-- Socket.IO Client -->
+    <script src="https://cdn.socket.io/4.7.3/socket.io.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Compact Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">Trade Hub</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="{{ url_for('views.index') }}">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Feed</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.market_analysis') }}">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Market Analysis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.trade_setups') }}">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>Watchlist</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.watchlist') }}">
+                            <i class="fas fa-eye"></i>
+                            <span>Scanning</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.backtest') }}">
+                            <i class="fas fa-history"></i>
+                            <span>Backtest</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.settings') }}">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content - Feed Layout -->
+        <main class="main-content">
+            <div class="dashboard-feed-container">
+                <!-- Full-width Market Overview Panel -->
+                <div class="market-overview-panel">
+                    <div class="market-overview-header">
+                        <h2>Market Overview</h2>
+                        <button class="btn-icon toggle-market-detail" title="Toggle detailed view">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="market-overview-content">
+                        <div class="market-indices-row">
+                            <div class="market-index up">
+                                <span class="index-name">S&P 500</span>
+                                <span class="index-value">5,038.82</span>
+                                <span class="index-change">+0.57%</span>
+                            </div>
+                            <div class="market-index up">
+                                <span class="index-name">NASDAQ</span>
+                                <span class="index-value">15,990.66</span>
+                                <span class="index-change">+0.95%</span>
+                            </div>
+                            <div class="market-index down">
+                                <span class="index-name">DOW</span>
+                                <span class="index-value">38,671.69</span>
+                                <span class="index-change">-0.14%</span>
+                            </div>
+                            <div class="market-index up">
+                                <span class="index-name">VIX</span>
+                                <span class="index-value">13.85</span>
+                                <span class="index-change">+2.37%</span>
+                            </div>
+                            <div class="market-index up">
+                                <span class="index-name">RUSSELL 2000</span>
+                                <span class="index-value">2,038.82</span>
+                                <span class="index-change">+0.42%</span>
+                            </div>
+                            <div class="market-index down">
+                                <span class="index-name">10Y YIELD</span>
+                                <span class="index-value">4.32%</span>
+                                <span class="index-change">-0.05%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Market View (hidden by default) -->
+                        <div class="market-detail-view">
+                            <div class="market-detail-section">
+                                <h3>Sector Performance</h3>
+                                <div class="sector-performance">
+                                    <div class="sector-item up">
+                                        <span class="sector-name">Technology</span>
+                                        <span class="sector-change">+1.24%</span>
+                                    </div>
+                                    <div class="sector-item up">
+                                        <span class="sector-name">Healthcare</span>
+                                        <span class="sector-change">+0.87%</span>
+                                    </div>
+                                    <div class="sector-item down">
+                                        <span class="sector-name">Energy</span>
+                                        <span class="sector-change">-0.53%</span>
+                                    </div>
+                                    <div class="sector-item up">
+                                        <span class="sector-name">Financials</span>
+                                        <span class="sector-change">+0.32%</span>
+                                    </div>
+                                    <div class="sector-item down">
+                                        <span class="sector-name">Utilities</span>
+                                        <span class="sector-change">-0.18%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="market-detail-section">
+                                <h3>Market Breadth</h3>
+                                <div class="market-breadth">
+                                    <div class="breadth-item">
+                                        <span class="breadth-label">Advancing</span>
+                                        <span class="breadth-value">1,842</span>
+                                    </div>
+                                    <div class="breadth-item">
+                                        <span class="breadth-label">Declining</span>
+                                        <span class="breadth-value">1,156</span>
+                                    </div>
+                                    <div class="breadth-item">
+                                        <span class="breadth-label">New Highs</span>
+                                        <span class="breadth-value">124</span>
+                                    </div>
+                                    <div class="breadth-item">
+                                        <span class="breadth-label">New Lows</span>
+                                        <span class="breadth-value">32</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="market-detail-section">
+                                <h3>Market Movers</h3>
+                                <div class="market-movers">
+                                    <div class="movers-column">
+                                        <h4>Top Gainers</h4>
+                                        <div class="mover-item up">
+                                            <span class="mover-symbol">NVDA</span>
+                                            <span class="mover-change">+3.42%</span>
+                                        </div>
+                                        <div class="mover-item up">
+                                            <span class="mover-symbol">AAPL</span>
+                                            <span class="mover-change">+2.18%</span>
+                                        </div>
+                                        <div class="mover-item up">
+                                            <span class="mover-symbol">MSFT</span>
+                                            <span class="mover-change">+1.95%</span>
+                                        </div>
+                                    </div>
+                                    <div class="movers-column">
+                                        <h4>Top Losers</h4>
+                                        <div class="mover-item down">
+                                            <span class="mover-symbol">META</span>
+                                            <span class="mover-change">-1.87%</span>
+                                        </div>
+                                        <div class="mover-item down">
+                                            <span class="mover-symbol">TSLA</span>
+                                            <span class="mover-change">-1.42%</span>
+                                        </div>
+                                        <div class="mover-item down">
+                                            <span class="mover-symbol">AMZN</span>
+                                            <span class="mover-change">-0.95%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Setup Filters (moved below market overview) -->
+                <div class="setup-filters-container">
+                    <div class="setup-filters">
+                        <select class="select-dropdown">
+                            <option value="all">All Setups</option>
+                            <option value="breakout">Breakouts</option>
+                            <option value="reversal">Reversals</option>
+                            <option value="trend">Trend Continuations</option>
+                        </select>
+                        <select class="select-dropdown">
+                            <option value="all">All Timeframes</option>
+                            <option value="5m">5 Min</option>
+                            <option value="15m">15 Min</option>
+                            <option value="1h">1 Hour</option>
+                            <option value="4h">4 Hour</option>
+                            <option value="1d">Daily</option>
+                        </select>
+                        <button class="btn-outline">
+                            <i class="fas fa-filter"></i>
+                            <span>More Filters</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Scan Info -->
+                <div class="scan-info">
+                    <p>Last scan: <strong>Today, 11:45 AM</strong> • Found <strong>8</strong> new setups</p>
+                </div>
+
+                <!-- Setup Feed -->
+                <div class="setup-feed" id="setupFeed">
+                    <!-- Sample Setup Card 1 -->
+                    <div class="setup-card">
+                        <div class="setup-header">
+                            <span class="setup-symbol">AAPL</span>
+                            <span class="setup-timeframe">1 Hour</span>
+                        </div>
+                        <div class="setup-meta">
+                            <span class="setup-type">Bullish Flag Breakout</span>
+                            <span class="setup-direction bullish">
+                                <i class="fas fa-arrow-up"></i> Bullish
+                            </span>
+                        </div>
+                        <div class="setup-timestamp">
+                            <i class="far fa-clock"></i> Detected 45 minutes ago
+                        </div>
+                        <div class="setup-mini-chart" id="miniChart1"></div>
+                        <div class="setup-metrics">
+                            <div class="setup-metric">
+                                <div class="metric-label">Entry</div>
+                                <div class="metric-value">$178.45</div>
+                            </div>
+                            <div class="setup-metric">
+                                <div class="metric-label">Target</div>
+                                <div class="metric-value">$182.30</div>
+                            </div>
+                            <div class="setup-metric">
+                                <div class="metric-label">Stop Loss</div>
+                                <div class="metric-value">$176.80</div>
+                            </div>
+                        </div>
+                        <div class="setup-actions">
+                            <button class="setup-action-btn">
+                                <i class="far fa-bookmark"></i> Save
+                            </button>
+                            <button class="setup-action-btn">
+                                <i class="far fa-bell"></i> Alert
+                            </button>
+                            <button class="setup-action-btn">
+                                <i class="fas fa-external-link-alt"></i> TradingView
+                            </button>
+                            <button class="setup-action-btn">
+                                <i class="far fa-comment-alt"></i> Notes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Sample Setup Card 2 -->
+                    <div class="setup-card">
+                        <div class="setup-header">
+                            <span class="setup-symbol">MSFT</span>
+                            <span class="setup-timeframe">Daily</span>
+                        </div>
+                        <div class="setup-meta">
+                            <span class="setup-type">Support Bounce</span>
+                            <span class="setup-direction bullish">
+                                <i class="fas fa-arrow-up"></i> Bullish
+                            </span>
+                        </div>
+                        <div class="setup-timestamp">
+                            <i class="far fa-clock"></i> Detected 2 hours ago
+                        </div>
+                        <div class="setup-mini-chart" id="miniChart2"></div>
+                        <div class="setup-metrics">
+                            <div class="setup-metric">
+                                <div class="metric-label">Entry</div>
+                                <div class="metric-value">$416.25</div>
+                            </div>
+                            <div class="setup-metric">
+                                <div class="metric-label">Target</div>
+                                <div class="metric-value">$425.50</div>
+                            </div>
+                            <div class="setup-metric">
+                                <div class="metric-label">Stop Loss</div>
+                                <div class="metric-value">$410.80</div>
+                            </div>
+                        </div>
+                        <div class="setup-actions">
+                            <button class="setup-action-btn">
+                                <i class="far fa-bookmark"></i> Save
+                            </button>
+                            <button class="setup-action-btn">
+                                <i class="far fa-bell"></i> Alert
+                            </button>
+                            <button class="setup-action-btn">
+                                <i class="fas fa-external-link-alt"></i> TradingView
+                            </button>
+                            <button class="setup-action-btn">
+                                <i class="far fa-comment-alt"></i> Notes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Sample Setup Card 3 -->
+                    <div class="setup-card">
+                        <div class="setup-header">
+                            <span class="setup-symbol">NVDA</span>
+                            <span class="setup-timeframe">4 Hour</span>
+                        </div>
+                        <div class="setup-meta">
+                            <span class="setup-type">Double Top</span>
+                            <span class="setup-direction bearish">
+                                <i class="fas fa-arrow-down"></i> Bearish
+                            </span>
+                        </div>
+                        <div class="setup-timestamp">
+                            <i class="far fa-clock"></i> Detected 5 hours ago
+                        </div>
+                        <div class="setup-mini-chart" id="miniChart3"></div>
+                        <div class="setup-metrics">
+                            <div class="setup-metric">
+                                <div class="metric-label">Entry</div>
+                                <div class="metric-value">$925.40</div>
+                            </div>
+                            <div class="setup-metric">
+                                <div class="metric-label">Target</div>
+                                <div class="metric-value">$902.15</div>
+                            </div>
+                            <div class="setup-metric">
+                                <div class="metric-label">Stop Loss</div>
+                                <div class="metric-value">$937.60</div>
+                            </div>
+                        </div>
+                        <div class="setup-actions">
+                            <button class="setup-action-btn">
+                                <i class="far fa-bookmark"></i> Save
+                            </button>
+                            <button class="setup-action-btn">
+                                <i class="far fa-bell"></i> Alert
+                            </button>
+                            <button class="setup-action-btn">
+                                <i class="fas fa-external-link-alt"></i> TradingView
+                            </button>
+                            <button class="setup-action-btn">
+                                <i class="far fa-comment-alt"></i> Notes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <button class="btn-outline" style="width: 100%; margin-top: 20px;">
+                        <i class="fas fa-sync-alt"></i> Load More Setups
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Setup Detail View -->
+    {% include 'setup_detail.html' %}
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/feed.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/setup_detail.js') }}"></script>
+</body>
+</html> 

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Hub - TradingView Chart</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- TradingView Lightweight Charts -->
+    <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Compact Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">TH</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('views.index') }}">
+                            <i class="fas fa-stream"></i>
+                            <span>Feed</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="{{ url_for('views.tradingview') }}">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Chart</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.market_analysis') }}">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Market Analysis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.trade_setups') }}">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>Watchlist</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('views.settings') }}">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="symbolSearch" placeholder="Search for symbols...">
+                </div>
+                <div class="header-actions">
+                    <select id="timeframeSelector" class="select-dropdown">
+                        <option value="1min">1m</option>
+                        <option value="5min">5m</option>
+                        <option value="15min">15m</option>
+                        <option value="1H">1h</option>
+                        <option value="4H">4h</option>
+                        <option value="1D" selected>1d</option>
+                    </select>
+                    <button class="btn-outline" id="openTradingViewBtn">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Open in TradingView</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Full Chart Container -->
+            <div class="full-chart-container">
+                <div class="chart-toolbar">
+                    <div class="chart-symbol-info">
+                        <span id="symbolName">AAPL</span>
+                        <span class="price" id="currentPrice">$0.00</span>
+                        <span class="change" id="priceChange">0.00%</span>
+                    </div>
+                    
+                    <div class="timeframe-buttons">
+                        <button class="btn-outline timeframe-btn active" data-timeframe="1D">1D</button>
+                        <button class="btn-outline timeframe-btn" data-timeframe="1W">1W</button>
+                        <button class="btn-outline timeframe-btn" data-timeframe="1M">1M</button>
+                    </div>
+                    
+                    <button id="addIndicator" class="btn-icon" title="Add Indicator">
+                        <i class="fas fa-chart-line"></i>
+                    </button>
+                    
+                    <div id="activeIndicators" class="active-indicators">
+                        <!-- Indicator badges will be added here -->
+                    </div>
+                </div>
+                
+                <div class="chart-container" id="mainChart">
+                    <div class="drawing-tools">
+                        <div class="drawing-tool" data-tool="cursor" title="Cursor">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </div>
+                        <div class="drawing-tool" data-tool="line" title="Line">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="drawing-tool" data-tool="rectangle" title="Rectangle">
+                            <i class="far fa-square"></i>
+                        </div>
+                        <div class="drawing-tool" data-tool="fibonacci" title="Fibonacci">
+                            <i class="fas fa-grip-lines"></i>
+                        </div>
+                        <div class="drawing-tool" data-tool="text" title="Text">
+                            <i class="fas fa-font"></i>
+                        </div>
+                        <div class="drawing-tool" data-tool="reset" title="Reset">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+
+    <script>
+        // Open in TradingView button
+        document.getElementById('openTradingViewBtn').addEventListener('click', function() {
+            const symbol = document.getElementById('symbolName').textContent;
+            window.open(`https://www.tradingview.com/chart/?symbol=${symbol}`, '_blank');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,121 @@
+{
+  "ticker": "AAPL",
+  "options_analysis": {
+    "sentiment": "bullish",
+    "confidence": "medium",
+    "call_put_ratio": 1.078350866593563,
+    "iv_percentile": 0.03455173350758367,
+    "skew": -0.0017582925452420018,
+    "signals": [
+      {
+        "type": "oi_increase",
+        "direction": "bearish",
+        "strength": 0.7918519018459286,
+        "description": "Signal description 1"
+      },
+      {
+        "type": "oi_decrease",
+        "direction": "bullish",
+        "strength": 0.7843307500834161,
+        "description": "Signal description 2"
+      },
+      {
+        "type": "oi_decrease",
+        "direction": "neutral",
+        "strength": 0.6240071803281801,
+        "description": "Signal description 3"
+      },
+      {
+        "type": "oi_increase",
+        "direction": "bullish",
+        "strength": 0.8337981752213605,
+        "description": "Signal description 4"
+      }
+    ]
+  },
+  "unusual_activity": {
+    "call_put_ratio": 1.078350866593563,
+    "iv_percentile": 0.03455173350758367,
+    "skew": -0.0017582925452420018,
+    "sentiment": "neutral"
+  },
+  "sweep_activity": {
+    "call_sweep_volume": 283,
+    "put_sweep_volume": 1338,
+    "sweep_sentiment": "strongly_bearish"
+  },
+  "gex_analysis": {
+    "current_gex": 3967.3349935507176,
+    "gex_skew": -0.8032937335925032,
+    "gex_levels": [
+      {
+        "price": 93.0,
+        "gex": 2658.1384813452287,
+        "distance_pct": -0.07
+      },
+      {
+        "price": 95.0,
+        "gex": -2754.263272865994,
+        "distance_pct": -0.05
+      },
+      {
+        "price": 96.0,
+        "gex": 5078.805755841572,
+        "distance_pct": -0.04
+      }
+    ],
+    "largest_gex_level": 96.0,
+    "next_gex_level": 96.0,
+    "gex_walls": null,
+    "gex_wall_proximity": null,
+    "gex_weakness": false,
+    "gex_weakness_direction": null,
+    "gex_inflection_point": true,
+    "gex_inflection_level": 104.73385336770345,
+    "gex_support_resistance": {
+      "type": "support",
+      "price": 102.63806151491717,
+      "strength": 0.6910172774584754,
+      "distance_pct": 0.02638061514917169
+    }
+  },
+  "risk_warnings": [
+    "GEX inflection point detected at $104.73",
+    "Potential upward stop hunt detected",
+    "Stop hunt risk level: medium"
+  ],
+  "stop_hunt_warnings": {
+    "upward_stop_hunt": {
+      "detected": true
+    },
+    "downward_stop_hunt": {
+      "detected": false
+    },
+    "has_stop_hunt": true,
+    "risk_level": "medium"
+  },
+  "recommended_contracts": [
+    {
+      "type": "CALL",
+      "strike": 100,
+      "expiration": "2023-06-16",
+      "iv": 0.3,
+      "delta": 0.5
+    },
+    {
+      "type": "CALL",
+      "strike": 105,
+      "expiration": "2023-06-16",
+      "iv": 0.32,
+      "delta": 0.4
+    },
+    {
+      "type": "PUT",
+      "strike": 95,
+      "expiration": "2023-06-16",
+      "iv": 0.35,
+      "delta": -0.4
+    }
+  ],
+  "recommended_strategy": "call_backspread"
+}

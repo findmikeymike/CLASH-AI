@@ -1,0 +1,1 @@
+2025-03-23 01:10:05.278 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=20, engulfing_threshold=1.0, sweep_threshold_pips=0.1, min_retracement=0.33

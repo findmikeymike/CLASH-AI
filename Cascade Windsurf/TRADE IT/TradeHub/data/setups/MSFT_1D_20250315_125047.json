@@ -1,0 +1,80 @@
+[
+  {
+    "symbol": "MSFT",
+    "timeframe": "1D",
+    "type": "breaker_block",
+    "direction": "bearish",
+    "price_level": 403.94983835073174,
+    "strength": 1.0,
+    "created_at": "2025-03-14 00:00:00",
+    "retested": false,
+    "is_active_retest": false,
+    "notes": "Broken support at 403.95",
+    "details": {
+      "symbol": "MSFT",
+      "timeframe": "1D",
+      "high": 405.9695875424854,
+      "low": 401.93008915897815,
+      "direction": "bearish",
+      "strength": 1.0,
+      "created_at": "2025-03-14 00:00:00",
+      "broken_at": null,
+      "retested": false,
+      "retest_time": null,
+      "retest_price": null,
+      "confluence_count": 0,
+      "notes": "Broken support at 403.95"
+    },
+    "identified_at": "2025-03-15T12:50:47.756529"
+  },
+  {
+    "symbol": "MSFT",
+    "timeframe": "1D",
+    "type": "breaker_block",
+    "direction": "bearish",
+    "price_level": 408.93981090505724,
+    "strength": 1.0,
+    "created_at": "2025-03-14 00:00:00",
+    "retested": false,
+    "is_active_retest": false,
+    "notes": "Broken support at 408.94",
+    "details": {
+      "symbol": "MSFT",
+      "timeframe": "1D",
+      "high": 410.9845099595825,
+      "low": 406.895111850532,
+      "direction": "bearish",
+      "strength": 1.0,
+      "created_at": "2025-03-14 00:00:00",
+      "broken_at": null,
+      "retested": false,
+      "retest_time": null,
+      "retest_price": null,
+      "confluence_count": 0,
+      "notes": "Broken support at 408.94"
+    },
+    "identified_at": "2025-03-15T12:50:47.756534"
+  },
+  {
+    "symbol": "MSFT",
+    "timeframe": "1D",
+    "type": "fair_value_gap",
+    "direction": "bearish",
+    "price_level": 430.76624296977053,
+    "strength": 2.2879533359038886,
+    "notes": "Gap size: 17.50",
+    "details": {
+      "type": "fair_value_gap",
+      "direction": "bearish",
+      "symbol": "MSFT",
+      "timeframe": "1D",
+      "high": 439.51869372032735,
+      "low": 422.0137922192137,
+      "size": 17.504901501113636,
+      "created_at": "2025-01-30",
+      "filled": false,
+      "strength": 2.2879533359038886
+    },
+    "identified_at": "2025-03-15T12:50:47.756535"
+  }
+]

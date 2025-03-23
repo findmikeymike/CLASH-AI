@@ -1,0 +1,56 @@
+2025-03-17 00:57:49.564 | INFO     | __main__:start_market_scanner:139 - Starting market scanner with 1 symbols on 2 timeframes
+2025-03-17 00:57:49.564 | INFO     | __main__:start_market_scanner:140 - Symbols: AAPL
+2025-03-17 00:57:49.564 | INFO     | __main__:start_market_scanner:141 - Timeframes: 30m, 15m
+2025-03-17 00:57:49.564 | INFO     | __main__:start_market_scanner:142 - Scan interval: 3 minutes
+2025-03-17 00:57:49.564 | INFO     | __main__:start_market_scanner:144 - Maximum scans: 1
+2025-03-17 00:57:49.564 | INFO     | __main__:run_scanner_job:88 - Running scanner at 2025-03-17 00:57:49
+2025-03-17 00:57:49.564 | INFO     | ibkr_single_scan:run_single_scan:97 - Running single scan for 1 symbols on 2 timeframes
+2025-03-17 00:57:50.037 | INFO     | trading_agents.utils.ibkr_connector:get_ib_connection:72 - Connected to IBKR at 127.0.0.1:7496
+2025-03-17 00:57:50.037 | INFO     | ibkr_single_scan:run_single_scan:103 - Successfully connected to IBKR
+2025-03-17 00:57:50.037 | INFO     | sweep_engulfer_agent:__init__:49 - Initialized SweepEngulferPattern with lookback=50, engulfing_threshold=0.0, volume_increase_threshold=1.5, sweep_threshold_pips=5, min_candle_size_atr=0.5
+2025-03-17 00:57:50.037 | INFO     | non_prefect_setup_scanner:__init__:60 - Initialized SimpleScanner with lookback=50, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-17 00:57:50.037 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing AAPL on 30m timeframe
+2025-03-17 00:57:50.037 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for AAPL on 30m timeframe using IBKR
+2025-03-17 00:57:50.141 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:212 - Fetched 65 30m data points for AAPL from IBKR
+2025-03-17 00:57:50.141 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 65 data points for AAPL from IBKR
+2025-03-17 00:57:50.141 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 65 rows
+2025-03-17 00:57:50.144 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-17 00:57:50.144 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 65 rows
+2025-03-17 00:57:50.147 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-17 00:57:50.147 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (30m) data with 65 rows
+2025-03-17 00:57:50.147 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in AAPL (30m) with 65 rows
+2025-03-17 00:57:50.153 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:555 - No Sweep Engulfer patterns found in AAPL (30m)
+2025-03-17 00:57:50.153 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (30m) data with 65 rows
+2025-03-17 00:57:50.157 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-03-10 14:30:00-04:00
+2025-03-17 00:57:50.157 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-03-11 11:30:00-04:00
+2025-03-17 00:57:50.159 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-03-12 14:30:00-04:00
+2025-03-17 00:57:50.161 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-03-14 14:00:00-04:00
+2025-03-17 00:57:50.161 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 4 sweeping engulfer patterns for AAPL on 30m timeframe
+2025-03-17 00:57:50.161 | INFO     | ibkr_single_scan:run_single_scan:125 - Processing AAPL on 15m timeframe
+2025-03-17 00:57:50.162 | INFO     | ibkr_single_scan:fetch_market_data:49 - Fetching data for AAPL on 15m timeframe using IBKR
+2025-03-17 00:57:50.262 | INFO     | trading_agents.utils.ibkr_connector:fetch_historical_data:212 - Fetched 130 15m data points for AAPL from IBKR
+2025-03-17 00:57:50.262 | INFO     | ibkr_single_scan:fetch_market_data:56 - Fetched 130 data points for AAPL from IBKR
+2025-03-17 00:57:50.262 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:73 - Scanning for breaker blocks in data with 130 rows
+2025-03-17 00:57:50.263 | INFO     | non_prefect_setup_scanner:find_breaker_blocks:171 - Found 0 new breaker blocks and 0 active retests
+2025-03-17 00:57:50.263 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:393 - Scanning for fair value gaps in data with 130 rows
+2025-03-17 00:57:50.265 | INFO     | non_prefect_setup_scanner:find_fair_value_gaps:531 - Found 0 fair value gaps
+2025-03-17 00:57:50.265 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:541 - Scanning for Sweep Engulfer patterns in AAPL (15m) data with 130 rows
+2025-03-17 00:57:50.265 | INFO     | sweep_engulfer_agent:detect_sweep_engulfer:122 - Scanning for Sweep Engulfer patterns in AAPL (15m) with 130 rows
+2025-03-17 00:57:50.272 | INFO     | non_prefect_setup_scanner:find_sweep_engulfers:555 - No Sweep Engulfer patterns found in AAPL (15m)
+2025-03-17 00:57:50.272 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:568 - Scanning for Sweeping Engulfer patterns in AAPL (15m) data with 130 rows
+2025-03-17 00:57:50.274 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-03-10 12:30:00-04:00
+2025-03-17 00:57:50.276 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-03-11 11:30:00-04:00
+2025-03-17 00:57:50.276 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-03-11 12:30:00-04:00
+2025-03-17 00:57:50.277 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-03-11 15:45:00-04:00
+2025-03-17 00:57:50.278 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bullish Sweeping Engulfer in AAPL at 2025-03-12 13:15:00-04:00
+2025-03-17 00:57:50.279 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-03-13 11:30:00-04:00
+2025-03-17 00:57:50.280 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-03-13 13:30:00-04:00
+2025-03-17 00:57:50.280 | INFO     | non_prefect_setup_scanner:find_sweeping_engulfers:712 - Found Bearish Sweeping Engulfer in AAPL at 2025-03-13 15:00:00-04:00
+2025-03-17 00:57:50.282 | INFO     | ibkr_single_scan:run_single_scan:156 - Found 8 sweeping engulfer patterns for AAPL on 15m timeframe
+2025-03-17 00:57:50.283 | INFO     | non_prefect_setup_scanner:store_setups:1047 - Stored 12 setups for AAPL on 30m to data/setups/AAPL_30m_20250317_005750.json
+2025-03-17 00:57:50.283 | INFO     | ibkr_single_scan:run_single_scan:161 - Stored 12 setups
+2025-03-17 00:57:50.283 | INFO     | trading_agents.utils.ibkr_connector:disconnect_ib:85 - Disconnected from IBKR
+2025-03-17 00:57:50.283 | INFO     | ibkr_single_scan:run_single_scan:177 - Disconnected from IBKR
+2025-03-17 00:57:50.283 | INFO     | __main__:run_scanner_job:104 - Scan completed. Found 12 setups.
+2025-03-17 00:57:50.283 | INFO     | __main__:start_market_scanner:169 - Market scanner running. Press Ctrl+C to stop.
+2025-03-17 00:57:51.285 | INFO     | __main__:start_market_scanner:186 - Reached maximum number of scans (1). Exiting.

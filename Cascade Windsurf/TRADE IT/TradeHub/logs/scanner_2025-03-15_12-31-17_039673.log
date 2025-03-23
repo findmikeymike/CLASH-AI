@@ -1,0 +1,7 @@
+2025-03-15 12:31:17.043 | INFO     | __main__:main:703 - Starting setup scanner with symbols: ['AAPL', 'MSFT'], timeframes: ['1D']
+2025-03-15 12:31:17.043 | INFO     | __main__:setup_scanner_workflow:600 - Starting setup scanner workflow for symbols: ['AAPL', 'MSFT'], timeframes: ['1D']
+2025-03-15 12:31:17.043 | INFO     | __main__:__init__:49 - Initialized SimpleScanner with lookback=100, min_volume=10000, price_rejection=0.005, fvg_threshold=0.003, min_touches=2
+2025-03-15 12:31:17.043 | INFO     | __main__:setup_scanner_workflow:618 - Processing AAPL on 1D timeframe
+2025-03-15 12:31:17.043 | INFO     | __main__:fetch_market_data:439 - Fetching data for AAPL on 1D timeframe
+2025-03-15 12:31:17.474 | INFO     | __main__:fetch_market_data:458 - Fetched 250 data points for AAPL
+2025-03-15 12:31:17.475 | INFO     | __main__:find_breaker_blocks:62 - Scanning for breaker blocks in data with 250 rows

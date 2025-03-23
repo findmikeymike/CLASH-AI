@@ -1,0 +1,32 @@
+2025-03-14 16:43:13.268 | INFO     | __main__:main:387 - Starting market analysis at 2025-03-14T16:43:13.268074
+2025-03-14 16:43:13.268 | INFO     | __main__:main:388 - Analyzing symbols: ['AAPL', 'MSFT']
+2025-03-14 16:43:13.268 | INFO     | __main__:main:389 - Analyzing timeframes: ['1D']
+2025-03-14 16:43:13.268 | INFO     | __main__:market_analysis_workflow:283 - Starting market analysis workflow at 2025-03-14T16:43:13.268316
+2025-03-14 16:43:13.268 | INFO     | __main__:market_analysis_workflow:284 - Analyzing 2 symbols on 1 timeframes
+2025-03-14 16:43:13.268 | INFO     | __main__:fetch_market_data:107 - Fetching data for AAPL on 1D timeframe
+2025-03-14 16:43:13.671 | INFO     | __main__:fetch_market_data:126 - Fetched 250 data points for AAPL
+2025-03-14 16:43:13.671 | INFO     | __main__:analyze_market_conditions:149 - Analyzing market conditions for AAPL on 1D timeframe
+2025-03-14 16:43:13.671 | INFO     | __main__:__init__:33 - Initialized SimpleMarketAnalyzer with config: {'default_timeframe': '1D', 'indicators': ['SMA', 'RSI', 'ATR']}
+2025-03-14 16:43:13.671 | INFO     | __main__:analyze:37 - Analyzing market data with 250 rows
+2025-03-14 16:43:13.671 | ERROR    | __main__:analyze:61 - Error calculating SMA: 'close'
+2025-03-14 16:43:13.671 | ERROR    | __main__:analyze:75 - Error calculating RSI: 'close'
+2025-03-14 16:43:13.671 | ERROR    | __main__:analyze:87 - Error calculating ATR: 'high'
+2025-03-14 16:43:13.671 | INFO     | __main__:analyze_market_conditions:165 - Market analysis complete: bearish trend with strength 50
+2025-03-14 16:43:13.671 | INFO     | __main__:fetch_market_data:107 - Fetching data for MSFT on 1D timeframe
+2025-03-14 16:43:13.782 | INFO     | __main__:fetch_market_data:126 - Fetched 250 data points for MSFT
+2025-03-14 16:43:13.782 | INFO     | __main__:analyze_market_conditions:149 - Analyzing market conditions for MSFT on 1D timeframe
+2025-03-14 16:43:13.782 | INFO     | __main__:__init__:33 - Initialized SimpleMarketAnalyzer with config: {'default_timeframe': '1D', 'indicators': ['SMA', 'RSI', 'ATR']}
+2025-03-14 16:43:13.782 | INFO     | __main__:analyze:37 - Analyzing market data with 250 rows
+2025-03-14 16:43:13.782 | ERROR    | __main__:analyze:61 - Error calculating SMA: 'close'
+2025-03-14 16:43:13.782 | ERROR    | __main__:analyze:75 - Error calculating RSI: 'close'
+2025-03-14 16:43:13.782 | ERROR    | __main__:analyze:87 - Error calculating ATR: 'high'
+2025-03-14 16:43:13.782 | INFO     | __main__:analyze_market_conditions:165 - Market analysis complete: bearish trend with strength 50
+2025-03-14 16:43:13.782 | INFO     | __main__:market_analysis_workflow:311 - Analyzing existing setups for confluence
+2025-03-14 16:43:13.782 | INFO     | __main__:get_existing_setups:187 - Getting existing setups (simplified version returns empty list)
+2025-03-14 16:43:13.782 | INFO     | __main__:market_analysis_workflow:316 - Found 0 existing setups to analyze
+2025-03-14 16:43:13.782 | INFO     | __main__:market_analysis_workflow:368 - Market analysis workflow completed at 2025-03-14T16:43:13.782644
+2025-03-14 16:43:13.782 | INFO     | __main__:market_analysis_workflow:369 - Analyzed 2 symbols, activated 0 setups
+2025-03-14 16:43:13.782 | INFO     | __main__:main:398 - Market analysis workflow completed.
+2025-03-14 16:43:13.782 | INFO     | __main__:main:399 - Analyzed 2 symbols
+2025-03-14 16:43:13.782 | INFO     | __main__:main:400 - Updated 0 setups
+2025-03-14 16:43:13.782 | INFO     | __main__:main:401 - Activated 0 setups

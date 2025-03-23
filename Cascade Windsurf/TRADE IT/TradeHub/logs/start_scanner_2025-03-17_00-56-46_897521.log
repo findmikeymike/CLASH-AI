@@ -1,0 +1,1 @@
+2025-03-17 00:56:46.903 | INFO     | __main__:start_scanner:78 - Starting scanner with command: python run_market_scanner.py --symbols AAPL --timeframes 30min 15min --interval 3 --duration 1 W --scan-outside-market-hours --max-scans 1

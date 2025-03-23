@@ -1,0 +1,130 @@
+{
+  "ticker": "NVDA",
+  "options_analysis": {
+    "sentiment": "bullish",
+    "confidence": "medium",
+    "call_put_ratio": 1.8659493043042772,
+    "iv_percentile": 0.47634652899235996,
+    "skew": 0.10913048443314106,
+    "signals": [
+      {
+        "type": "skew_change",
+        "direction": "bullish",
+        "strength": 0.664145125458074,
+        "description": "Signal description 1"
+      },
+      {
+        "type": "iv_spike",
+        "direction": "bullish",
+        "strength": 0.7025803877349993,
+        "description": "Signal description 2"
+      },
+      {
+        "type": "skew_change",
+        "direction": "neutral",
+        "strength": 0.9134977343540052,
+        "description": "Signal description 3"
+      },
+      {
+        "type": "unusual_volume",
+        "direction": "bearish",
+        "strength": 0.6424081479313861,
+        "description": "Signal description 4"
+      }
+    ]
+  },
+  "unusual_activity": {
+    "call_put_ratio": 1.8659493043042772,
+    "iv_percentile": 0.47634652899235996,
+    "skew": 0.10913048443314106,
+    "sentiment": "strongly_bullish"
+  },
+  "sweep_activity": {
+    "call_sweep_volume": 431,
+    "put_sweep_volume": 1027,
+    "sweep_sentiment": "strongly_bearish"
+  },
+  "gex_analysis": {
+    "current_gex": 4220.494661177789,
+    "gex_skew": -0.746623711657546,
+    "gex_levels": [
+      {
+        "price": 93.0,
+        "gex": 2151.6621386923207,
+        "distance_pct": -0.07
+      },
+      {
+        "price": 102.0,
+        "gex": 2544.9977954000487,
+        "distance_pct": 0.02
+      },
+      {
+        "price": 100.0,
+        "gex": 2984.8765116191103,
+        "distance_pct": 0.0
+      }
+    ],
+    "largest_gex_level": 100.0,
+    "next_gex_level": 100.0,
+    "gex_walls": {
+      "direction": "below",
+      "price": 98.16129089209453,
+      "strength": 0.8794535107342207,
+      "distance_pct": 0.01838709107905474
+    },
+    "gex_wall_proximity": {
+      "is_near": true,
+      "direction": "below",
+      "distance_pct": 0.01838709107905474,
+      "wall_price": 98.16129089209453
+    },
+    "gex_weakness": false,
+    "gex_weakness_direction": null,
+    "gex_inflection_point": true,
+    "gex_inflection_level": 100.08860220579143,
+    "gex_support_resistance": {
+      "type": "resistance",
+      "price": 98.31398785583575,
+      "strength": 0.5890537575209185,
+      "distance_pct": -0.01686012144164252
+    }
+  },
+  "risk_warnings": [
+    "Price approaching below GEX wall at $98.16 (1.8% away)",
+    "GEX inflection point detected at $100.09"
+  ],
+  "stop_hunt_warnings": {
+    "upward_stop_hunt": {
+      "detected": false
+    },
+    "downward_stop_hunt": {
+      "detected": false
+    },
+    "has_stop_hunt": false,
+    "risk_level": "medium"
+  },
+  "recommended_contracts": [
+    {
+      "type": "CALL",
+      "strike": 100,
+      "expiration": "2023-06-16",
+      "iv": 0.3,
+      "delta": 0.5
+    },
+    {
+      "type": "CALL",
+      "strike": 105,
+      "expiration": "2023-06-16",
+      "iv": 0.32,
+      "delta": 0.4
+    },
+    {
+      "type": "PUT",
+      "strike": 95,
+      "expiration": "2023-06-16",
+      "iv": 0.35,
+      "delta": -0.4
+    }
+  ],
+  "recommended_strategy": "risk_reversal"
+}

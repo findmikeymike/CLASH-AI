@@ -1,0 +1,30 @@
+[
+  {
+    "symbol": "AAPL",
+    "timeframe": "1D",
+    "type": "breaker_block",
+    "direction": "bearish",
+    "price_level": 219.2275088130919,
+    "strength": 1.0,
+    "created_at": "2025-03-14 00:00:00",
+    "retested": false,
+    "is_active_retest": false,
+    "notes": "Broken support at 219.23",
+    "details": {
+      "symbol": "AAPL",
+      "timeframe": "1D",
+      "high": 220.32364635715734,
+      "low": 218.13137126902643,
+      "direction": "bearish",
+      "strength": 1.0,
+      "created_at": "2025-03-14 00:00:00",
+      "broken_at": null,
+      "retested": false,
+      "retest_time": null,
+      "retest_price": null,
+      "confluence_count": 0,
+      "notes": "Broken support at 219.23"
+    },
+    "identified_at": "2025-03-15T12:50:47.633678"
+  }
+]
