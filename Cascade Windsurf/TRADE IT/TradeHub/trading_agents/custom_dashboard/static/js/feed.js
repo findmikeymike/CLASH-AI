@@ -83,7 +83,13 @@ function initMiniCharts() {
             timeScale: {
                 borderColor: 'rgba(197, 203, 206, 0.4)',
                 timeVisible: true,
-                secondsVisible: false,
+                fixLeftEdge: true,
+                fixRightEdge: true,
+                rightOffset: 5,
+                barSpacing: 6,
+                lockVisibleTimeRangeOnResize: true,
+                rightBarStaysAtRight: true,
+                visible: true
             },
             crosshair: {
                 mode: LightweightCharts.CrosshairMode.Normal,
@@ -1098,6 +1104,13 @@ function initTradingViewCharts() {
                 timeScale: {
                     borderColor: 'rgba(197, 203, 206, 0.4)',
                     timeVisible: true,
+                    fixLeftEdge: true,
+                    fixRightEdge: true,
+                    rightOffset: 5,
+                    barSpacing: 6,
+                    lockVisibleTimeRangeOnResize: true,
+                    rightBarStaysAtRight: true,
+                    visible: true
                 },
                 crosshair: {
                     mode: LightweightCharts.CrosshairMode.Normal,
