@@ -209,11 +209,10 @@
                 <!-- Setup Filters (moved below market overview) -->
                 <div class="setup-filters-container">
                     <div class="setup-filters">
-                        <select class="select-dropdown">
-                            <option value="all">All Setups</option>
-                            <option value="breakout">Breakouts</option>
-                            <option value="reversal">Reversals</option>
-                            <option value="trend">Trend Continuations</option>
+                        <select class="select-dropdown" id="direction-filter">
+                            <option value="all">All Directions</option>
+                            <option value="bullish">Bullish</option>
+                            <option value="bearish">Bearish</option>
                         </select>
                         <select class="select-dropdown">
                             <option value="all">All Timeframes</option>
@@ -392,4 +391,4 @@
     <script src="{{ url_for('static', filename='js/feed.js') }}"></script>
     <script src="{{ url_for('static', filename='js/setup_detail.js') }}"></script>
 </body>
-</html> 
+</html>

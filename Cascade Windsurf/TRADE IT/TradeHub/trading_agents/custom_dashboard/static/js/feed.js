@@ -394,6 +394,18 @@ function formatVolumeData(candleData) {
  * Setup event listeners for the feed page
  */
 function setupEventListeners() {
+    // Direction filter dropdown
+    const directionFilter = document.getElementById('direction-filter');
+    if (directionFilter) {
+        directionFilter.addEventListener('change', filterSetups);
+    }
+    
+    // Timeframe filter dropdown
+    const timeframeFilter = document.querySelector('.setup-filters select:nth-child(2)');
+    if (timeframeFilter) {
+        timeframeFilter.addEventListener('change', filterSetups);
+    }
+    
     // Market overview toggle
     const toggleButton = document.querySelector('.toggle-market-detail');
     const detailView = document.querySelector('.market-detail-view');
@@ -430,13 +442,14 @@ function setupEventListeners() {
             // Don't trigger detail view if clicking on action buttons
             if (!e.target.closest('.setup-actions')) {
                 const setupId = this.getAttribute('data-setup-id');
+                const setupData = this.getAttribute('data-setup') ? JSON.parse(this.getAttribute('data-setup')) : null;
                 console.log('Clicked on setup card:', setupId);
                 
                 // Call the showSetupDetail function 
                 if (typeof showSetupDetail === 'function') {
-                    showSetupDetail(setupId);
+                    showSetupDetail(setupId, setupData);
                 } else if (window.setupDetail && typeof window.setupDetail.showSetupDetail === 'function') {
-                    window.setupDetail.showSetupDetail(setupId);
+                    window.setupDetail.showSetupDetail(setupId, setupData);
                 } else {
                     console.error('showSetupDetail function not found');
                 }
@@ -447,17 +460,11 @@ function setupEventListeners() {
     // Setup action buttons
     setupActionButtons();
     
-    // Setup "Load More" button
-    const loadMoreButton = document.querySelector('.setup-feed button.btn-outline');
+    // Load more button
+    const loadMoreButton = document.getElementById('loadMoreButton') || document.querySelector('.setup-feed button.btn-outline');
     if (loadMoreButton) {
         loadMoreButton.addEventListener('click', loadMoreSetups);
     }
-    
-    // Setup filters
-    const filterSelects = document.querySelectorAll('.setup-filters select');
-    filterSelects.forEach(select => {
-        select.addEventListener('change', filterSetups);
-    });
     
     // Window resize handler for responsive charts
     window.addEventListener('resize', () => {
@@ -847,10 +854,10 @@ function createSampleCard(symbol, timeframe, direction, pattern, time) {
  * Filter setups based on dropdown selections
  */
 function filterSetups() {
-    const setupTypeFilter = document.querySelector('.setup-filters select:nth-child(1)').value;
+    const directionFilter = document.getElementById('direction-filter').value;
     const timeframeFilter = document.querySelector('.setup-filters select:nth-child(2)').value;
     
-    console.log(`Filtering setups: ${setupTypeFilter}, ${timeframeFilter}`);
+    console.log(`Filtering setups: direction=${directionFilter}, timeframe=${timeframeFilter}`);
     
     // In a real app, this would filter the existing setups or fetch filtered setups
     const setupCards = document.querySelectorAll('.setup-card');
@@ -858,11 +865,19 @@ function filterSetups() {
     setupCards.forEach(card => {
         let showCard = true;
         
-        // Filter by setup type
-        if (setupTypeFilter !== 'all') {
-            const setupType = card.querySelector('.setup-type').textContent.toLowerCase();
-            if (!setupType.includes(setupTypeFilter.toLowerCase())) {
-                showCard = false;
+        // Filter by direction
+        if (directionFilter !== 'all') {
+            const directionElement = card.querySelector('.setup-direction');
+            if (directionElement) {
+                const direction = directionElement.textContent.toLowerCase();
+                const isBullish = direction.includes('bull');
+                const isBearish = direction.includes('bear');
+                
+                if (directionFilter === 'bullish' && !isBullish) {
+                    showCard = false;
+                } else if (directionFilter === 'bearish' && !isBearish) {
+                    showCard = false;
+                }
             }
         }
         
