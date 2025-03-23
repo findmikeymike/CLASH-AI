@@ -803,6 +803,25 @@ button, input, select {
     margin-right: 6px;
 }
 
+/* Party button styles in feed cards */
+.setup-action-btn.party-btn {
+    background: linear-gradient(135deg, #6e57ff, #3b82f6);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    transition: all 0.2s ease-in-out;
+}
+
+.setup-action-btn.party-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+}
+
+.setup-action-btn.party-btn.joined {
+    background: linear-gradient(135deg, #4338ca, #3b82f6);
+    color: white;
+}
+
 /* Top bar for market overview and filters */
 .top-bar {
     display: flex;
@@ -1625,4 +1644,139 @@ button, input, select {
     .timeframe-selector {
         width: 100%;
     }
+}
+
+/* Toast notifications */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.toast {
+    min-width: 250px;
+    padding: 12px 15px;
+    border-radius: var(--border-radius-md);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.3s ease;
+    pointer-events: all;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast i {
+    font-size: 20px;
+}
+
+.toast-success {
+    background: linear-gradient(135deg, rgba(38, 166, 154, 0.1), rgba(38, 166, 154, 0.2));
+    border-left: 3px solid #26a69a;
+}
+
+.toast-success i {
+    color: #26a69a;
+}
+
+.toast-error {
+    background: linear-gradient(135deg, rgba(239, 83, 80, 0.1), rgba(239, 83, 80, 0.2));
+    border-left: 3px solid #ef5350;
+}
+
+.toast-error i {
+    color: #ef5350;
+}
+
+.toast-info {
+    background: linear-gradient(135deg, rgba(66, 165, 245, 0.1), rgba(66, 165, 245, 0.2));
+    border-left: 3px solid #42a5f5;
+}
+
+.toast-info i {
+    color: #42a5f5;
+}
+
+/* Comment feed styles for detail view */
+.detail-comment-feed-placeholder.active {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    padding: 0;
+    border: none;
+}
+
+.comment-feed-header {
+    background-color: var(--bg-tertiary);
+    padding: 10px 15px;
+    font-weight: 600;
+    border-top-left-radius: var(--border-radius-md);
+    border-top-right-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.comment-feed-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: var(--bg-secondary);
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.comment-feed-messages:empty:before {
+    content: "No messages yet. Be the first to comment!";
+}
+
+.comment-feed-input {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background-color: var(--bg-tertiary);
+    border-bottom-left-radius: var(--border-radius-md);
+    border-bottom-right-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.comment-feed-input input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.comment-feed-input button {
+    padding: 8px 16px;
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.comment-feed-input button:disabled,
+.comment-feed-input input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }

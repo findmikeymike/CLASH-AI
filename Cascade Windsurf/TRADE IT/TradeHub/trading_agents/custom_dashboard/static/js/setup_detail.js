@@ -21,6 +21,60 @@ document.addEventListener('DOMContentLoaded', function() {
 function initSetupDetailView() {
     // Set up event listeners for closing the detail view
     document.getElementById('close-detail-view').addEventListener('click', closeDetailView);
+    
+    // Initialize the detail view UI elements
+    initDetailView();
+}
+
+/**
+ * Initialize the detail view UI elements
+ */
+function initDetailView() {
+    console.log("Initializing detail view UI...");
+    
+    // Setup close button
+    const closeBtn = document.getElementById('close-detail-view');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeDetailView);
+    }
+    
+    // Setup Join the Party button
+    const joinPartyBtn = document.querySelector('.join-party-btn');
+    if (joinPartyBtn) {
+        joinPartyBtn.addEventListener('click', function() {
+            console.log("Joining the party!");
+            // Toggle class for visual feedback
+            this.classList.toggle('joined');
+            
+            if (this.classList.contains('joined')) {
+                this.innerHTML = '<i class="fas fa-glass-cheers"></i> Party Joined!';
+                
+                // Show the comment feed
+                const commentFeed = document.querySelector('.detail-comment-feed-placeholder');
+                if (commentFeed) {
+                    commentFeed.innerHTML = '<div class="comment-feed-header">Party Chat</div><div class="comment-feed-messages"></div><div class="comment-feed-input"><input type="text" placeholder="Type your message..." disabled><button disabled>Send</button></div>';
+                    commentFeed.classList.add('active');
+                }
+            } else {
+                this.innerHTML = '<i class="fas fa-glass-cheers"></i> Join the Party';
+                
+                // Reset the comment feed
+                const commentFeed = document.querySelector('.detail-comment-feed-placeholder');
+                if (commentFeed) {
+                    commentFeed.innerHTML = '';
+                    commentFeed.classList.remove('active');
+                }
+            }
+        });
+    }
+    
+    // Setup thumbs down button
+    const thumbsDownBtn = document.querySelector('.thumbs-down-btn');
+    if (thumbsDownBtn) {
+        thumbsDownBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    }
 }
 
 /**

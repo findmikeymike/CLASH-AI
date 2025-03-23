@@ -700,8 +700,8 @@ function createSetupCard(setup) {
             </div>
         </div>
         <div class="setup-actions">
-            <button class="setup-action-btn save-btn">
-                <i class="far fa-bookmark"></i> Save
+            <button class="setup-action-btn party-btn">
+                <i class="fas fa-users"></i> Join the Party
             </button>
             <button class="setup-action-btn alert-btn">
                 <i class="far fa-bell"></i> Alert
@@ -830,16 +830,16 @@ function createSampleCard(symbol, timeframe, direction, pattern, time) {
             </div>
         </div>
         <div class="setup-actions">
-            <button class="setup-action-btn">
-                <i class="far fa-bookmark"></i> Save
+            <button class="setup-action-btn party-btn">
+                <i class="fas fa-users"></i> Join the Party
             </button>
-            <button class="setup-action-btn">
+            <button class="setup-action-btn alert-btn">
                 <i class="far fa-bell"></i> Alert
             </button>
-            <button class="setup-action-btn">
+            <button class="setup-action-btn tradingview-btn">
                 <i class="fas fa-external-link-alt"></i> TradingView
             </button>
-            <button class="setup-action-btn">
+            <button class="setup-action-btn notes-btn">
                 <i class="far fa-comment-alt"></i> Notes
             </button>
         </div>
@@ -1011,17 +1011,30 @@ function calculateSMA(prices, period) {
 function setupActionButtons() {
     const setupCards = document.querySelectorAll('.setup-card');
     setupCards.forEach(card => {
-        // Save button
-        const saveBtn = card.querySelector('.setup-action-btn:nth-child(1)');
-        if (saveBtn) {
-            saveBtn.addEventListener('click', function() {
-                this.innerHTML = '<i class="fas fa-bookmark"></i> Saved';
-                this.style.color = '#26a69a';
+        // Party button
+        const partyBtn = card.querySelector('.setup-action-btn.party-btn');
+        if (partyBtn) {
+            partyBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent card click
+                this.classList.toggle('joined');
+                
+                if (this.classList.contains('joined')) {
+                    this.innerHTML = '<i class="fas fa-users"></i> Joined';
+                    this.style.background = 'linear-gradient(135deg, #4338ca, #3b82f6)';
+                    this.style.color = 'white';
+                    
+                    // Show toast notification
+                    showToast('You joined the party! View details to join the discussion.', 'success');
+                } else {
+                    this.innerHTML = '<i class="fas fa-users"></i> Join the Party';
+                    this.style.background = 'linear-gradient(135deg, #6e57ff, #3b82f6)';
+                    this.style.color = 'white';
+                }
             });
         }
         
         // Alert button
-        const alertBtn = card.querySelector('.setup-action-btn:nth-child(2)');
+        const alertBtn = card.querySelector('.setup-action-btn.alert-btn');
         if (alertBtn) {
             alertBtn.addEventListener('click', function() {
                 this.innerHTML = '<i class="fas fa-bell"></i> Alerted';
@@ -1030,7 +1043,7 @@ function setupActionButtons() {
         }
         
         // TradingView button
-        const tvBtn = card.querySelector('.setup-action-btn:nth-child(3)');
+        const tvBtn = card.querySelector('.setup-action-btn.tradingview-btn');
         if (tvBtn) {
             tvBtn.addEventListener('click', function() {
                 const symbol = card.querySelector('.setup-symbol').textContent;
@@ -1039,7 +1052,7 @@ function setupActionButtons() {
         }
         
         // Notes button
-        const notesBtn = card.querySelector('.setup-action-btn:nth-child(4)');
+        const notesBtn = card.querySelector('.setup-action-btn.notes-btn');
         if (notesBtn) {
             notesBtn.addEventListener('click', function() {
                 showNotesPopup(card);
@@ -1194,4 +1207,50 @@ function initTradingViewCharts() {
             container.innerHTML = `<div class="chart-error">Chart unavailable</div>`;
         }
     });
+}
+
+/**
+ * Show a toast notification
+ * @param {string} message - The message to display
+ * @param {string} type - The type of toast (success, error, info)
+ */
+function showToast(message, type = 'info') {
+    // Create toast container if it doesn't exist
+    let toastContainer = document.querySelector('.toast-container');
+    
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.className = 'toast-container';
+        document.body.appendChild(toastContainer);
+    }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    
+    // Add icon based on type
+    let icon = 'info-circle';
+    if (type === 'success') icon = 'check-circle';
+    if (type === 'error') icon = 'exclamation-circle';
+    
+    toast.innerHTML = `
+        <i class="fas fa-${icon}"></i>
+        <span>${message}</span>
+    `;
+    
+    // Add to container
+    toastContainer.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+    
+    // Remove after timeout
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toastContainer.removeChild(toast);
+        }, 300);
+    }, 3000);
 }
