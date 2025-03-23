@@ -650,6 +650,9 @@ function createSetupCard(setup) {
     card.className = 'setup-card';
     card.setAttribute('data-setup-id', setupId);
     
+    // Store the full setup data as a JSON string in a data attribute
+    card.setAttribute('data-setup', JSON.stringify(setup));
+    
     card.innerHTML = `
         <div class="setup-header">
             <span class="setup-symbol">${symbol}</span>
@@ -703,7 +706,8 @@ function createSetupCard(setup) {
     card.addEventListener('click', function(e) {
         // Don't trigger detail view if clicking on action buttons
         if (!e.target.closest('.setup-actions')) {
-            showSetupDetail(setupId);
+            const setupData = JSON.parse(this.getAttribute('data-setup'));
+            showSetupDetail(setupId, setupData);
         }
     });
     

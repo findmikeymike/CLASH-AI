@@ -26,8 +26,9 @@ function initSetupDetailView() {
 /**
  * Show the setup detail view for a specific setup
  * @param {number} setupId - The ID of the setup to display
+ * @param {Object} setupData - Optional setup data object. If provided, we'll use this instead of making an API call
  */
-function showSetupDetail(setupId) {
+function showSetupDetail(setupId, setupData = null) {
     currentSetupId = setupId;
     
     // Show the detail view container
@@ -38,8 +39,76 @@ function showSetupDetail(setupId) {
     document.getElementById('detail-error').style.display = 'none';
     document.getElementById('detail-error').textContent = '';
     
-    // Fetch the setup data
-    fetchSetupDetail(setupId);
+    if (setupData) {
+        console.log(`Using provided setup data for ID: ${setupId}`, setupData);
+        // Use the directly provided setup data instead of making an API call
+        fetchPriceDataAndRender(setupData);
+    } else {
+        // Fetch the setup data from API (fallback)
+        console.log(`No setup data provided, fetching from API for ID: ${setupId}`);
+        fetchSetupDetail(setupId);
+    }
+}
+
+/**
+ * Fetch price data and render the setup detail view
+ * @param {Object} setupData - The setup data 
+ */
+async function fetchPriceDataAndRender(setupData) {
+    try {
+        // Show loading state
+        document.getElementById('detail-loading').style.display = 'flex';
+        document.getElementById('detail-error').style.display = 'none';
+        
+        // Check if we have the minimal required data
+        if (!setupData || !setupData.symbol || !setupData.timeframe) {
+            console.error("Missing required data in setup", setupData);
+            throw new Error("Incomplete setup data provided");
+        }
+        
+        // Fetch price data for the chart
+        console.log(`Fetching price data for ${setupData.symbol} (${setupData.timeframe})`);
+        const priceResponse = await fetch(`/api/price-data/${setupData.symbol}?timeframe=${setupData.timeframe}`);
+        if (!priceResponse.ok) {
+            console.error(`Price data API error: ${priceResponse.status} ${priceResponse.statusText}`);
+            throw new Error(`Failed to fetch price data: ${priceResponse.statusText}`);
+        }
+        
+        // Parse the price data JSON, with error handling
+        let priceData;
+        try {
+            priceData = await priceResponse.json();
+            console.log(`Received ${priceData.length} price data points`);
+        } catch (jsonError) {
+            console.error("Failed to parse price data JSON:", jsonError);
+            throw new Error("Invalid price data format from server");
+        }
+        
+        // Check if we have any price data
+        if (!priceData || !Array.isArray(priceData) || priceData.length === 0) {
+            console.error("No valid price data received", priceData);
+            // Create fallback price data
+            priceData = createFallbackPriceData(setupData);
+            console.log("Using fallback price data", priceData);
+        }
+        
+        // Hide the loading indicator
+        document.getElementById('detail-loading').style.display = 'none';
+        
+        // Render the setup detail
+        renderSetupDetail(setupData, priceData);
+        
+    } catch (error) {
+        // Hide the loading indicator
+        document.getElementById('detail-loading').style.display = 'none';
+        
+        // Show the error message
+        const errorElement = document.getElementById('detail-error');
+        errorElement.textContent = `Error: ${error.message}`;
+        errorElement.style.display = 'block';
+        
+        console.error("Failed to fetch price data and render setup detail:", error);
+    }
 }
 
 /**
@@ -72,49 +141,19 @@ async function fetchSetupDetail(setupId) {
             throw new Error("Invalid response format from server");
         }
         
-        // Check if we have the minimal required data
-        if (!setupData || !setupData.symbol || !setupData.timeframe) {
-            console.error("Missing required data in setup response", setupData);
-            throw new Error("Incomplete setup data returned from server");
-        }
-        
-        // Fetch price data for the chart
-        console.log(`Fetching price data for ${setupData.symbol} (${setupData.timeframe})`);
-        const priceResponse = await fetch(`/api/price-data/${setupData.symbol}?timeframe=${setupData.timeframe}`);
-        if (!priceResponse.ok) {
-            console.error(`Price data API error: ${priceResponse.status} ${priceResponse.statusText}`);
-            throw new Error(`Failed to fetch price data: ${priceResponse.statusText}`);
-        }
-        
-        // Parse the price data JSON, with error handling
-        let priceData;
-        try {
-            priceData = await priceResponse.json();
-            console.log(`Received ${priceData.length} price data points`);
-        } catch (jsonError) {
-            console.error("Failed to parse price data JSON:", jsonError);
-            throw new Error("Invalid price data format from server");
-        }
-        
-        // Check if we have any price data
-        if (!priceData || !Array.isArray(priceData) || priceData.length === 0) {
-            console.error("No valid price data received", priceData);
-            // Create fallback price data
-            priceData = createFallbackPriceData(setupData);
-            console.log("Using fallback price data");
-        }
-        
-        // Render the setup detail
-        renderSetupDetail(setupData, priceData);
-        
-        // Hide loading state
-        document.getElementById('detail-loading').style.display = 'none';
+        // Once we have the setup data, fetch price data and render
+        fetchPriceDataAndRender(setupData);
         
     } catch (error) {
-        console.error('Error fetching setup detail:', error);
+        // Hide the loading indicator
         document.getElementById('detail-loading').style.display = 'none';
-        document.getElementById('detail-error').textContent = `Error: ${error.message}`;
-        document.getElementById('detail-error').style.display = 'block';
+        
+        // Show the error message
+        const errorElement = document.getElementById('detail-error');
+        errorElement.textContent = `Error: ${error.message}`;
+        errorElement.style.display = 'block';
+        
+        console.error("Failed to fetch setup detail:", error);
     }
 }
 
