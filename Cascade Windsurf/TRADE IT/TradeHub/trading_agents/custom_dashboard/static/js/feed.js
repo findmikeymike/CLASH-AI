@@ -719,8 +719,20 @@ function createSetupCard(setup) {
     card.addEventListener('click', function(e) {
         // Don't trigger detail view if clicking on action buttons
         if (!e.target.closest('.setup-actions')) {
-            const setupData = JSON.parse(this.getAttribute('data-setup'));
-            showSetupDetail(setupId, setupData);
+            const setupId = this.getAttribute('data-setup-id');
+            const setupDataStr = this.getAttribute('data-setup');
+            const partyBtn = this.querySelector('.setup-action-btn.party-btn');
+            const isPartyJoined = partyBtn ? partyBtn.classList.contains('joined') : false;
+            
+            try {
+                const setupData = JSON.parse(setupDataStr);
+                setupData.isPartyJoined = isPartyJoined;
+                showSetupDetail(setupId, setupData);
+            } catch (error) {
+                console.error('Error showing setup detail:', error);
+                // Fallback to just passing the ID if parsing fails
+                showSetupDetail({ id: setupId, isPartyJoined: isPartyJoined });
+            }
         }
     });
     

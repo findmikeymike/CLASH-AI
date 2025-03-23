@@ -46,8 +46,23 @@ function initDetailView() {
             // Toggle class for visual feedback
             this.classList.toggle('joined');
             
+            // Get the current setup ID
+            const currentSetupId = document.querySelector('.detail-content').getAttribute('data-setup-id');
+            
             if (this.classList.contains('joined')) {
                 this.innerHTML = '<i class="fas fa-glass-cheers"></i> Party Joined!';
+                
+                // Update the corresponding card button
+                const card = document.querySelector(`.setup-card[data-setup-id="${currentSetupId}"]`);
+                if (card) {
+                    const cardBtn = card.querySelector('.setup-action-btn.party-btn');
+                    if (cardBtn) {
+                        cardBtn.classList.add('joined');
+                        cardBtn.innerHTML = '<i class="fas fa-users"></i> Joined';
+                        cardBtn.style.background = 'linear-gradient(135deg, #4338ca, #3b82f6)';
+                        cardBtn.style.color = 'white';
+                    }
+                }
                 
                 // Show the comment feed
                 const commentFeed = document.querySelector('.detail-comment-feed-placeholder');
@@ -57,6 +72,18 @@ function initDetailView() {
                 }
             } else {
                 this.innerHTML = '<i class="fas fa-glass-cheers"></i> Join the Party';
+                
+                // Update the corresponding card button
+                const card = document.querySelector(`.setup-card[data-setup-id="${currentSetupId}"]`);
+                if (card) {
+                    const cardBtn = card.querySelector('.setup-action-btn.party-btn');
+                    if (cardBtn) {
+                        cardBtn.classList.remove('joined');
+                        cardBtn.innerHTML = '<i class="fas fa-users"></i> Join the Party';
+                        cardBtn.style.background = 'linear-gradient(135deg, #6e57ff, #3b82f6)';
+                        cardBtn.style.color = 'white';
+                    }
+                }
                 
                 // Reset the comment feed
                 const commentFeed = document.querySelector('.detail-comment-feed-placeholder');
@@ -83,24 +110,48 @@ function initDetailView() {
  * @param {Object} setupData - Optional setup data object. If provided, we'll use this instead of making an API call
  */
 function showSetupDetail(setupId, setupData = null) {
-    currentSetupId = setupId;
+    console.log(`Showing detail for setup: ${setupId}`);
     
-    // Show the detail view container
+    // Show loading state
     const detailContainer = document.getElementById('setup-detail-container');
+    const loadingIndicator = document.getElementById('detail-loading');
+    const errorDisplay = document.getElementById('detail-error');
+    
+    if (!detailContainer || !loadingIndicator || !errorDisplay) {
+        console.error('Required DOM elements not found for setup detail view');
+        return;
+    }
+    
     detailContainer.classList.add('active');
+    loadingIndicator.style.display = 'flex';
+    errorDisplay.style.display = 'none';
     
-    // Clear any previous error
-    document.getElementById('detail-error').style.display = 'none';
-    document.getElementById('detail-error').textContent = '';
-    
-    if (setupData) {
-        console.log(`Using provided setup data for ID: ${setupId}`, setupData);
-        // Use the directly provided setup data instead of making an API call
-        fetchPriceDataAndRender(setupData);
-    } else {
-        // Fetch the setup data from API (fallback)
-        console.log(`No setup data provided, fetching from API for ID: ${setupId}`);
-        fetchSetupDetail(setupId);
+    try {
+        // If setup data was passed directly, use it instead of fetching
+        if (setupData) {
+            console.log('Using provided setup data:', setupData);
+            fetchPriceDataAndRender(setupData);
+            
+            // Set the party button state based on the isPartyJoined flag
+            const joinPartyBtn = document.querySelector('.join-party-btn');
+            if (joinPartyBtn && setupData.isPartyJoined) {
+                joinPartyBtn.classList.add('joined');
+                joinPartyBtn.innerHTML = '<i class="fas fa-glass-cheers"></i> Party Joined!';
+                
+                // Show the comment feed if the party is joined
+                const commentFeed = document.querySelector('.detail-comment-feed-placeholder');
+                if (commentFeed) {
+                    commentFeed.innerHTML = '<div class="comment-feed-header">Party Chat</div><div class="comment-feed-messages"></div><div class="comment-feed-input"><input type="text" placeholder="Type your message..." disabled><button disabled>Send</button></div>';
+                    commentFeed.classList.add('active');
+                }
+            }
+        } else {
+            // Otherwise fetch the data from the API
+            console.log('Fetching setup data from API...');
+            fetchSetupDetail(setupId);
+        }
+    } catch (error) {
+        console.error('Error showing setup detail:', error);
     }
 }
 
