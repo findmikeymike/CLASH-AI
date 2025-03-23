@@ -577,6 +577,9 @@ function fetchSetups() {
                         }
                     });
                     
+                    // Initialize TradingView charts for the cards
+                    initTradingViewCharts();
+                    
                     // Initialize mini charts
                     try {
                         initMiniCharts();
@@ -1032,4 +1035,131 @@ function loadMoreSetups() {
             loadMoreBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Load More Setups';
         }, 1000);
     }
+}
+
+/**
+ * Initialize TradingView charts for each setup card
+ */
+function initTradingViewCharts() {
+    // Get all mini chart containers
+    const chartContainers = document.querySelectorAll('.setup-mini-chart');
+    
+    console.log(`Initializing ${chartContainers.length} TradingView charts for setup cards`);
+    
+    chartContainers.forEach(container => {
+        const chartId = container.id;
+        const card = container.closest('.setup-card');
+        if (!card) return;
+        
+        const setupId = card.getAttribute('data-setup-id');
+        const symbol = card.querySelector('.setup-symbol')?.textContent || 'AAPL';
+        const direction = card.querySelector('.setup-direction')?.classList.contains('bullish') ? 'bullish' : 'bearish';
+        
+        console.log(`Creating chart for ${symbol}, id: ${chartId}, direction: ${direction}`);
+        
+        try {
+            // Create a lightweight chart
+            const chart = LightweightCharts.createChart(container, {
+                width: container.clientWidth,
+                height: 225,
+                layout: {
+                    background: { color: '#1E222D' },
+                    textColor: '#d1d4dc',
+                    fontSize: 12,
+                    fontFamily: 'Inter, sans-serif',
+                },
+                grid: {
+                    vertLines: { color: 'rgba(42, 46, 57, 0.5)' },
+                    horzLines: { color: 'rgba(42, 46, 57, 0.5)' },
+                },
+                rightPriceScale: {
+                    borderColor: 'rgba(197, 203, 206, 0.4)',
+                    visible: true,
+                },
+                timeScale: {
+                    borderColor: 'rgba(197, 203, 206, 0.4)',
+                    timeVisible: true,
+                },
+                crosshair: {
+                    mode: LightweightCharts.CrosshairMode.Normal,
+                },
+            });
+            
+            // Store chart reference
+            container.chart = chart;
+            
+            // Generate sample data based on direction
+            const sampleData = createSampleData(direction, 30);
+            
+            // Add candlestick series
+            const candlestickSeries = chart.addCandlestickSeries({
+                upColor: '#26a69a',
+                downColor: '#ef5350',
+                borderVisible: false,
+                wickUpColor: '#26a69a',
+                wickDownColor: '#ef5350',
+            });
+            
+            // Set data
+            candlestickSeries.setData(sampleData);
+            
+            // Add volume series
+            const volumeSeries = chart.addHistogramSeries({
+                color: '#26a69a',
+                priceFormat: {
+                    type: 'volume',
+                },
+                priceScaleId: 'volume',
+                scaleMargins: {
+                    top: 0.8,
+                    bottom: 0,
+                },
+            });
+            
+            // Set volume data
+            volumeSeries.setData(formatVolumeData(sampleData));
+            
+            // Hide the volume price scale
+            chart.priceScale('volume').applyOptions({
+                scaleMargins: {
+                    top: 0.8,
+                    bottom: 0,
+                },
+                visible: false,
+            });
+            
+            // Add indicator appropriate for the pattern type
+            if (direction === 'bullish') {
+                addEMA(chart, sampleData, 20, '#2962FF');
+            } else {
+                addSMA(chart, sampleData, 50, '#FF9800');
+            }
+            
+            // Add entry marker
+            const lastIndex = sampleData.length - 1;
+            const entryPoint = sampleData[lastIndex - 5];
+            
+            const markerSeries = chart.addLineSeries({
+                lastValueVisible: false,
+                priceLineVisible: false,
+            });
+            
+            markerSeries.setMarkers([
+                {
+                    time: entryPoint.time,
+                    position: direction === 'bullish' ? 'aboveBar' : 'belowBar',
+                    color: direction === 'bullish' ? '#26a69a' : '#ef5350',
+                    shape: direction === 'bullish' ? 'arrowUp' : 'arrowDown',
+                    text: 'Entry',
+                    size: 2
+                }
+            ]);
+            
+            console.log(`Successfully created chart for ${symbol}`);
+            
+        } catch (error) {
+            console.error(`Error creating chart for ${symbol}:`, error);
+            container.innerHTML = `<div class="chart-error">Chart unavailable</div>`;
+        }
+    });
 }
