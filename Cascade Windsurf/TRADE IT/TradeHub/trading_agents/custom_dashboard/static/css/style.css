@@ -1569,3 +1569,60 @@ button, input, select {
 }
 
 @import url('trade-setups.css');
+
+/* Timeframe Selector Styles */
+.timeframe-selector-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.timeframe-selector-container label {
+    margin-right: 10px;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.timeframe-selector {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 5px 10px;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.timeframe-selector:hover {
+    border-color: var(--accent-blue);
+}
+
+.timeframe-selector:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(41, 98, 255, 0.2);
+}
+
+.timeframe-selector option {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 5px;
+}
+
+/* Make the timeframe selector responsive */
+@media (max-width: 768px) {
+    .timeframe-selector-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .timeframe-selector-container label {
+        margin-bottom: 5px;
+    }
+    
+    .timeframe-selector {
+        width: 100%;
+    }
+}

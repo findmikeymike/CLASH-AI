@@ -53,8 +53,9 @@ function showSetupDetail(setupId, setupData = null) {
 /**
  * Fetch price data and render the setup detail view
  * @param {Object} setupData - The setup data 
+ * @param {string} timeframe - Optional timeframe override
  */
-async function fetchPriceDataAndRender(setupData) {
+async function fetchPriceDataAndRender(setupData, timeframe = null) {
     try {
         // Show loading state
         document.getElementById('detail-loading').style.display = 'flex';
@@ -66,9 +67,12 @@ async function fetchPriceDataAndRender(setupData) {
             throw new Error("Incomplete setup data provided");
         }
         
+        // Use provided timeframe or fall back to the setup's default timeframe
+        const requestTimeframe = timeframe || setupData.timeframe;
+        
         // Fetch price data for the chart
-        console.log(`Fetching price data for ${setupData.symbol} (${setupData.timeframe})`);
-        const priceResponse = await fetch(`/api/price-data/${setupData.symbol}?timeframe=${setupData.timeframe}`);
+        console.log(`Fetching price data for ${setupData.symbol} (${requestTimeframe})`);
+        const priceResponse = await fetch(`/api/price-data/${setupData.symbol}?timeframe=${requestTimeframe}`);
         if (!priceResponse.ok) {
             console.error(`Price data API error: ${priceResponse.status} ${priceResponse.statusText}`);
             throw new Error(`Failed to fetch price data: ${priceResponse.statusText}`);
@@ -94,6 +98,9 @@ async function fetchPriceDataAndRender(setupData) {
         
         // Hide the loading indicator
         document.getElementById('detail-loading').style.display = 'none';
+        
+        // Store the current timeframe in the global state
+        setupData.currentTimeframe = requestTimeframe;
         
         // Render the setup detail
         renderSetupDetail(setupData, priceData);
@@ -195,24 +202,59 @@ function createFallbackPriceData(setupData) {
  * @param {Array} priceData - The price data for the chart
  */
 function renderSetupDetail(setupData, priceData) {
-    // Update the header information
-    document.getElementById('detail-symbol').textContent = setupData.symbol;
-    document.getElementById('detail-type').textContent = setupData.setup_type;
-    document.getElementById('detail-timeframe').textContent = setupData.timeframe;
+    // Update the symbol in the detail view
+    document.getElementById('detail-symbol').textContent = setupData.symbol || 'Unknown Symbol';
     
-    // Set the direction badge
-    const directionBadge = document.getElementById('detail-direction');
-    directionBadge.textContent = setupData.direction.toUpperCase();
-    directionBadge.className = `setup-direction ${setupData.direction.toLowerCase()}`;
+    // Update the pattern type
+    let patternType = setupData.pattern_type || 'Unknown Pattern';
+    patternType = patternType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    document.getElementById('detail-type').textContent = patternType;
     
-    // Update the status badge
+    // Update the direction with appropriate styling
+    const directionElement = document.getElementById('detail-direction');
+    const direction = (setupData.direction || '').toLowerCase();
+    const isBullish = direction.includes('bull');
+    directionElement.innerHTML = `<i class="fas fa-arrow-${isBullish ? 'up' : 'down'}"></i> ${isBullish ? 'Bullish' : 'Bearish'}`;
+    directionElement.className = `setup-direction ${isBullish ? 'bullish' : 'bearish'}`;
+    
+    // Update the timeframe display
+    document.getElementById('detail-timeframe').textContent = setupData.currentTimeframe || setupData.timeframe || '1D';
+    
+    // Add or update the timeframe selector
+    createTimeframeSelector(setupData);
+    
+    // Render the chart
+    renderDetailChart(setupData, priceData);
+    
+    // Populate metrics section
+    const entryPrice = parseFloat(setupData.entry_price) || 0;
+    const stopLoss = parseFloat(setupData.stop_loss) || 0;
+    const target = parseFloat(setupData.target) || 0;
+    
+    document.getElementById('detail-entry').textContent = `$${entryPrice.toFixed(2)}`;
+    document.getElementById('detail-target').textContent = `$${target.toFixed(2)}`;
+    document.getElementById('detail-stop').textContent = `$${stopLoss.toFixed(2)}`;
+    
+    // Calculate and update risk-reward ratio
+    let riskReward = 0;
+    try {
+        if (stopLoss !== entryPrice) {
+            riskReward = Math.abs(target - entryPrice) / Math.abs(stopLoss - entryPrice);
+        }
+    } catch (error) {
+        console.error('Error calculating R:R ratio:', error);
+    }
+    document.getElementById('detail-risk-reward-ratio').textContent = `${riskReward.toFixed(2)}x`;
+    
+    // Update status and market aligned badge if they exist
     const statusBadge = document.getElementById('detail-status');
-    statusBadge.textContent = setupData.status.replace('_', ' ').toUpperCase();
-    statusBadge.className = `status-badge ${setupData.status.toLowerCase()}`;
+    if (statusBadge && setupData.status) {
+        statusBadge.textContent = setupData.status.replace('_', ' ').toUpperCase();
+        statusBadge.className = `status-badge ${setupData.status.toLowerCase()}`;
+    }
     
-    // Update the market alignment badge
     const marketBadge = document.getElementById('market-aligned-badge');
-    if (setupData.market_aligned !== undefined) {
+    if (marketBadge && setupData.market_aligned !== undefined) {
         if (setupData.market_aligned) {
             marketBadge.className = 'market-badge aligned';
             marketBadge.innerHTML = '<i class="fas fa-check-circle"></i> Market Aligned';
@@ -221,48 +263,70 @@ function renderSetupDetail(setupData, priceData) {
             marketBadge.innerHTML = '<i class="fas fa-times-circle"></i> Market Misaligned';
         }
         marketBadge.style.display = 'flex';
-    } else {
+    } else if (marketBadge) {
         marketBadge.style.display = 'none';
     }
     
-    // Update the metrics
-    document.getElementById('detail-entry').textContent = setupData.entry_price.toFixed(2);
-    document.getElementById('detail-stop').textContent = setupData.stop_loss.toFixed(2);
-    document.getElementById('detail-target').textContent = setupData.target.toFixed(2);
-    document.getElementById('detail-risk-reward').textContent = setupData.risk_reward.toFixed(2);
-    
-    // Update the confidence score if available
+    // Update confidence score if available
     if (setupData.confidence !== undefined) {
-        document.getElementById('detail-confidence').textContent = setupData.confidence.toFixed(1);
-        document.getElementById('confidence-container').style.display = 'flex';
+        const confidenceElement = document.getElementById('detail-confidence');
+        const confidenceContainer = document.getElementById('confidence-container');
+        if (confidenceElement) {
+            confidenceElement.textContent = setupData.confidence.toFixed(1);
+        }
+        if (confidenceContainer) {
+            confidenceContainer.style.display = 'flex';
+        }
     } else {
-        document.getElementById('confidence-container').style.display = 'none';
+        const confidenceContainer = document.getElementById('confidence-container');
+        if (confidenceContainer) {
+            confidenceContainer.style.display = 'none';
+        }
     }
     
-    // Render the chart
-    renderDetailChart(setupData, priceData);
-    
-    // Populate the agent outputs if analysis data is available
+    // Populate analysis tabs if analysis data is available
     if (setupData.analysis) {
-        // If analysis data exists in the new format, use it
-        document.getElementById('order-flow-content').style.display = 'block';
-        document.getElementById('options-content').style.display = 'block';
+        if (setupData.analysis.market) {
+            populateMarketAnalysis(setupData);
+        } else {
+            const marketContent = document.getElementById('market-content');
+            if (marketContent) {
+                marketContent.innerHTML = '<p class="no-data">No market analysis available</p>';
+            }
+        }
         
         if (setupData.analysis.order_flow) {
             populateOrderFlowAnalysis(setupData);
         } else {
-            document.getElementById('order-flow-content').innerHTML = '<p class="no-data">No order flow analysis available</p>';
+            const orderFlowContent = document.getElementById('order-flow-content');
+            if (orderFlowContent) {
+                orderFlowContent.innerHTML = '<p class="no-data">No order flow analysis available</p>';
+            }
         }
         
         if (setupData.analysis.options) {
             populateOptionsAnalysis(setupData);
         } else {
-            document.getElementById('options-content').innerHTML = '<p class="no-data">No options analysis available</p>';
+            const optionsContent = document.getElementById('options-content');
+            if (optionsContent) {
+                optionsContent.innerHTML = '<p class="no-data">No options analysis available</p>';
+            }
         }
     } else {
         // No analysis data available
-        document.getElementById('order-flow-content').innerHTML = '<p class="no-data">No order flow analysis available</p>';
-        document.getElementById('options-content').innerHTML = '<p class="no-data">No options analysis available</p>';
+        const orderFlowContent = document.getElementById('order-flow-content');
+        const optionsContent = document.getElementById('options-content');
+        const marketContent = document.getElementById('market-content');
+        
+        if (orderFlowContent) {
+            orderFlowContent.innerHTML = '<p class="no-data">No order flow analysis available</p>';
+        }
+        if (optionsContent) {
+            optionsContent.innerHTML = '<p class="no-data">No options analysis available</p>';
+        }
+        if (marketContent) {
+            marketContent.innerHTML = '<p class="no-data">No market analysis available</p>';
+        }
     }
 }
 
@@ -412,6 +476,68 @@ function renderDetailChart(setupData, priceData) {
             detailChart.resize(chartContainer.clientWidth, 500);
         }
     });
+}
+
+/**
+ * Create or update the timeframe selector
+ * @param {Object} setupData - The setup data
+ */
+function createTimeframeSelector(setupData) {
+    const timeframeContainer = document.getElementById('timeframe-selector-container');
+    if (!timeframeContainer) {
+        // Create the container if it doesn't exist
+        const chartHeaderDiv = document.querySelector('.detail-chart-header');
+        if (chartHeaderDiv) {
+            const container = document.createElement('div');
+            container.id = 'timeframe-selector-container';
+            container.className = 'timeframe-selector-container';
+            
+            // Create a label for the dropdown
+            const label = document.createElement('label');
+            label.textContent = 'Timeframe: ';
+            label.htmlFor = 'timeframe-selector';
+            container.appendChild(label);
+            
+            // Create the dropdown
+            const select = document.createElement('select');
+            select.id = 'timeframe-selector';
+            select.className = 'timeframe-selector';
+            
+            // Add timeframe options
+            const timeframes = ['1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w', '1M'];
+            timeframes.forEach(tf => {
+                const option = document.createElement('option');
+                option.value = tf;
+                option.textContent = tf.toUpperCase();
+                // Set the current timeframe as selected
+                if (tf === (setupData.currentTimeframe || setupData.timeframe)) {
+                    option.selected = true;
+                }
+                select.appendChild(option);
+            });
+            
+            // Add change event listener
+            select.addEventListener('change', function() {
+                const newTimeframe = this.value;
+                console.log(`Changing timeframe to ${newTimeframe}`);
+                // Re-fetch price data with the new timeframe
+                fetchPriceDataAndRender(setupData, newTimeframe);
+            });
+            
+            container.appendChild(select);
+            chartHeaderDiv.appendChild(container);
+        }
+    } else {
+        // Update the existing selector
+        const select = document.getElementById('timeframe-selector');
+        if (select) {
+            // Update the selected option
+            const options = select.querySelectorAll('option');
+            options.forEach(option => {
+                option.selected = option.value === (setupData.currentTimeframe || setupData.timeframe);
+            });
+        }
+    }
 }
 
 /**

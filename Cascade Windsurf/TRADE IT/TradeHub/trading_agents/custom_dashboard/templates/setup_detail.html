@@ -34,6 +34,12 @@
         <div class="detail-main-content">
             <!-- Left Column - Chart and Metrics -->
             <div class="detail-chart-column">
+                <!-- Chart Header with Controls -->
+                <div class="detail-chart-header">
+                    <h3>Price Chart</h3>
+                    <!-- Timeframe selector will be added here by JavaScript -->
+                </div>
+                
                 <!-- Main Chart -->
                 <div id="detail-chart" class="detail-chart"></div>
                 
@@ -53,7 +59,7 @@
                     </div>
                     <div class="metric-item">
                         <span class="metric-label">Risk/Reward</span>
-                        <span id="detail-risk-reward" class="metric-value">3.0</span>
+                        <span id="detail-risk-reward-ratio" class="metric-value">3.0</span>
                     </div>
                     <div id="confidence-container" class="metric-item">
                         <span class="metric-label">Confluence Score</span>
@@ -310,6 +316,15 @@
         overflow: hidden;
     }
     
+    .detail-chart-header {
+        padding: 10px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .detail-chart-header h3 {
+        margin: 0;
+    }
+    
     .detail-metrics {
         display: flex;
         justify-content: space-between;
@@ -532,4 +547,4 @@ document.addEventListener('DOMContentLoaded', function() {
         setupDetailContainer.classList.remove('active');
     }
 });
-</script> 
+</script>
