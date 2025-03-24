@@ -22,15 +22,22 @@ os.makedirs("logs", exist_ok=True)
 # Default symbols to scan
 DEFAULT_SYMBOLS = [
     # Tech stocks
-    "AAPL", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "AMD", "INTC", "CSCO", "ORCL",
+    "AAPL", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "AMD", "INTC", "ORCL", 
+    "MU", "PYPL", "SHOP", "SNOW", "NFLX",
     # Financial stocks
-    "JPM", "BAC", "C", "GS", "MS", "V", "MA", "AXP", "BLK", "WFC",
+    "JPM", "BAC", "C", "GS", "MS", "V", "MA", "SOFI", "AFRM",
     # Consumer stocks
-    "PG", "KO", "PEP", "WMT", "COST", "MCD", "NKE", "SBUX", "DIS", "HD",
+    "PG", "KO", "WMT", "COST", "MCD", "NKE", "SBUX", "DIS", "HD", "DG", "TGT", "CVNA",
     # Healthcare stocks
-    "JNJ", "PFE", "MRK", "UNH", "ABT", "TMO", "LLY", "ABBV", "BMY", "AMGN",
+    "JNJ", "PFE", "MRK", "UNH", "ABT", "TMO", "LLY", "ABBV", "BMY", "AMGN", "MRNA", "RXRX",
     # Energy stocks
-    "XOM", "CVX", "COP", "EOG", "SLB"
+    "XOM", "CVX", "COP", "SLB", "ENPH", "FSLR",
+    # Crypto related
+    "MARA", "CLSK", "RDDT",
+    # International
+    "BABA", "KWEB", "GCT",
+    # Other growth
+    "CELH", "XYZ", "ROOT"
 ]
 
 # Default timeframes to scan
