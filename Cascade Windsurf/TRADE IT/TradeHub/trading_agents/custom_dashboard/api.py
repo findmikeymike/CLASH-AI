@@ -16,9 +16,9 @@ from loguru import logger
 # Try to import real data functions, fall back to mock data if unavailable
 try:
     from trading_agents.utils.data_fetcher import fetch_historical_data as yf_fetch_historical_data
-    from trading_agents.utils.setup_storage import get_setups as db_get_setups, get_setup_by_id
-    # Override MOCK_DATA to True to force using mock data for demonstration
-    MOCK_DATA = True
+    from trading_agents.utils.setup_storage import get_setups as db_get_setups, get_setup_by_id, cleanup_old_setups
+    # Set MOCK_DATA to False to use real data from IBKR for pending setups
+    MOCK_DATA = False
 except ImportError:
     MOCK_DATA = True
 
@@ -43,6 +43,30 @@ except ImportError:
     logger.warning("Alpaca connector not available. Using Yahoo Finance for data.")
     USE_ALPACA = False
     ALPACA_AVAILABLE = False
+
+# Import pending setups module
+try:
+    from trading_agents.custom_dashboard.pending_setups import get_pending_sweep_engulfing_setups
+    PENDING_SETUPS_AVAILABLE = True
+except ImportError:
+    logger.warning("Pending setups module not available. Pending setups will not be shown.")
+    PENDING_SETUPS_AVAILABLE = False
+
+# Try to get a reference to the CandleAggregator instance
+try:
+    from trading_agents.candle_aggregator import CandleAggregator
+    HAS_CANDLE_AGGREGATOR = True
+except ImportError:
+    logger.warning("CandleAggregator not available")
+    HAS_CANDLE_AGGREGATOR = False
+
+# Try to get a reference to the CandleAggregator instance
+try:
+    from trading_agents.utils.aggregator_singleton import get_aggregator_instance
+    AGGREGATOR_AVAILABLE = True
+except ImportError:
+    logger.warning("CandleAggregator singleton not available. Pending setups will use mock data.")
+    AGGREGATOR_AVAILABLE = False
 
 # Create a blueprint for the API
 bp = Blueprint("api", __name__, url_prefix="/api")
@@ -146,6 +170,14 @@ def get_setups():
     
     logger.info(f"Setups API called: direction={direction}, symbol={symbol}, timeframe={timeframe}")
     logger.info(f"MOCK_DATA setting is: {MOCK_DATA}")
+    
+    # Automatically clean up old setups before fetching (keeping only the last 2 days)
+    try:
+        days_to_keep = 2  # Keep setups from the last 2 days
+        expired_count = cleanup_old_setups(days_to_keep)
+        logger.info(f"Auto-cleanup: Marked {expired_count} setups older than {days_to_keep} days as expired")
+    except Exception as e:
+        logger.error(f"Error during auto-cleanup of old setups: {str(e)}")
     
     if not MOCK_DATA:
         try:
@@ -427,11 +459,11 @@ def generate_mock_setup_detail(setup_id):
     # For bullish patterns, stop loss is below entry, target is above
     # For bearish patterns, stop loss is above entry, target is below
     if direction == "bullish":
-        stop_loss = round(entry_price * random.uniform(0.94, 0.98), 2)  # 2-6% below entry
-        target = round(entry_price * random.uniform(1.05, 1.15), 2)    # 5-15% above entry
-    else:  # bearish
-        stop_loss = round(entry_price * random.uniform(1.02, 1.06), 2)  # 2-6% above entry
-        target = round(entry_price * random.uniform(0.85, 0.95), 2)    # 5-15% below entry
+        stop_loss = round(entry_price * 0.95, 2)
+        target = round(entry_price * 1.15, 2)
+    else:
+        stop_loss = round(entry_price * 1.05, 2)
+        target = round(entry_price * 0.85, 2)
     
     # Calculate risk reward based on direction
     risk = abs(stop_loss - entry_price)
@@ -448,21 +480,15 @@ def generate_mock_setup_detail(setup_id):
         "volatility": round(random.uniform(0, 100), 1),
         "volume_profile": random.choice(["Increasing", "Decreasing", "Stable"]),
         "key_levels": [
-            {"price": round(random.uniform(entry_price * 0.9, entry_price * 0.95), 2), "type": "Support"},
-            {"price": round(random.uniform(entry_price * 1.05, entry_price * 1.1), 2), "type": "Resistance"}
+            {"price": round(random.uniform(80, 95), 2), "type": "Support"},
+            {"price": round(random.uniform(70, 85), 2), "type": "Support"}
         ],
         "indicators": {
-            "rsi": round(random.uniform(30, 70), 1),
-            "macd": {
-                "value": round(random.uniform(-2, 2), 2),
-                "signal": round(random.uniform(-2, 2), 2),
-                "histogram": round(random.uniform(-1, 1), 2)
-            },
-            "ema": {
-                "20": round(entry_price * random.uniform(0.95, 1.05), 2),
-                "50": round(entry_price * random.uniform(0.9, 1.1), 2),
-                "200": round(entry_price * random.uniform(0.85, 1.15), 2)
-            }
+            "rsi": round(random.uniform(30, 70), 2),
+            "macd": round(random.uniform(-5, 5), 2),
+            "ema_20": round(random.uniform(90, 110), 2),
+            "ema_50": round(random.uniform(85, 115), 2),
+            "ema_200": round(random.uniform(80, 120), 2)
         }
     }
     
@@ -473,7 +499,7 @@ def generate_mock_setup_detail(setup_id):
         "large_orders": [
             {
                 "time": (datetime.now() - timedelta(hours=random.randint(1, 24))).strftime("%Y-%m-%dT%H:%M:%SZ"),
-                "price": round(random.uniform(entry_price * 0.95, entry_price * 1.05), 2),
+                "price": round(random.uniform(90, 110), 2),
                 "size": random.randint(10000, 100000),
                 "side": random.choice(["buy", "sell"])
             }
@@ -496,7 +522,7 @@ def generate_mock_setup_detail(setup_id):
         },
         "significant_strikes": [
             {
-                "strike": round(entry_price * (1 + random.uniform(-0.1, 0.1)), 2),
+                "strike": round(random.uniform(90, 110), 2),
                 "type": random.choice(["call", "put"]),
                 "expiry": (datetime.now() + timedelta(days=random.randint(1, 30))).strftime("%Y-%m-%d"),
                 "open_interest": random.randint(100, 1000),
@@ -520,10 +546,10 @@ def generate_mock_setup_detail(setup_id):
         "direction": direction,
         "timeframe": timeframe,
         "confidence": round(random.uniform(0.6, 0.98), 2),
-        "entry_price": entry_price,
-        "stop_loss": stop_loss,
-        "target": target,
-        "risk_reward": risk_reward,
+        "entry_price": float(entry_price),  # Ensure float
+        "stop_loss": float(stop_loss),  # Ensure float
+        "target": float(target),  # Ensure float
+        "risk_reward": float(risk_reward),  # Ensure float
         "date_identified": (datetime.now() - timedelta(hours=random.randint(0, 48))).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "status": random.choice(["active", "triggered", "expired", "completed"]),
         "price_data": price_data,
@@ -602,3 +628,163 @@ def get_mock_setup_detail(setup_id):
     logger.debug(f"Mock setup detail: {setup_id}")
     
     return setup 
+
+
+@bp.route("/pending-setups", methods=["GET"])
+def get_pending_setups():
+    """
+    Get pending setup patterns that have started forming but aren't yet complete.
+    This is useful for planning ahead for the next trading day.
+    
+    Parameters:
+    - type: Optional query param to filter by pattern type (e.g., "sweep_engulfing")
+    - timeframe: Optional query param to filter by timeframe (e.g., "D1")
+    
+    Returns:
+        JSON object with:
+        - status: "success" or "error"
+        - count: Number of pending setups
+        - pending_setups: List of pending setup objects
+    """
+    try:
+        pattern_type = request.args.get("type", "sweep_engulfing")
+        timeframe = request.args.get("timeframe", None)
+        
+        # Default empty response
+        result = {
+            "status": "success", 
+            "count": 0, 
+            "pending_setups": []
+        }
+        
+        # Use real data if available
+        if not MOCK_DATA and AGGREGATOR_AVAILABLE and PENDING_SETUPS_AVAILABLE:
+            logger.info("Getting real pending setups from aggregator")
+            aggregator = get_aggregator_instance()
+            
+            if pattern_type == "sweep_engulfing":
+                pending_setups = get_pending_sweep_engulfing_setups(aggregator)
+                
+                # Apply timeframe filter if specified
+                if timeframe:
+                    pending_setups = [s for s in pending_setups if s["timeframe"] == timeframe]
+                
+                result["pending_setups"] = pending_setups
+                result["count"] = len(pending_setups)
+                logger.info(f"Found {len(pending_setups)} real pending setups")
+            else:
+                logger.warning(f"Unsupported pattern type for pending setups: {pattern_type}")
+        else:
+            # Generate mock pending setups for demonstration
+            logger.info("Generating mock pending setups")
+            mock_setups = generate_mock_pending_setups(pattern_type, timeframe)
+            result["pending_setups"] = mock_setups
+            result["count"] = len(mock_setups)
+            logger.info(f"Generated {len(mock_setups)} mock pending setups")
+        
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.exception(f"Error getting pending setups: {str(e)}")
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        })
+
+
+def generate_mock_pending_setups(pattern_type="sweep_engulfing", timeframe=None):
+    """
+    Generate mock pending setup data for testing.
+    
+    Args:
+        pattern_type: Type of pattern to generate
+        timeframe: Optional timeframe filter
+        
+    Returns:
+        List of mock pending setup dictionaries
+    """
+    symbols = ["AAPL", "MSFT", "GOOGL", "NVDA", "AMD", "AMZN", "META", "TSLA", "JPM", "V"]
+    timeframes = ["D1", "H4", "H1"] if not timeframe else [timeframe]
+    directions = ["bullish", "bearish"]
+    
+    # Generate 3-10 random pending setups
+    num_setups = random.randint(3, 10)
+    pending_setups = []
+    
+    for _ in range(num_setups):
+        symbol = random.choice(symbols)
+        direction = random.choice(directions)
+        setup_timeframe = random.choice(timeframes)
+        
+        # Generate random completion state
+        has_sweep = random.random() > 0.1  # 90% chance to have sweep candle
+        has_engulf = has_sweep and random.random() > 0.3  # 70% chance to have engulf if has sweep
+        retrace_pct = 0
+        
+        if has_engulf:
+            retrace_pct = random.uniform(0, 40)  # Random retracement percentage
+        
+        # Determine status text
+        status_parts = []
+        if has_sweep:
+            status_parts.append("Sweep candle ")
+        else:
+            status_parts.append("Sweep candle ")
+        
+        if has_engulf:
+            status_parts.append("Engulf candle ")
+        else:
+            status_parts.append("Engulf candle ")
+        
+        if retrace_pct > 0:
+            status_parts.append(f"Retracement {retrace_pct:.1f}%")
+        else:
+            status_parts.append("Awaiting retracement")
+        
+        # Add confirmation status
+        if retrace_pct >= 33:
+            status_parts.append("Confirmation ")
+        else:
+            status_parts.append("Confirmation pending")
+        
+        # Calculate mock prices
+        base_price = random.uniform(50, 500)
+        if direction == "bullish":
+            entry_price = base_price * (1 + random.uniform(0.01, 0.03))
+            stop_price = base_price * (1 - random.uniform(0.01, 0.02))
+            target_price = entry_price * (1 + random.uniform(0.02, 0.05))
+        else:
+            entry_price = base_price * (1 - random.uniform(0.01, 0.03))
+            stop_price = base_price * (1 + random.uniform(0.01, 0.02))
+            target_price = entry_price * (1 - random.uniform(0.02, 0.05))
+        
+        # Generate setup time between 1-5 days ago
+        days_ago = random.randint(1, 5)
+        detected_time = (datetime.now() - timedelta(days=days_ago)).isoformat()
+        
+        pending_setups.append({
+            "symbol": symbol,
+            "direction": direction,
+            "timeframe": setup_timeframe,
+            "sweep_candle_complete": has_sweep,
+            "engulf_candle_complete": has_engulf,
+            "retrace_percent": retrace_pct,
+            "confirmation_status": " | ".join(status_parts),
+            "entry_price": round(entry_price, 2),
+            "stop_price": round(stop_price, 2),
+            "target_price": round(target_price, 2),
+            "detected_time": detected_time
+        })
+    
+    # Sort by completeness (completed sweep, then engulf, then retrace percent)
+    def get_completion_score(setup):
+        score = 0
+        if setup["sweep_candle_complete"]:
+            score += 25
+        if setup["engulf_candle_complete"]:
+            score += 25
+        score += min(setup["retrace_percent"], 33) / 33 * 25
+        return score
+    
+    pending_setups.sort(key=get_completion_score, reverse=True)
+    return pending_setups

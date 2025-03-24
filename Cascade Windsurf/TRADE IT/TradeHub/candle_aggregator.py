@@ -461,7 +461,8 @@ class CandleAggregator:
         self._detect_change_of_character(timeframe, symbol, df)
         
         # Detect support and resistance levels
-        self._detect_support_resistance(timeframe, symbol, df)
+        # TODO: Implement support and resistance detection
+        # self._detect_support_resistance(timeframe, symbol, df)
     
     def _candles_to_dataframe(self, candles: List[Candle]) -> pd.DataFrame:
         """
@@ -977,7 +978,8 @@ class CandleAggregator:
         self._detect_change_of_character(timeframe, symbol, df)
         
         # Detect support and resistance levels
-        self._detect_support_resistance(timeframe, symbol, df)
+        # TODO: Implement support and resistance detection
+        # self._detect_support_resistance(timeframe, symbol, df)
     
     def _record_pattern(self, pattern_type: PatternType, timeframe: str, symbol: str, 
                       start_time: datetime, data: Dict[str, Any] = None, 

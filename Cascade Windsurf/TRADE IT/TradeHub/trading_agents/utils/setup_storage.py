@@ -267,5 +267,36 @@ def update_setup_status(setup_id: int, status: str) -> bool:
     
     return success
 
+def cleanup_old_setups(days_to_keep: int = 2) -> int:
+    """
+    Automatically marks setups older than the specified number of days as 'expired'.
+    
+    Args:
+        days_to_keep: Number of days of setups to keep as 'active'
+        
+    Returns:
+        Number of setups that were marked as expired
+    """
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    
+    # Calculate the cutoff date (keeping setups from the last X days)
+    # SQLite doesn't have direct date arithmetic, so we use the julianday function
+    query = """
+    UPDATE setups
+    SET status = 'expired'
+    WHERE status = 'active'
+    AND julianday('now') - julianday(date_identified) > ?
+    """
+    
+    cursor.execute(query, (days_to_keep,))
+    expired_count = cursor.rowcount
+    
+    conn.commit()
+    conn.close()
+    
+    logger.info(f"Cleaned up {expired_count} old setups that were more than {days_to_keep} days old")
+    return expired_count
+
 # Initialize the database when the module is imported
-init_db() 
+init_db()
