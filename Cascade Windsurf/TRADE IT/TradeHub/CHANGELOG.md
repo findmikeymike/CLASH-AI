@@ -6,6 +6,18 @@ This file tracks significant updates, development context, and technical details
 
 ### March 23, 2025
 
+#### [pending] - test: Validate breaker block detection with real market data
+- **Context**: Tested breaker block detection logic using historical market data from multiple sources
+- **Key Changes**:
+  - Created multiple test scripts for breaker block validation:
+    - `breaker_block_standalone_test.py`: Initial algorithm test with synthetic data
+    - `breaker_block_simple_test.py`: Simplified test with real historical data
+    - `breaker_block_real_data_test.py`: Comprehensive test with visualization
+    - `breaker_block_multi_timeframe_test.py`: Multi-timeframe tests to estimate setup frequency
+  - Verified algorithm detects both bullish and bearish breaker blocks
+  - Validated expected setup frequency across different timeframes
+  - Confirmed integration readiness with IBKR data feeds
+
 #### [a08e82d2] - feat: Integrate enhanced breaker block detection with ICT methodology and advanced setup scanning
 - **Context**: Enhanced the breaker block agent with ICT-based methodology
 - **Key Changes**:
