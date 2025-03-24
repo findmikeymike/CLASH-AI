@@ -685,14 +685,163 @@ class CandleAggregator:
             symbol: Symbol to detect for
             df: DataFrame containing candle data
         """
-        # Need at least 5 candles for breaker block detection
-        if len(df) < 5:
+        # Need at least 30 candles for reliable breaker block detection
+        if len(df) < 30:
+            logger.debug(f"Insufficient candles for breaker block detection: {len(df)} < 30")
             return
-            
-        # Implementation for breaker block detection would go here
-        # This is a simplified placeholder
-        pass
         
+        logger.info(f"Detecting breaker blocks for {symbol} on {timeframe} timeframe with {len(df)} candles")
+        
+        # Make a copy to avoid modifying the original dataframe
+        df = df.copy().reset_index(drop=True)
+        
+        # Calculate swing highs and lows
+        window_size = 5  # Look for local maxima/minima within this window
+        
+        swing_highs = []
+        swing_lows = []
+        
+        # Find swing points
+        for i in range(window_size, len(df) - window_size):
+            # Check if this is a local maximum (swing high)
+            if df.iloc[i]['high'] == max(df.iloc[i-window_size:i+window_size+1]['high']):
+                swing_highs.append({
+                    'index': i,
+                    'price': df.iloc[i]['high'],
+                    'timestamp': df.iloc[i]['timestamp']
+                })
+            
+            # Check if this is a local minimum (swing low)
+            if df.iloc[i]['low'] == min(df.iloc[i-window_size:i+window_size+1]['low']):
+                swing_lows.append({
+                    'index': i,
+                    'price': df.iloc[i]['low'],
+                    'timestamp': df.iloc[i]['timestamp']
+                })
+        
+        logger.debug(f"Found {len(swing_highs)} swing highs and {len(swing_lows)} swing lows")
+        
+        # Detect broken support/resistance that could form breaker blocks
+        price_threshold = 0.003  # 0.3% price threshold for considering a level broken
+        
+        # Look for breaker blocks from broken support (bearish breaker blocks)
+        for i, support in enumerate(swing_lows):
+            support_price = support['price']
+            support_index = support['index']
+            
+            # Skip if we're too close to the end of the data
+            if support_index >= len(df) - 10:
+                continue
+            
+            # Look for a break of this support level
+            broken = False
+            break_index = None
+            
+            for j in range(support_index + 1, len(df) - 5):
+                # If price closes significantly below the support level
+                if df.iloc[j]['close'] < support_price * (1 - price_threshold):
+                    broken = True
+                    break_index = j
+                    break
+            
+            if broken and break_index is not None:
+                # Now look for a retest of this level from below (price comes back up to the level)
+                retest_found = False
+                retest_index = None
+                
+                for k in range(break_index + 1, len(df)):
+                    # If price approaches the support level from below
+                    if (df.iloc[k]['high'] > support_price * (1 - price_threshold) and 
+                        df.iloc[k]['high'] < support_price * (1 + price_threshold)):
+                        retest_found = True
+                        retest_index = k
+                        break
+                
+                if retest_found and retest_index is not None:
+                    # Calculate setup quality metrics
+                    break_size = abs(df.iloc[break_index]['close'] - support_price)
+                    time_to_retest = retest_index - break_index
+                    current_price = df.iloc[-1]['close']
+                    
+                    # Record the pattern
+                    self._record_pattern(
+                        pattern_type=PatternType.BREAKER_BLOCK,
+                        timeframe=timeframe,
+                        symbol=symbol,
+                        start_time=df.iloc[retest_index]['timestamp'],
+                        data={
+                            'direction': 'bearish',
+                            'original_support': support_price,
+                            'break_price': df.iloc[break_index]['close'],
+                            'retest_price': df.iloc[retest_index]['high'],
+                            'break_size': break_size,
+                            'time_to_retest': time_to_retest,
+                            'entry_price': df.iloc[retest_index]['close'],
+                            'stop_loss': df.iloc[retest_index]['high'] * 1.01,  # 1% above retest high
+                            'target': current_price - (break_size * 2),  # 2x break size as target
+                        }
+                    )
+                    logger.info(f"Detected bearish breaker block for {symbol} on {timeframe}")
+        
+        # Look for breaker blocks from broken resistance (bullish breaker blocks)
+        for i, resistance in enumerate(swing_highs):
+            resistance_price = resistance['price']
+            resistance_index = resistance['index']
+            
+            # Skip if we're too close to the end of the data
+            if resistance_index >= len(df) - 10:
+                continue
+            
+            # Look for a break of this resistance level
+            broken = False
+            break_index = None
+            
+            for j in range(resistance_index + 1, len(df) - 5):
+                # If price closes significantly above the resistance level
+                if df.iloc[j]['close'] > resistance_price * (1 + price_threshold):
+                    broken = True
+                    break_index = j
+                    break
+            
+            if broken and break_index is not None:
+                # Now look for a retest of this level from above (price comes back down to the level)
+                retest_found = False
+                retest_index = None
+                
+                for k in range(break_index + 1, len(df)):
+                    # If price approaches the resistance level from above
+                    if (df.iloc[k]['low'] < resistance_price * (1 + price_threshold) and 
+                        df.iloc[k]['low'] > resistance_price * (1 - price_threshold)):
+                        retest_found = True
+                        retest_index = k
+                        break
+                
+                if retest_found and retest_index is not None:
+                    # Calculate setup quality metrics
+                    break_size = abs(df.iloc[break_index]['close'] - resistance_price)
+                    time_to_retest = retest_index - break_index
+                    current_price = df.iloc[-1]['close']
+                    
+                    # Record the pattern
+                    self._record_pattern(
+                        pattern_type=PatternType.BREAKER_BLOCK,
+                        timeframe=timeframe,
+                        symbol=symbol,
+                        start_time=df.iloc[retest_index]['timestamp'],
+                        data={
+                            'direction': 'bullish',
+                            'original_resistance': resistance_price,
+                            'break_price': df.iloc[break_index]['close'],
+                            'retest_price': df.iloc[retest_index]['low'],
+                            'break_size': break_size,
+                            'time_to_retest': time_to_retest,
+                            'entry_price': df.iloc[retest_index]['close'],
+                            'stop_loss': df.iloc[retest_index]['low'] * 0.99,  # 1% below retest low
+                            'target': current_price + (break_size * 2),  # 2x break size as target
+                        }
+                    )
+                    logger.info(f"Detected bullish breaker block for {symbol} on {timeframe}")
+    
     def _detect_sweep_engulfers(self, timeframe: str, symbol: str, df: pd.DataFrame) -> None:
         """
         Detect sweep engulfer patterns in the candle data.
@@ -1322,6 +1471,69 @@ class CandleAggregator:
                 
             logger.info(f"Processed {len(candle_list)} {timeframe} candles for {symbol}")
 
+    def _confirm_pattern_on_lower_timeframe(self, symbol: str, tf_parent: str, pattern_type: PatternType, 
+                                        candle: Candle, metadata: Dict[str, Any]) -> None:
+        """
+        Confirm a pattern on a lower timeframe as a way to reduce false positives.
+        
+        Args:
+            symbol: The symbol being analyzed
+            tf_parent: The parent timeframe on which the pattern was initially detected
+            pattern_type: The type of pattern that was detected
+            candle: The candle associated with the pattern
+            metadata: Additional metadata about the pattern
+        """
+        # Only handle sweep engulfing patterns for now
+        if pattern_type.name != "SWEEP_ENGULFING":
+            return
+        
+        # Only confirm patterns if we have the required timeframes
+        if tf_parent not in self.timeframes or "5m" not in self.timeframes:
+            return
+        
+        # Get direction from metadata
+        direction = metadata.get("direction")
+        if not direction:
+            return
+        
+        # Check if we have a retracement already
+        retracement = metadata.get("retracement", False)
+        if not retracement:
+            return
+        
+        # Perform 5-minute timeframe confirmation logic
+        if self._check_5min_confirmation(symbol, candle, direction, metadata):
+            # Create a copy of metadata with confirmation details
+            confirmed_metadata = metadata.copy()
+            confirmed_metadata["confirmation_type"] = metadata.get("confirmation_details", {}).get("type", "unknown")
+            
+            # Notify observers of the confirmed pattern
+            for observer in self.observers:
+                observer.on_pattern_detected(
+                    PatternType.SWEEP_ENGULFING_CONFIRMED,
+                    symbol,
+                    tf_parent,
+                    candle,
+                    confirmed_metadata
+                )
+            
+            logger.info(f"Confirmed {direction} sweep engulfing pattern for {symbol} on {tf_parent}")
+
+    def _check_5min_confirmation(self, symbol: str, candle: Candle, direction: str, metadata: Dict[str, Any]) -> bool:
+        """
+        Check if the 5-minute timeframe confirms the pattern.
+        
+        Args:
+            symbol: The symbol being analyzed
+            candle: The candle associated with the pattern
+            direction: The direction of the pattern
+            metadata: Additional metadata about the pattern
+            
+        Returns:
+            True if the pattern is confirmed, False otherwise
+        """
+        # TO DO: implement the logic to check for confirmation on the 5-minute timeframe
+        pass
 
 class MultiTimeframeObserver:
     """
@@ -1899,7 +2111,6 @@ class SweepEngulfingMultiTFObserver(MultiTimeframeObserver):
                 
             logger.info(f"Processed {len(candle_list)} {timeframe} candles for {symbol}")
 
-
 class FairValueGapObserver(MultiTimeframeObserver):
     def __init__(self, aggregator):
         super().__init__(aggregator)
@@ -1947,51 +2158,3 @@ if __name__ == "__main__":
     
     # Process the tick
     aggregator.process_tick(tick_data)
-
-    def _confirm_pattern_on_lower_timeframe(self, symbol: str, tf_parent: str, pattern_type: PatternType, 
-                                        candle: Candle, metadata: Dict[str, Any]) -> None:
-        """
-        Confirm a pattern on a lower timeframe as a way to reduce false positives.
-        
-        Args:
-            symbol: The symbol being analyzed
-            tf_parent: The parent timeframe on which the pattern was initially detected
-            pattern_type: The type of pattern that was detected
-            candle: The candle associated with the pattern
-            metadata: Additional metadata about the pattern
-        """
-        # Only handle sweep engulfing patterns for now
-        if pattern_type.name != "SWEEP_ENGULFING":
-            return
-        
-        # Only confirm patterns if we have the required timeframes
-        if tf_parent not in self.timeframes or "5m" not in self.timeframes:
-            return
-        
-        # Get direction from metadata
-        direction = metadata.get("direction")
-        if not direction:
-            return
-        
-        # Check if we have a retracement already
-        retracement = metadata.get("retracement", False)
-        if not retracement:
-            return
-        
-        # Perform 5-minute timeframe confirmation logic
-        if self._check_5min_confirmation(symbol, candle, direction, metadata):
-            # Create a copy of metadata with confirmation details
-            confirmed_metadata = metadata.copy()
-            confirmed_metadata["confirmation_type"] = metadata.get("confirmation_details", {}).get("type", "unknown")
-            
-            # Notify observers of the confirmed pattern
-            for observer in self.observers:
-                observer.on_pattern_detected(
-                    PatternType.SWEEP_ENGULFING_CONFIRMED,
-                    symbol,
-                    tf_parent,
-                    candle,
-                    confirmed_metadata
-                )
-            
-            logger.info(f"Confirmed {direction} sweep engulfing pattern for {symbol} on {tf_parent}")
