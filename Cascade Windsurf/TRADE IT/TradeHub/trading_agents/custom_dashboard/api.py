@@ -197,7 +197,17 @@ def get_setups():
                 for key, value in setup.items():
                     if isinstance(value, (np.int64, np.float64)):
                         setup[key] = float(value)
-            
+                
+                # Remove stop loss and target prices from the data sent to the frontend
+                if 'stop_loss' in setup:
+                    del setup['stop_loss']
+                if 'target' in setup:
+                    del setup['target']
+                    
+                # If there's entry_price, rename it to entry_zone for clarity
+                if 'entry_price' in setup:
+                    setup['entry_zone'] = setup['entry_price']
+                
             logger.info(f"Returning {len(setups)} real setups")
             return jsonify(setups)
         except Exception as e:
@@ -392,9 +402,9 @@ def generate_mock_setups(setup_type="all", direction="all"):
             "direction": current_direction,
             "timeframe": random.choice(timeframes),
             "confidence": round(random.uniform(0.6, 0.98), 2),
-            "entry_price": entry_price,
-            "stop_loss": stop_loss,
-            "target": target,
+            "entry_zone": entry_price,  # Use entry_zone instead of entry_price
+            # Stop loss and target are calculated but not included in the response
+            # as per user request (they're still calculated to maintain the logic)
             "risk_reward": risk_reward,
             "date_identified": (datetime.now() - timedelta(hours=random.randint(0, 48))).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "status": random.choice(statuses)
