@@ -1321,6 +1321,86 @@ class CandleAggregator:
             logger.info(f"Processed {len(candle_list)} {timeframe} candles for {symbol}")
 
 
+class MultiTimeframeObserver:
+    """
+    Base class for observers that need to monitor patterns across multiple timeframes.
+    
+    This abstract class provides the structure for implementing observers that 
+    can track relationships between patterns on different timeframes, such as
+    identifying setups that require confirmation across timeframes.
+    """
+    
+    def __init__(self, aggregator: CandleAggregator):
+        """
+        Initialize the multi-timeframe observer.
+        
+        Args:
+            aggregator: The CandleAggregator instance to observe
+        """
+        self.aggregator = aggregator
+        self.setup_observers()
+        
+    def setup_observers(self):
+        """Register this observer with the aggregator for all relevant event types and timeframes."""
+        for tf in self.get_observed_timeframes():
+            self.aggregator.register_observer('pattern_detected', self.on_pattern_detected, tf)
+            self.aggregator.register_observer('pattern_updated', self.on_pattern_updated, tf)
+            self.aggregator.register_observer('pattern_completed', self.on_pattern_completed, tf)
+            self.aggregator.register_observer('candle_complete', self.on_candle_complete, tf)
+    
+    def on_pattern_detected(self, timeframe: str, symbol: str, pattern: PatternState):
+        """
+        Handler for when a pattern is detected.
+        
+        Args:
+            timeframe: The timeframe the pattern was detected on
+            symbol: The symbol the pattern was detected for
+            pattern: The detected pattern state
+        """
+        pass
+    
+    def on_pattern_updated(self, timeframe: str, symbol: str, pattern: PatternState):
+        """
+        Handler for when a pattern is updated.
+        
+        Args:
+            timeframe: The timeframe the pattern was updated on
+            symbol: The symbol the pattern was updated for
+            pattern: The updated pattern state
+        """
+        pass
+    
+    def on_pattern_completed(self, timeframe: str, symbol: str, pattern: PatternState):
+        """
+        Handler for when a pattern is completed.
+        
+        Args:
+            timeframe: The timeframe the pattern was completed on
+            symbol: The symbol the pattern was completed for
+            pattern: The completed pattern state
+        """
+        pass
+    
+    def on_candle_complete(self, timeframe: str, symbol: str, candle: Candle):
+        """
+        Handler for when a candle is completed.
+        
+        Args:
+            timeframe: The timeframe the candle was completed on
+            symbol: The symbol the candle was completed for
+            candle: The completed candle
+        """
+        pass
+    
+    def get_observed_timeframes(self) -> List[str]:
+        """
+        Get the timeframes this observer is interested in.
+        
+        Returns:
+            List of timeframe strings
+        """
+        return [tf.value for tf in TimeFrame]  # Default: observe all timeframes
+
 class SweepEngulfingMultiTFObserver(MultiTimeframeObserver):
     """
     Observer for tracking sweep engulfing patterns with confirmations on lower timeframes.
@@ -1818,178 +1898,28 @@ class SweepEngulfingMultiTFObserver(MultiTimeframeObserver):
             logger.info(f"Processed {len(candle_list)} {timeframe} candles for {symbol}")
 
 
-class MultiTimeframeObserver:
-    """
-    A base class for observers that need to react to events across multiple timeframes.
-    
-    This class provides utility methods for tracking and correlating patterns across
-    different timeframes, which is useful for implementing strategies like
-    "we're in a 4h fair value gap, now we want to see X on the 5m".
-    """
-    
-    def __init__(self, candle_aggregator: CandleAggregator):
-        """
-        Initialize the multi-timeframe observer.
-        
-        Args:
-            candle_aggregator: The CandleAggregator instance to observe
-        """
-        self.aggregator = candle_aggregator
-        self.correlated_patterns = {}
-        
-    def register(self):
-        """
-        Register this observer with the candle aggregator for all relevant events.
-        """
-        # Register for pattern events across all timeframes
-        self.aggregator.register_observer('pattern_detected', self.on_pattern_detected)
-        self.aggregator.register_observer('pattern_completed', self.on_pattern_completed)
-        
-        # Register for candle events on specific timeframes if needed
-        for timeframe in self.get_observed_timeframes():
-            self.aggregator.register_observer('candle_complete', self.on_candle_complete, timeframe)
+class FairValueGapObserver(MultiTimeframeObserver):
+    def __init__(self, aggregator):
+        super().__init__(aggregator)
             
-    def unregister(self):
-        """
-        Unregister this observer from the candle aggregator.
-        """
-        # Unregister pattern events
-        self.aggregator.unregister_observer('pattern_detected', self.on_pattern_detected)
-        self.aggregator.unregister_observer('pattern_completed', self.on_pattern_completed)
-        
-        # Unregister candle events
-        for timeframe in self.get_observed_timeframes():
-            self.aggregator.unregister_observer('candle_complete', self.on_candle_complete, timeframe)
-    
-    def get_observed_timeframes(self) -> List[str]:
-        """
-        Get the timeframes this observer is interested in.
-        
-        Override in subclasses to specify which timeframes to observe.
-        
-        Returns:
-            List of timeframe strings
-        """
-        # Default implementation observes all timeframes
-        return self.aggregator.timeframes
-    
-    def on_pattern_detected(self, timeframe: str, symbol: str, pattern: PatternState) -> None:
-        """
-        Called when a pattern is detected.
-        
-        Override in subclasses to implement custom behavior.
-        
-        Args:
-            timeframe: Timeframe of the pattern
-            symbol: Symbol of the pattern
-            pattern: The detected pattern
-        """
-        pass
-    
-    def on_pattern_completed(self, timeframe: str, symbol: str, pattern: PatternState) -> None:
-        """
-        Called when a pattern is completed.
-        
-        Override in subclasses to implement custom behavior.
-        
-        Args:
-            timeframe: Timeframe of the pattern
-            symbol: Symbol of the pattern
-            pattern: The completed pattern
-        """
-        pass
-    
-    def on_candle_complete(self, timeframe: str, symbol: str, candle: Candle) -> None:
-        """
-        Called when a candle is completed.
-        
-        Override in subclasses to implement custom behavior.
-        
-        Args:
-            timeframe: Timeframe of the candle
-            symbol: Symbol of the candle
-            candle: The completed candle
-        """
-        pass
-    
-    def check_hierarchical_patterns(self, symbol: str) -> List[Dict[str, Any]]:
-        """
-        Check for hierarchical patterns across timeframes.
-        
-        For example, finding a bullish pattern on the 5m inside a larger bearish pattern on the 4h.
-        
-        Args:
-            symbol: Symbol to check
+    def get_observed_timeframes(self):
+        # Observing specific timeframes
+        return [TimeFrame.M5.value, TimeFrame.H1.value, TimeFrame.H4.value]
             
-        Returns:
-            List of hierarchical pattern descriptions
-        """
-        results = []
-        
-        # Get interactions between patterns on different timeframes
-        interactions = self.aggregator.get_timeframe_interactions(symbol)
-        
-        for parent_key, children in interactions.items():
-            for child_info in children:
-                parent_pattern = child_info['parent_pattern']
-                child_pattern = child_info['child_pattern']
+    def on_pattern_detected(self, timeframe, symbol, pattern):
+        if pattern.pattern_type == PatternType.FAIR_VALUE_GAP:
+            print(f"Detected {pattern.data['direction']} FVG on {timeframe} for {symbol}")
                 
-                # Check if the patterns have the relationship we're looking for
-                if self.is_relevant_pattern_interaction(parent_pattern, child_pattern):
-                    results.append({
-                        'symbol': symbol,
-                        'parent_pattern': {
-                            'type': parent_pattern.pattern_type.value,
-                            'timeframe': parent_pattern.timeframe,
-                            'start_time': parent_pattern.start_time,
-                            'data': parent_pattern.data
-                        },
-                        'child_pattern': {
-                            'type': child_pattern.pattern_type.value,
-                            'timeframe': child_pattern.timeframe,
-                            'start_time': child_pattern.start_time,
-                            'data': child_pattern.data
-                        },
-                        'description': self.describe_pattern_interaction(parent_pattern, child_pattern)
-                    })
+            # Check if this is a lower timeframe pattern within a higher timeframe pattern
+            if timeframe == TimeFrame.M5.value:
+                # Check for 4h patterns
+                h4_patterns = self.aggregator.get_patterns_by_timeframe(
+                    TimeFrame.H4.value, symbol, PatternType.FAIR_VALUE_GAP)
                     
-        return results
+                for h4_pattern in h4_patterns:
+                    if h4_pattern.end_time is None:  # Active pattern
+                        print(f"SETUP ALERT: 5m FVG within active 4h FVG for {symbol}")
     
-    def is_relevant_pattern_interaction(self, parent_pattern: PatternState, 
-                                    child_pattern: PatternState) -> bool:
-        """
-        Determine if an interaction between parent and child patterns is relevant.
-        
-        Override in subclasses to implement strategy-specific logic.
-        
-        Args:
-            parent_pattern: The parent (higher timeframe) pattern
-            child_pattern: The child (lower timeframe) pattern
-            
-        Returns:
-            True if the interaction is relevant, False otherwise
-        """
-        # Default implementation considers all interactions relevant
-        return True
-    
-    def describe_pattern_interaction(self, parent_pattern: PatternState, 
-                                  child_pattern: PatternState) -> str:
-        """
-        Generate a human-readable description of a pattern interaction.
-        
-        Override in subclasses for strategy-specific descriptions.
-        
-        Args:
-            parent_pattern: The parent (higher timeframe) pattern
-            child_pattern: The child (lower timeframe) pattern
-            
-        Returns:
-            Human-readable description of the interaction
-        """
-        return (f"{parent_pattern.pattern_type.value} on {parent_pattern.timeframe} "
-                f"contains {child_pattern.pattern_type.value} on {child_pattern.timeframe}")
-
-
 # Example usage:
 if __name__ == "__main__":
     # Create a candle aggregator
@@ -1997,29 +1927,6 @@ if __name__ == "__main__":
         symbols=["AAPL", "MSFT"],
         timeframes=[TimeFrame.M1.value, TimeFrame.M5.value, TimeFrame.M15.value, TimeFrame.H1.value, TimeFrame.H4.value, TimeFrame.D1.value]
     )
-    
-    # Example observer implementation
-    class FairValueGapObserver(MultiTimeframeObserver):
-        def __init__(self, aggregator):
-            super().__init__(aggregator)
-            
-        def get_observed_timeframes(self):
-            # Observing specific timeframes
-            return [TimeFrame.M5.value, TimeFrame.H1.value, TimeFrame.H4.value]
-            
-        def on_pattern_detected(self, timeframe, symbol, pattern):
-            if pattern.pattern_type == PatternType.FAIR_VALUE_GAP:
-                print(f"Detected {pattern.data['direction']} FVG on {timeframe} for {symbol}")
-                
-                # Check if this is a lower timeframe pattern within a higher timeframe pattern
-                if timeframe == TimeFrame.M5.value:
-                    # Check for 4h patterns
-                    h4_patterns = self.aggregator.get_patterns_by_timeframe(
-                        TimeFrame.H4.value, symbol, PatternType.FAIR_VALUE_GAP)
-                    
-                    for h4_pattern in h4_patterns:
-                        if h4_pattern.end_time is None:  # Active pattern
-                            print(f"SETUP ALERT: 5m FVG within active 4h FVG for {symbol}")
     
     # Create and register observers
     fvg_observer = FairValueGapObserver(aggregator)
