@@ -301,8 +301,8 @@ function Home() {
                           <p className="text-gray-300 text-sm">Speak naturally with your chosen character. Our advanced voice recognition understands natural conversation.</p>
                         </div>
                         <div className="bg-gray-900 p-3 rounded-lg border border-gray-700">
-                          <h4 className="text-white font-medium mb-2">Performance Metrics</h4>
-                          <p className="text-gray-300 text-sm">After each debate, review detailed metrics about your conversation, including duration and response times.</p>
+                          <h4 className="text-white font-medium mb-2">Call Duration</h4>
+                          <p className="text-gray-300 text-sm">The timer at the top tracks your current conversation length. Your minutes are deducted based on actual usage time.</p>
                         </div>
                       </div>
                     </CardContent>
@@ -313,7 +313,8 @@ function Home() {
                   <Button
                     onClick={handleBackToCharacters}
                     variant="outline"
-                    className="border-gray-700 text-white hover:bg-gray-800 hover:border-red-500/50"
+                    className="border-gray-700 text-white hover:bg-gray-800 hover:border-red-500/50 bg-gray-900 py-2 px-4 text-base"
+                    size="lg"
                   >
                     Back to Dashboard
                   </Button>
