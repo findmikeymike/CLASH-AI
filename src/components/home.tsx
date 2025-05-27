@@ -205,9 +205,9 @@ function Home() {
             <h1 className="text-5xl font-black text-red-500 tracking-tighter italic">
               CLASH
             </h1>
-            <div className="flex items-center space-x-2 bg-gradient-to-r from-yellow-500/20 to-yellow-400/20 px-3 py-1 rounded-full border border-yellow-500/30">
-              <Crown className="h-4 w-4 text-yellow-500" />
-              <span className="text-yellow-400 text-sm font-medium">PRO</span>
+            <div className="flex items-center space-x-2 bg-gradient-to-r from-red-600/20 to-red-500/20 px-3 py-1 rounded-full border border-red-500/30">
+              <Zap className="h-4 w-4 text-red-500" />
+              <span className="text-red-400 text-sm font-medium">AI</span>
             </div>
           </div>
 
