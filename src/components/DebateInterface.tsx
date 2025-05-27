@@ -1,10 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+
+// Add custom type declaration for ElevenLabs component
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'elevenlabs-convai': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+    }
+  }
+}
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Timer, Zap } from "lucide-react";
+import { ArrowLeft, Timer, Zap, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { useToast } from "@/components/ui/use-toast";
+import { trackCallUsage, getRemainingMinutes, initializeUserMinutes } from "@/utils/usageTracking";
 
 // Load ElevenLabs widget script
 if (
@@ -84,6 +95,7 @@ const DebateInterface = ({
   tokenBalance = 100,
   onTokensUsed = () => {},
 }: DebateInterfaceProps) => {
+  const { toast } = useToast();
   const [isWidgetLoaded, setIsWidgetLoaded] = useState(false);
   const [isWidgetLoading, setIsWidgetLoading] = useState(true);
   const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
@@ -95,7 +107,10 @@ const DebateInterface = ({
   const [apiCallTimes, setApiCallTimes] = useState<number[]>([]);
   const [totalApiCallTime, setTotalApiCallTime] = useState(0);
   const [estimatedTokenUsage, setEstimatedTokenUsage] = useState(0);
-  const [remainingTokens, setRemainingTokens] = useState<number | null>(null);
+  const [remainingMinutes, setRemainingMinutes] = useState<number | null>(null);
+  const [currentCallId, setCurrentCallId] = useState<string | null>(null);
+  const [insufficientMinutes, setInsufficientMinutes] = useState(false);
+  const userId = useRef<string>(crypto.randomUUID()); // Generate a temporary user ID if not authenticated
 
   // Placeholder for the actual widget load
   useEffect(() => {
@@ -115,44 +130,41 @@ const DebateInterface = ({
     return () => clearTimeout(loadTimeout);
   }, [character]);
 
-  // Update remaining tokens when tokenBalance changes
+  // Fetch user's remaining minutes when component mounts
   useEffect(() => {
-    setRemainingTokens(tokenBalance - estimatedTokenUsage);
-  }, [tokenBalance, estimatedTokenUsage]);
+    const fetchRemainingMinutes = async () => {
+      try {
+        // Initialize user with some minutes for testing if needed
+        const minutes = await initializeUserMinutes(userId.current);
+        setRemainingMinutes(minutes);
+      } catch (error) {
+        console.error("Error fetching minutes:", error);
+        // Set a default value to prevent UI issues
+        setRemainingMinutes(10);
+      }
+    };
 
-  // Listen for ElevenLabs API calls
+    fetchRemainingMinutes();
+  }, []);
+
   useEffect(() => {
     const handleApiCall = (
       event: CustomEvent<{ duration: number; url: string }>,
     ) => {
       const { duration, url } = event.detail;
-      console.log(`ElevenLabs API call to ${url} took ${duration}ms`);
 
-      // Update API call metrics
+      // Update API call times
       setApiCallTimes((prev) => [...prev, duration]);
+
+      // Update total API call time
       setTotalApiCallTime((prev) => prev + duration);
-      setResponseCount((prev) => prev + 1);
 
-      // Estimate token usage based on call duration
-      // This is a simplified estimation - adjust the formula based on actual usage patterns
-      const estimatedTokens = Math.ceil(duration / 100); // Example: 1 token per 100ms
-      console.log(
-        `Estimated token usage for this call: ${estimatedTokens} tokens`,
-      );
+      // Update response count if this is a new response
+      if (url.includes("/history/") || url.includes("/stream")) {
+        setResponseCount((prev) => prev + 1);
+      }
 
-      // Update token usage and remaining balance
-      setEstimatedTokenUsage((prev) => {
-        const newTotal = prev + estimatedTokens;
-        // Notify parent component about token usage
-        onTokensUsed(estimatedTokens);
-        return newTotal;
-      });
-
-      // Calculate remaining tokens locally for immediate UI feedback
-      setRemainingTokens(tokenBalance - estimatedTokenUsage - estimatedTokens);
-
-      // Simulate AI response for UI updates
-      simulateAIResponse();
+      console.log(`API call to ${url} took ${duration}ms.`);
     };
 
     // Add event listener for our custom event
@@ -169,51 +181,156 @@ const DebateInterface = ({
     };
   }, []);
 
-  // Start session timer when call becomes active
+  // Start session timer when debate becomes active
   useEffect(() => {
-    if (isCallActive && !sessionStartTime) {
-      const startTime = Date.now();
-      setSessionStartTime(startTime);
-      setIsDebateActive(true);
-      console.log("Call started at:", new Date(startTime).toISOString());
-    } else if (!isCallActive && sessionStartTime) {
-      console.log("Call ended at:", new Date().toISOString());
-      setIsDebateActive(false);
+    if (isDebateActive && !sessionStartTime) {
+      setSessionStartTime(performance.now());
     }
-  }, [isCallActive, sessionStartTime]);
 
-  // Update session duration
-  useEffect(() => {
-    if (!isDebateActive || !sessionStartTime) return;
+    // Update session duration every second
+    let intervalId: number | null = null;
+    if (isDebateActive && sessionStartTime) {
+      intervalId = window.setInterval(() => {
+        const currentDuration = Math.floor(
+          (performance.now() - sessionStartTime) / 1000,
+        );
+        setSessionDuration(currentDuration);
+      }, 1000);
+    }
 
-    const intervalId = setInterval(() => {
-      setSessionDuration(Math.floor((Date.now() - sessionStartTime) / 1000));
-    }, 1000);
-
-    return () => clearInterval(intervalId);
+    return () => {
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+      }
+    };
   }, [isDebateActive, sessionStartTime]);
 
-  const handleEndDebate = () => {
-    setIsDebateActive(false);
+  // Handle call start and end with robust tracking
+  useEffect(() => {
+    const handleCallStateChange = async () => {
+      if (!character) return;
+      
+      if (isCallActive && !currentCallId) {
+        // Call started
+        try {
+          // Use our utility that handles both Edge Function and local fallback
+          const result = await trackCallUsage(
+            userId.current,
+            "start",
+            undefined,
+            character.id
+          );
 
-    // Calculate metrics
+          if (!result?.canStart) {
+            // User doesn't have enough minutes
+            setInsufficientMinutes(true);
+            toast({
+              title: "Insufficient Minutes",
+              description: "You don't have enough minutes to start a call. Please purchase more minutes.",
+              variant: "destructive",
+            });
+            
+            // Force end the call - this is a workaround since we can't directly control the widget
+            // In a production environment, you would use the ElevenLabs API directly
+            try {
+              const convaiElement = document.querySelector("elevenlabs-convai") as any;
+              if (convaiElement && typeof convaiElement.endCall === "function") {
+                convaiElement.endCall();
+              }
+            } catch (error) {
+              console.error("Error ending call:", error);
+            }
+            return;
+          }
+          
+          setCurrentCallId(result.callId);
+          setRemainingMinutes(result.remainingMinutes);
+        } catch (error) {
+          console.error("Error starting call tracking:", error);
+          // Set a default call ID to allow the call to proceed even if tracking fails
+          setCurrentCallId(crypto.randomUUID());
+        }
+      } else if (!isCallActive && currentCallId) {
+        // Call ended
+        try {
+          // Use our utility that handles both Edge Function and local fallback
+          const result = await trackCallUsage(
+            userId.current,
+            "end",
+            currentCallId
+          );
+
+          if (result) {
+            // Update remaining minutes
+            setRemainingMinutes(result.remainingMinutes);
+            
+            // Notify parent component about minutes used
+            onTokensUsed(result.minutesUsed);
+            
+            // Show toast with usage information
+            toast({
+              title: "Call Ended",
+              description: `You used ${result.minutesUsed} minute${result.minutesUsed !== 1 ? 's' : ''}. You have ${result.remainingMinutes} minute${result.remainingMinutes !== 1 ? 's' : ''} remaining.`,
+            });
+            
+            // Reset current call ID
+            setCurrentCallId(null);
+          }
+        } catch (error) {
+          console.error("Error ending call tracking:", error);
+          // Reset current call ID even if tracking fails
+          setCurrentCallId(null);
+        }
+      }
+    };
+
+    handleCallStateChange();
+  }, [isCallActive, currentCallId, character, toast, onTokensUsed]);
+
+  const handleEndDebate = async () => {
+    // If there's an active call, end it first
+    if (currentCallId) {
+      try {
+        // Use our utility that handles both Edge Function and local fallback
+        const result = await trackCallUsage(
+          userId.current,
+          "end",
+          currentCallId
+        );
+
+        if (result) {
+          setRemainingMinutes(result.remainingMinutes);
+          onTokensUsed(result.minutesUsed);
+        }
+      } catch (error) {
+        console.error("Error ending call tracking:", error);
+      }
+    }
+
+    // Calculate final metrics
     const metrics: PerformanceMetrics = {
       widgetLoadTime: widgetLoadTime || 0,
       sessionDuration,
       responseCount,
       averageResponseTime:
-        responseCount > 0 ? sessionDuration / responseCount : 0,
+        responseCount > 0
+          ? apiCallTimes.reduce((sum, time) => sum + time, 0) / responseCount
+          : 0,
       tokenUsage: estimatedTokenUsage,
-      totalApiCallTime: totalApiCallTime,
+      totalApiCallTime,
     };
 
-    console.log("Debate ended with metrics:", metrics);
+    // Call the onDebateEnd callback with metrics
     onDebateEnd(metrics);
-  };
 
-  // Simulate AI response
-  const simulateAIResponse = () => {
-    setResponseCount((prev) => prev + 1);
+    // Reset state for next debate
+    setSessionStartTime(null);
+    setSessionDuration(0);
+    setResponseCount(0);
+    setApiCallTimes([]);
+    setTotalApiCallTime(0);
+    setEstimatedTokenUsage(0);
+    setCurrentCallId(null);
   };
 
   if (!character) {
@@ -264,20 +381,28 @@ const DebateInterface = ({
         </Button>
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2 bg-gradient-to-r from-gray-900/80 to-black/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-gray-800 shadow-md">
-            <Timer className="h-4 w-4 text-red-500" />
-            <span className="text-sm font-bold text-white">
+            <Timer className="h-4 w-4 text-gray-400" />
+            <span className="text-gray-400 text-sm">
               {Math.floor(sessionDuration / 60)}:
               {String(sessionDuration % 60).padStart(2, "0")}
             </span>
           </div>
-
-          <div className="flex items-center space-x-2 bg-gradient-to-r from-gray-900/80 to-black/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-gray-800 shadow-md">
-            <Zap className="h-4 w-4 text-yellow-500" />
-            <span className="text-sm font-bold text-white">
-              {remainingTokens !== null ? remainingTokens : tokenBalance}
+          <div className="flex items-center space-x-2">
+            <Zap className="h-4 w-4 text-yellow-400" />
+            <span className={`text-sm ${remainingMinutes !== null && remainingMinutes < 5 ? 'text-red-400' : 'text-gray-400'}`}>
+              {remainingMinutes !== null
+                ? `${remainingMinutes} minute${remainingMinutes !== 1 ? 's' : ''} left`
+                : "Loading..."}
             </span>
-            <span className="text-xs text-gray-400">min</span>
           </div>
+          {insufficientMinutes && (
+            <div className="flex items-center space-x-2 ml-4">
+              <AlertCircle className="h-4 w-4 text-red-500" />
+              <span className="text-red-400 text-sm">
+                Insufficient minutes
+              </span>
+            </div>
+          )}
         </div>
       </header>
 
@@ -354,6 +479,7 @@ const DebateInterface = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
+              {/* @ts-ignore - ElevenLabs widget is not a standard React component */}
               <elevenlabs-convai
                 agent-id={
                   character.id === "1"
@@ -385,6 +511,14 @@ const DebateInterface = ({
                 onCallEnd={() => {
                   console.log("ElevenLabs call ended");
                   setIsCallActive(false);
+                }}
+                onError={(error) => {
+                  console.error("ElevenLabs call error:", error);
+                  toast({
+                    title: "Call Error",
+                    description: "There was an error with the voice call. Please try again.",
+                    variant: "destructive",
+                  });
                 }}
               ></elevenlabs-convai>
             </motion.div>

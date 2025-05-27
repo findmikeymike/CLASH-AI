@@ -34,7 +34,7 @@ interface MinutePackage {
 const minutePackages: MinutePackage[] = [
   {
     id: "block1",
-    priceId: "price_8USD",
+    priceId: import.meta.env.VITE_STRIPE_PRICE_10MIN || 'price_1OvCXKGLCcFoteZDOQYPGvHB',
     name: "Try It",
     minutes: 40,
     price: 800,
@@ -42,7 +42,7 @@ const minutePackages: MinutePackage[] = [
   },
   {
     id: "block2",
-    priceId: "price_15USD",
+    priceId: import.meta.env.VITE_STRIPE_PRICE_30MIN || 'price_1OvCXkGLCcFoteZDnPvtTqhB',
     name: "Standard",
     minutes: 80,
     price: 1500,
@@ -51,7 +51,7 @@ const minutePackages: MinutePackage[] = [
   },
   {
     id: "block4",
-    priceId: "price_28USD",
+    priceId: import.meta.env.VITE_STRIPE_PRICE_60MIN || 'price_1OvCY9GLCcFoteZDfgvHOFzD',
     name: "Popular",
     minutes: 160,
     price: 2800,
@@ -59,7 +59,7 @@ const minutePackages: MinutePackage[] = [
   },
   {
     id: "block8",
-    priceId: "price_50USD",
+    priceId: "price_1OvCYaGLCcFoteZDdgvJYhzP", // Using a fixed price ID for the largest package
     name: "Power User",
     minutes: 320,
     price: 5000,

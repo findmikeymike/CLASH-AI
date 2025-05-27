@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { useRoutes, Routes, Route } from "react-router-dom";
 import Home from "./components/home";
 import LandingPage from "./components/LandingPage";
+import TestUsageTracking from "./components/TestUsageTracking";
 import routes from "tempo-routes";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/debate" element={<Home />} />
+          <Route path="/test-usage" element={<TestUsageTracking />} />
           {/* Add explicit route for tempobook storyboards */}
           {import.meta.env.VITE_TEMPO === "true" && (
             <Route path="/tempobook/*" />

@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "@shared/": "../_shared/"
+  },
+  "tasks": {
+    "deploy": "supabase functions deploy track-call-usage --no-verify-jwt"
+  }
+}
