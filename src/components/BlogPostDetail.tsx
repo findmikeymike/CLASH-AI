@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock, User, Share2, Bookmark } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { BlogPost } from "@/data/blogPosts";
 
@@ -87,70 +87,54 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({ post, onBack }) => {
           
           {/* Article content */}
           <div className="p-8">
-            {/* Social sharing */}
-            <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-800">
+            {/* Article excerpt */}
+            <div className="mb-8 pb-4 border-b border-gray-800">
               <div className="text-lg text-gray-300 italic">
                 {post.excerpt}
               </div>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="icon" className="rounded-full border-gray-700 text-gray-400 hover:text-white hover:border-red-500">
-                  <Share2 className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="icon" className="rounded-full border-gray-700 text-gray-400 hover:text-white hover:border-red-500">
-                  <Bookmark className="h-4 w-4" />
-                </Button>
-              </div>
             </div>
             
-            {/* Article body - this would be your rich text content */}
+            {/* Article body - render markdown content */}
             <div className="prose prose-invert prose-red max-w-none">
-              <p>
-                {post.content || `This is a placeholder for the full content of "${post.title}". In a real implementation, this would be a rich text field with proper formatting, images, and other elements.`}
-              </p>
-              
-              <h2>Why This Matters</h2>
-              <p>
-                Debate skills are essential in today's polarized world. Whether you're discussing politics, ethics, or simply trying to make your point in a meeting, the ability to articulate your thoughts clearly and respond to counterarguments effectively is invaluable.
-              </p>
-              
-              <h2>How CLASH AI Can Help</h2>
-              <p>
-                CLASH AI provides a safe environment to practice debate skills with a variety of AI personas, each with their own unique perspectives and debate styles. By engaging with these diverse viewpoints, you can:
-              </p>
-              
-              <ul>
-                <li>Strengthen your argumentation skills</li>
-                <li>Learn to anticipate counterpoints</li>
-                <li>Develop greater empathy for opposing viewpoints</li>
-                <li>Build confidence in expressing your ideas</li>
-              </ul>
-              
-              <blockquote>
-                "The ability to understand and effectively respond to different perspectives is not just a debate skill—it's a life skill that enhances critical thinking and emotional intelligence."
-              </blockquote>
-              
-              <h2>Key Takeaways</h2>
-              <p>
-                As you continue to engage with CLASH AI, remember that the goal isn't always to "win" but to expand your understanding and improve your communication. The most powerful debaters are those who can genuinely understand multiple perspectives, even when they disagree with them.
-              </p>
+              {post.isMarkdown ? (
+                <div dangerouslySetInnerHTML={{ __html: post.content || '' }} />
+              ) : (
+                <>
+                  <p>
+                    {post.content || `This is a placeholder for the full content of "${post.title}". In a real implementation, this would be a rich text field with proper formatting, images, and other elements.`}
+                  </p>
+                  
+                  <h2>Why This Matters</h2>
+                  <p>
+                    Debate skills are essential in today's polarized world. Whether you're discussing politics, ethics, or simply trying to make your point in a meeting, the ability to articulate your thoughts clearly and respond to counterarguments effectively is invaluable.
+                  </p>
+                  
+                  <h2>How CLASH AI Can Help</h2>
+                  <p>
+                    CLASH AI provides a safe environment to practice debate skills with a variety of AI personas, each with their own unique perspectives and debate styles. By engaging with these diverse viewpoints, you can:
+                  </p>
+                  
+                  <ul>
+                    <li>Strengthen your argumentation skills</li>
+                    <li>Learn to anticipate counterpoints</li>
+                    <li>Develop greater empathy for opposing viewpoints</li>
+                    <li>Build confidence in expressing your ideas</li>
+                  </ul>
+                  
+                  <blockquote>
+                    "The ability to understand and effectively respond to different perspectives is not just a debate skill—it's a life skill that enhances critical thinking and emotional intelligence."
+                  </blockquote>
+                  
+                  <h2>Key Takeaways</h2>
+                  <p>
+                    As you continue to engage with CLASH AI, remember that the goal isn't always to "win" but to expand your understanding and improve your communication. The most powerful debaters are those who can genuinely understand multiple perspectives, even when they disagree with them.
+                  </p>
+                </>
+              )}
             </div>
           </div>
           
-          {/* Related posts */}
-          <div className="p-8 bg-gradient-to-r from-gray-900 to-gray-900/50 border-t border-gray-800">
-            <h3 className="text-xl font-bold text-white mb-4">Related Articles</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="bg-gray-800/50 rounded-lg p-4 hover:bg-gray-800 transition-colors cursor-pointer">
-                  <h4 className="font-medium text-white mb-2 line-clamp-2">Related article title goes here</h4>
-                  <div className="flex items-center text-sm text-gray-400">
-                    <Calendar className="h-3 w-3 mr-1" />
-                    <span>May 15, 2025</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+
         </motion.div>
       </main>
     </div>

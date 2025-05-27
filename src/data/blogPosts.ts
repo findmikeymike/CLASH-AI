@@ -1,3 +1,5 @@
+import { MarkdownArticle, getAllArticles } from '@/utils/markdownLoader';
+
 export interface BlogPost {
   id: string;
   title: string;
@@ -9,9 +11,11 @@ export interface BlogPost {
   content?: string;
   imageUrl: string;
   categories: string[];
+  isMarkdown?: boolean;
 }
 
-export const blogPosts: BlogPost[] = [
+// Static blog posts that will be combined with markdown articles
+export const staticBlogPosts: BlogPost[] = [
   {
     id: "1",
     title: "What Zeek the Nihilist Would Say About Trump vs Biden 2024",
@@ -123,3 +127,26 @@ export const blogPosts: BlogPost[] = [
     categories: ["Mental Health", "Cognitive Development", "Controversial Takes"]
   }
 ];
+
+// This function will load all blog posts, combining static ones with markdown articles
+export async function loadAllBlogPosts(): Promise<BlogPost[]> {
+  try {
+    // Load markdown articles
+    const markdownArticles = await getAllArticles();
+    
+    // Convert markdown articles to BlogPost format
+    const markdownPosts: BlogPost[] = markdownArticles.map(article => ({
+      ...article,
+      isMarkdown: true
+    }));
+    
+    // Combine both sources, with markdown posts first (they're newer)
+    return [...markdownPosts, ...staticBlogPosts];
+  } catch (error) {
+    console.error('Error loading blog posts:', error);
+    return staticBlogPosts; // Fallback to static posts if there's an error
+  }
+}
+
+// For backward compatibility, export the static posts as blogPosts
+export const blogPosts = staticBlogPosts;

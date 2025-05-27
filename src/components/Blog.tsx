@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Info, ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import BlogPostCard from "./BlogPostCard";
-import { blogPosts } from "@/data/blogPosts";
+import { BlogPost, staticBlogPosts, loadAllBlogPosts } from "@/data/blogPosts";
 
 interface BlogProps {
   onBack: () => void;
@@ -12,9 +12,28 @@ interface BlogProps {
 
 const Blog: React.FC<BlogProps> = ({ onBack }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [posts, setPosts] = useState<BlogPost[]>(staticBlogPosts);
+  const [loading, setLoading] = useState(true);
+  
+  // Load all blog posts including markdown articles
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        setLoading(true);
+        const allPosts = await loadAllBlogPosts();
+        setPosts(allPosts);
+      } catch (error) {
+        console.error('Error loading blog posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchPosts();
+  }, []);
   
   // Filter blog posts based on search query
-  const filteredPosts = blogPosts.filter(post => 
+  const filteredPosts = posts.filter(post => 
     post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
     post.categories.some(category => category.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -60,8 +79,15 @@ const Blog: React.FC<BlogProps> = ({ onBack }) => {
           </div>
         </div>
 
+        {/* Loading state */}
+        {loading && (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500"></div>
+          </div>
+        )}
+        
         {/* Featured post */}
-        {filteredPosts.length > 0 && !searchQuery && (
+        {!loading && filteredPosts.length > 0 && !searchQuery && (
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-red-500 mb-6">Featured</h2>
             <motion.div
@@ -70,7 +96,7 @@ const Blog: React.FC<BlogProps> = ({ onBack }) => {
               transition={{ duration: 0.5 }}
             >
               <BlogPostCard 
-                post={blogPosts[0]} 
+                post={filteredPosts[0]} 
                 featured={true}
               />
             </motion.div>
@@ -110,25 +136,7 @@ const Blog: React.FC<BlogProps> = ({ onBack }) => {
           )}
         </div>
 
-        {/* Newsletter signup */}
-        <div className="max-w-4xl mx-auto bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 border border-gray-700">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="mb-6 md:mb-0 md:mr-8">
-              <h3 className="text-2xl font-bold text-white mb-2">Subscribe to our newsletter</h3>
-              <p className="text-gray-400">Get the latest debate tips and AI insights delivered to your inbox</p>
-            </div>
-            <div className="flex w-full md:w-auto">
-              <Input 
-                type="email" 
-                placeholder="Your email address" 
-                className="bg-gray-800 border-gray-700 text-white rounded-l-lg focus:ring-red-500 focus:border-red-500"
-              />
-              <Button className="bg-red-600 hover:bg-red-700 text-white rounded-r-lg">
-                Subscribe
-              </Button>
-            </div>
-          </div>
-        </div>
+
       </main>
     </div>
   );
