@@ -103,10 +103,8 @@ const PerformanceMetrics = ({
                   {formatTime(metrics.widgetLoadTime)}
                 </div>
                 <Progress
-                  className="h-2 mt-2"
                   value={loadTimeScore}
                   className="bg-gray-800 h-2 mt-2 rounded-full"
-                  indicatorClassName="bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full"
                 />
                 <p className="text-sm text-gray-400 mt-3 font-medium">
                   {loadTimeScore >= 80
@@ -197,10 +195,8 @@ const PerformanceMetrics = ({
                   {metrics.averageResponseTime.toFixed(1)}s
                 </div>
                 <Progress
-                  className="h-2 mt-2"
                   value={responseTimeScore}
                   className="bg-gray-800 h-2 mt-2 rounded-full"
-                  indicatorClassName="bg-gradient-to-r from-red-500 to-red-400 rounded-full"
                 />
                 <p className="text-sm text-gray-400 mt-3 font-medium">
                   {responseTimeScore >= 80

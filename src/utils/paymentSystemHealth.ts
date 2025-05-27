@@ -99,11 +99,11 @@ async function checkPaymentIntentFunction(): Promise<HealthCheckResult> {
       "supabase-functions-create-payment-intent",
       {
         body: { ping: true },
-        method: "OPTIONS",
+        method: "GET",
       },
     );
 
-    // For OPTIONS request, we just care that it doesn't error
+    // For GET request, we just care that it doesn't error
     if (error) {
       return {
         component: "Create Payment Intent Function",
@@ -136,11 +136,11 @@ async function checkUserMinutesFunction(): Promise<HealthCheckResult> {
       "supabase-functions-user-minutes",
       {
         body: { ping: true },
-        method: "OPTIONS",
+        method: "GET",
       },
     );
 
-    // For OPTIONS request, we just care that it doesn't error
+    // For GET request, we just care that it doesn't error
     if (error) {
       return {
         component: "User Minutes Function",
@@ -173,11 +173,11 @@ async function checkWebhookFunction(): Promise<HealthCheckResult> {
       "supabase-functions-handle-stripe-webhook",
       {
         body: { ping: true },
-        method: "OPTIONS",
+        method: "GET",
       },
     );
 
-    // For OPTIONS request, we just care that it doesn't error
+    // For GET request, we just care that it doesn't error
     if (error) {
       return {
         component: "Webhook Handler Function",
