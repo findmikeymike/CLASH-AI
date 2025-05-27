@@ -76,7 +76,10 @@ export const trackCallUsage = async (
         localStorage.setItem('call_sessions', JSON.stringify([...existingCalls, callData]));
         
         // Get remaining minutes from localStorage
-        const userMinutes = JSON.parse(localStorage.getItem(`user_minutes_${userId}`) || '{"remaining_minutes": 100}');
+        const userMinutes = JSON.parse(localStorage.getItem(`user_minutes_${userId}`) || '{"remaining_minutes": 0}');
+        
+        // Log the minutes value for debugging
+        console.log(`[LOCAL_FALLBACK] User ${userId} has ${userMinutes.remaining_minutes} minutes remaining`);
         
         await logOperation("TRACK_CALL_LOCAL", { userId, action, callId: newCallId }, "SUCCESS");
         return {
@@ -157,7 +160,10 @@ export const getRemainingMinutes = async (userId: string) => {
       console.warn("Edge Function not available, using local fallback:", edgeFunctionError);
       
       // Local fallback implementation
-      const userMinutes = JSON.parse(localStorage.getItem(`user_minutes_${userId}`) || '{"remaining_minutes": 100}');
+      const userMinutes = JSON.parse(localStorage.getItem(`user_minutes_${userId}`) || '{"remaining_minutes": 0}');
+      
+      // Log the minutes value for debugging
+      console.log(`[LOCAL_FALLBACK] User ${userId} has ${userMinutes.remaining_minutes} minutes remaining`);
       
       await logOperation("GET_MINUTES_LOCAL", { userId, remainingMinutes: userMinutes.remaining_minutes }, "SUCCESS");
       return userMinutes.remaining_minutes;
@@ -208,7 +214,7 @@ export const addMinutes = async (userId: string, minutesToAdd: number) => {
 };
 
 // Initialize user minutes if they don't exist
-export const initializeUserMinutes = async (userId: string, initialMinutes = 10) => {
+export const initializeUserMinutes = async (userId: string, initialMinutes = 0) => {
   try {
     const minutes = await getRemainingMinutes(userId);
     

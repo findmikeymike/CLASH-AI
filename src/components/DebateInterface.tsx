@@ -4,7 +4,12 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'elevenlabs-convai': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+      'elevenlabs-convai': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        'agent-id'?: string;
+        onCallStart?: (event?: any) => void;
+        onCallEnd?: (event?: any) => void;
+        onError?: (error: any) => void;
+      };
     }
   }
 }
@@ -92,7 +97,7 @@ const DebateInterface = ({
   character,
   onBack = () => {},
   onDebateEnd = () => {},
-  tokenBalance = 100,
+  tokenBalance = 0, // Default to 0 instead of 100
   onTokensUsed = () => {},
 }: DebateInterfaceProps) => {
   const { toast } = useToast();
@@ -102,6 +107,7 @@ const DebateInterface = ({
   const [widgetLoadTime, setWidgetLoadTime] = useState<number | null>(null);
   const [responseCount, setResponseCount] = useState(0);
   const [sessionDuration, setSessionDuration] = useState(0);
+  const sessionTimerRef = useRef<NodeJS.Timeout | null>(null);
   const [isDebateActive, setIsDebateActive] = useState(false);
   const [isCallActive, setIsCallActive] = useState(false);
   const [apiCallTimes, setApiCallTimes] = useState<number[]>([]);
@@ -111,6 +117,35 @@ const DebateInterface = ({
   const [currentCallId, setCurrentCallId] = useState<string | null>(null);
   const [insufficientMinutes, setInsufficientMinutes] = useState(false);
   const userId = useRef<string>(crypto.randomUUID()); // Generate a temporary user ID if not authenticated
+
+  // Initialize user minutes when component mounts
+  useEffect(() => {
+    const initMinutes = async () => {
+      try {
+        console.log("Initializing user minutes for ID:", userId.current);
+        // Initialize user minutes and get the current balance
+        const minutes = await initializeUserMinutes(userId.current);
+        console.log("Minutes initialized:", minutes);
+        setRemainingMinutes(minutes);
+        
+        // Store in localStorage as fallback
+        localStorage.setItem(`user_minutes_${userId.current}`, String(minutes));
+      } catch (error) {
+        console.error("Error initializing minutes:", error);
+        // If there's an error, we'll use the default value from local storage
+        const localMinutes = localStorage.getItem(`user_minutes_${userId.current}`);
+        if (localMinutes) {
+          setRemainingMinutes(parseInt(localMinutes, 10));
+        } else {
+          // Default to 0 if no minutes are found
+          setRemainingMinutes(0);
+          localStorage.setItem(`user_minutes_${userId.current}`, "0");
+        }
+      }
+    };
+    
+    initMinutes();
+  }, []);
 
   // Placeholder for the actual widget load
   useEffect(() => {
@@ -504,13 +539,106 @@ const DebateInterface = ({
                                       ? "8x2LZsG2jkkgIW7fqlRK" // Professor Beckley
                                       : "5MNvV1hW3kIwuaOmTghn"
                 }
-                onCallStart={() => {
+                onCallStart={async () => {
                   console.log("ElevenLabs call started");
                   setIsCallActive(true);
+                  
+                  // Check if user has minutes before starting call
+                  if (remainingMinutes !== null && remainingMinutes <= 0) {
+                    console.log("Insufficient minutes to start call:", remainingMinutes);
+                    toast({
+                      title: "Insufficient Minutes",
+                      description: "You don't have enough minutes to start a call. Please purchase more minutes to continue.",
+                      variant: "destructive",
+                    });
+                    setInsufficientMinutes(true);
+                    return;
+                  }
+                  
+                  // Track call start with our usage tracking system
+                  try {
+                    console.log("Tracking call start for user:", userId.current);
+                    const result = await trackCallUsage(
+                      userId.current,
+                      "start",
+                      undefined,
+                      character.id
+                    );
+                    
+                    console.log("Call start result:", result);
+                    
+                    if (!result?.canStart) {
+                      toast({
+                        title: "Insufficient Minutes",
+                        description: "You don't have enough minutes to start a call.",
+                        variant: "destructive",
+                      });
+                      setInsufficientMinutes(true);
+                      return;
+                    }
+                    
+                    setCurrentCallId(result.callId);
+                    setRemainingMinutes(result.remainingMinutes);
+                    
+                    // Update local storage with new minutes
+                    localStorage.setItem(`user_minutes_${userId.current}`, String(result.remainingMinutes));
+                    
+                    // Start the session timer
+                    setSessionStartTime(Date.now());
+                    setSessionDuration(0); // Reset timer to 0
+                    const timerInterval = setInterval(() => {
+                      setSessionDuration(prev => prev + 1);
+                    }, 1000);
+                    
+                    // Store the interval ID for cleanup
+                    sessionTimerRef.current = timerInterval;
+                  } catch (error) {
+                    console.error("Error tracking call start:", error);
+                    toast({
+                      title: "Error",
+                      description: "Failed to start call tracking.",
+                      variant: "destructive",
+                    });
+                  }
                 }}
-                onCallEnd={() => {
+                onCallEnd={async () => {
                   console.log("ElevenLabs call ended");
                   setIsCallActive(false);
+                  
+                  // Track call end with our usage tracking system
+                  if (currentCallId) {
+                    try {
+                      const result = await trackCallUsage(
+                        userId.current,
+                        "end",
+                        currentCallId
+                      );
+                      
+                      if (result) {
+                        setRemainingMinutes(result.remainingMinutes);
+                        
+                        toast({
+                          title: "Call Ended",
+                          description: `You used ${result.minutesUsed} minute${result.minutesUsed !== 1 ? 's' : ''}. You have ${result.remainingMinutes} minute${result.remainingMinutes !== 1 ? 's' : ''} remaining.`,
+                        });
+                      }
+                    } catch (error) {
+                      console.error("Error tracking call end:", error);
+                      toast({
+                        title: "Error",
+                        description: "Failed to end call tracking.",
+                        variant: "destructive",
+                      });
+                    }
+                    
+                    // Clear the session timer
+                    if (sessionTimerRef.current) {
+                      clearInterval(sessionTimerRef.current);
+                      sessionTimerRef.current = null;
+                    }
+                    
+                    setCurrentCallId(null);
+                  }
                 }}
                 onError={(error) => {
                   console.error("ElevenLabs call error:", error);

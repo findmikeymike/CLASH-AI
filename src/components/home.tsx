@@ -5,7 +5,7 @@ import PerformanceMetrics from "./PerformanceMetrics";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Settings, CreditCard, Crown, User } from "lucide-react";
+import { Info, Zap, Crown, Clock, CreditCard, User } from "lucide-react";
 import TokenDisplay from "./TokenDisplay";
 import TokenPurchaseModal from "./TokenPurchaseModal";
 import { createClient } from "@supabase/supabase-js";
@@ -34,7 +34,7 @@ function Home() {
   const [showDebate, setShowDebate] = useState(false);
   const [showMetrics, setShowMetrics] = useState(false);
   const [metrics, setMetrics] = useState<PerformanceMetrics | null>(null);
-  const [showSettings, setShowSettings] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const [tokenBalance, setTokenBalance] = useState(0); // Initialize with 0, will be updated from database
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -50,20 +50,20 @@ function Home() {
     setSelectedCharacter(character);
     setShowDebate(true);
     setShowMetrics(false);
-    setShowSettings(false);
+    setShowInfo(false);
   };
 
   const handleBackToCharacters = () => {
     setShowDebate(false);
     setShowMetrics(false);
-    setShowSettings(false);
+    setShowInfo(false);
   };
 
   const handleDebateEnd = (debateMetrics: PerformanceMetrics) => {
     setMetrics(debateMetrics);
     setShowDebate(false);
     setShowMetrics(true);
-    setShowSettings(false);
+    setShowInfo(false);
 
     // Deduct tokens based on usage
     if (debateMetrics.tokenUsage) {
@@ -101,8 +101,8 @@ function Home() {
     }
   };
 
-  const handleShowSettings = () => {
-    setShowSettings(true);
+  const handleShowInfo = () => {
+    setShowInfo(true);
     setShowDebate(false);
     setShowMetrics(false);
   };
@@ -219,18 +219,18 @@ function Home() {
             <Button
               variant="outline"
               size="sm"
-              onClick={handleShowSettings}
+              onClick={handleShowInfo}
               className="border-white/30 bg-black/50 text-white hover:bg-red-600 hover:border-red-500 hover:text-white transition-all duration-200 backdrop-blur-sm"
             >
-              <Settings className="h-4 w-4 mr-2" />
-              Settings
+              <Info className="h-4 w-4 mr-2" />
+              Info
             </Button>
           </div>
         </header>
       )}
 
       <AnimatePresence mode="wait">
-        {!showDebate && !showMetrics && !showSettings && (
+        {!showDebate && !showMetrics && !showInfo && (
           <motion.div
             key="character-grid"
             initial={{ opacity: 0 }}
@@ -243,9 +243,9 @@ function Home() {
           </motion.div>
         )}
 
-        {showSettings && (
+        {showInfo && (
           <motion.div
-            key="settings"
+            key="info"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -254,62 +254,56 @@ function Home() {
           >
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-2xl p-8">
-                <h2 className="text-3xl font-bold text-white mb-8">Settings</h2>
+                <h2 className="text-3xl font-bold text-white mb-8">About CLASH AI</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <Card className="bg-gradient-to-br from-gray-800 to-black border border-gray-700">
                     <CardContent className="p-6">
                       <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-                        <CreditCard className="h-5 w-5 mr-2 text-yellow-500" />
-                        Subscription
+                        <Zap className="h-5 w-5 mr-2 text-yellow-500" />
+                        How Minutes Work
                       </h3>
                       <p className="text-gray-400 mb-4">
-                        Manage your Clash Pro subscription
+                        Understanding CLASH AI's minute-based system
                       </p>
-                      <div className="space-y-3">
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-300">Current Plan</span>
-                          <span className="text-yellow-400 font-medium">
-                            Pro Monthly
-                          </span>
+                      <div className="space-y-4">
+                        <div className="bg-gray-900 p-3 rounded-lg border border-gray-700">
+                          <h4 className="text-white font-medium mb-2">Purchasing Minutes</h4>
+                          <p className="text-gray-300 text-sm">Buy minute packages through our secure payment system. Choose from 10, 30, or 60 minute bundles.</p>
                         </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-300">Next Billing</span>
-                          <span className="text-gray-300">Jan 15, 2025</span>
+                        <div className="bg-gray-900 p-3 rounded-lg border border-gray-700">
+                          <h4 className="text-white font-medium mb-2">Usage Tracking</h4>
+                          <p className="text-gray-300 text-sm">Minutes are consumed during active conversations with AI characters. The timer at the top shows your current session length.</p>
                         </div>
-                        <Button className="w-full bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black font-medium">
-                          Manage Subscription
-                        </Button>
+                        <div className="bg-gray-900 p-3 rounded-lg border border-gray-700">
+                          <h4 className="text-white font-medium mb-2">Minute Balance</h4>
+                          <p className="text-gray-300 text-sm">Your remaining minutes are displayed at the top of the screen. You'll need to purchase more when your balance reaches zero.</p>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
-
                   <Card className="bg-gradient-to-br from-gray-800 to-black border border-gray-700">
                     <CardContent className="p-6">
                       <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-                        <User className="h-5 w-5 mr-2 text-blue-500" />
-                        Profile
+                        <Clock className="h-5 w-5 mr-2 text-blue-500" />
+                        How to Use CLASH AI
                       </h3>
                       <p className="text-gray-400 mb-4">
-                        Update your account information
+                        Getting the most out of your experience
                       </p>
-                      <div className="space-y-3">
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-300">Email</span>
-                          <span className="text-gray-300">
-                            user@example.com
-                          </span>
+                      <div className="space-y-4">
+                        <div className="bg-gray-900 p-3 rounded-lg border border-gray-700">
+                          <h4 className="text-white font-medium mb-2">Select a Character</h4>
+                          <p className="text-gray-300 text-sm">Choose from our diverse cast of AI characters, each with unique perspectives and expertise.</p>
                         </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-300">Member Since</span>
-                          <span className="text-gray-300">Dec 2024</span>
+                        <div className="bg-gray-900 p-3 rounded-lg border border-gray-700">
+                          <h4 className="text-white font-medium mb-2">Voice Interaction</h4>
+                          <p className="text-gray-300 text-sm">Speak naturally with your chosen character. Our advanced voice recognition understands natural conversation.</p>
                         </div>
-                        <Button
-                          variant="outline"
-                          className="w-full border-gray-600 text-white hover:bg-gray-800"
-                        >
-                          Edit Profile
-                        </Button>
+                        <div className="bg-gray-900 p-3 rounded-lg border border-gray-700">
+                          <h4 className="text-white font-medium mb-2">Performance Metrics</h4>
+                          <p className="text-gray-300 text-sm">After each debate, review detailed metrics about your conversation, including duration and response times.</p>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
