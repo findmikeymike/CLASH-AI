@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import CharacterGrid from "./CharacterGrid";
 import DebateInterface from "./DebateInterface";
 import PerformanceMetrics from "./PerformanceMetrics";
+import Blog from "./Blog";
+import BlogPostDetail from "./BlogPostDetail";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Info, Zap, Crown, Clock, CreditCard, User } from "lucide-react";
+import { Info, Zap, Crown, Clock, CreditCard, User, BookOpen } from "lucide-react";
 import TokenDisplay from "./TokenDisplay";
 import TokenPurchaseModal from "./TokenPurchaseModal";
 import { createClient } from "@supabase/supabase-js";
+import { blogPosts } from "@/data/blogPosts";
 
 interface Character {
   id: string;
@@ -35,6 +38,8 @@ function Home() {
   const [showMetrics, setShowMetrics] = useState(false);
   const [metrics, setMetrics] = useState<PerformanceMetrics | null>(null);
   const [showInfo, setShowInfo] = useState(false);
+  const [showBlog, setShowBlog] = useState(false);
+  const [selectedBlogPost, setSelectedBlogPost] = useState<string | null>(null);
   const [tokenBalance, setTokenBalance] = useState(0); // Initialize with 0, will be updated from database
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -51,12 +56,16 @@ function Home() {
     setShowDebate(true);
     setShowMetrics(false);
     setShowInfo(false);
+    setShowBlog(false);
+    setSelectedBlogPost(null);
   };
 
   const handleBackToCharacters = () => {
     setShowDebate(false);
     setShowMetrics(false);
     setShowInfo(false);
+    setShowBlog(false);
+    setSelectedBlogPost(null);
   };
 
   const handleDebateEnd = (debateMetrics: PerformanceMetrics) => {
@@ -64,6 +73,8 @@ function Home() {
     setShowDebate(false);
     setShowMetrics(true);
     setShowInfo(false);
+    setShowBlog(false);
+    setSelectedBlogPost(null);
 
     // Deduct tokens based on usage
     if (debateMetrics.tokenUsage) {
@@ -105,6 +116,20 @@ function Home() {
     setShowInfo(true);
     setShowDebate(false);
     setShowMetrics(false);
+    setShowBlog(false);
+    setSelectedBlogPost(null);
+  };
+  
+  const handleShowBlog = () => {
+    setShowBlog(true);
+    setShowDebate(false);
+    setShowMetrics(false);
+    setShowInfo(false);
+    setSelectedBlogPost(null);
+  };
+  
+  const handleSelectBlogPost = (postId: string) => {
+    setSelectedBlogPost(postId);
   };
 
   // Function to fetch user minutes from the database
@@ -219,6 +244,15 @@ function Home() {
             <Button
               variant="outline"
               size="sm"
+              onClick={handleShowBlog}
+              className="border-white/30 bg-black/50 text-white hover:bg-red-600 hover:border-red-500 hover:text-white transition-all duration-200 backdrop-blur-sm"
+            >
+              <BookOpen className="h-4 w-4 mr-2" />
+              Blog
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
               onClick={handleShowInfo}
               className="border-white/30 bg-black/50 text-white hover:bg-red-600 hover:border-red-500 hover:text-white transition-all duration-200 backdrop-blur-sm"
             >
@@ -230,7 +264,7 @@ function Home() {
       )}
 
       <AnimatePresence mode="wait">
-        {!showDebate && !showMetrics && !showInfo && (
+        {!showDebate && !showMetrics && !showInfo && !showBlog && (
           <motion.div
             key="character-grid"
             initial={{ opacity: 0 }}
@@ -343,6 +377,35 @@ function Home() {
           </motion.div>
         )}
 
+        {showBlog && !selectedBlogPost && (
+          <motion.div
+            key="blog"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10"
+          >
+            <Blog onBack={handleBackToCharacters} />
+          </motion.div>
+        )}
+        
+        {showBlog && selectedBlogPost && (
+          <motion.div
+            key="blog-post-detail"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10"
+          >
+            <BlogPostDetail 
+              post={blogPosts.find(post => post.id === selectedBlogPost)!} 
+              onBack={() => setSelectedBlogPost(null)} 
+            />
+          </motion.div>
+        )}
+        
         {showMetrics && metrics && (
           <motion.div
             key="performance-metrics"
